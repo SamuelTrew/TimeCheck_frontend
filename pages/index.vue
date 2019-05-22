@@ -1,23 +1,6 @@
 <template>
   <div class="particles">
-    <vue-particles
-      color="#dedede"
-      :particleOpacity="0.7"
-      :particlesNumber="80"
-      shapeType="circle"
-      :particleSize="4"
-      linesColor="#dedede"
-      :linesWidth="1"
-      :lineLinked="true"
-      :lineOpacity="0.4"
-      :linesDistance="150"
-      :moveSpeed="3"
-      :hoverEffect="true"
-      hoverMode="grab"
-      :clickEffect="true"
-      clickMode="push"
-    >
-    </vue-particles>
+    <!-- add vue particle code if you have time by stripping the original stuff -->
   </div>
 </template>
 
@@ -27,8 +10,12 @@
 
 <style>
   .particles {
-    background-image: url("~assets/background.jpg");
+    background-image: -webkit-linear-gradient(309deg,#ee4266,#540d6e);
+    background-image: -o-linear-gradient(309deg,#ee4266,#540d6e);
+    background-image: linear-gradient(141deg,#ee4266,#540d6e);
     background-position: center center;
     background-size: cover;
+    background-repeat: repeat;
+    height: 100vh;
   }
 </style>
