@@ -27,6 +27,7 @@ const config: NuxtConfiguration = {
   ** Global CSS
   */
   css: [
+    '~assets/main.scss'
   ],
 
   /*
@@ -42,12 +43,23 @@ const config: NuxtConfiguration = {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    // Doc: https://buefy.github.io/#/documentation
+    'nuxt-buefy'
   ],
   /*
   ** Axios module configuration
   */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
+    baseURL: 'https://api.timecheck.app',
+    browserBaseURL: 'https://api.timecheck.app'
+  },
+
+  /*
+  ** Buefy module configuration
+   */
+  buefy: {
+    css: false
   },
 
   /*
@@ -57,9 +69,20 @@ const config: NuxtConfiguration = {
     /*
     ** You can extend webpack config here
     */
-    extend(config, ctx) {
-    }
-  }
-}
+    // extend(config, ctx) {
+    //   // Run ESLint on save
+    //   if (ctx.isDev && ctx.isClient) {
+    //     config.module.rules.push({
+    //       enforce: 'pre',
+    //       test: /\.(js|vue)$/,
+    //       loader: 'eslint-loader',
+    //       exclude: /(node_modules)/
+    //     })
+    //   }
+    // }
+  },
+
+  globalName: 'timecheck'
+};
 
 export default config
