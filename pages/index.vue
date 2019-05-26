@@ -2,7 +2,7 @@
   <div class="particles">
     <!-- add vue particle code if you have time by stripping the original stuff -->
     <button>
-      <a href="./dashboard.vue">Link</a>
+    <nuxt-link to="dashboard">group page</nuxt-link>
     </button>
   </div>
 </template>
@@ -13,7 +13,7 @@
 
   const routes = {
     '/': Splashscreen,
-    '/Dashboard': Dashboard,
+    '/dashboard': Dashboard,
   };
 
   export default {
