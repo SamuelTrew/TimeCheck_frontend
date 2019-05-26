@@ -1,10 +1,21 @@
 <template>
   <div class="particles">
     <!-- add vue particle code if you have time by stripping the original stuff -->
+    <button>
+      <a href="./dashboard.vue">Link</a>
+    </button>
   </div>
 </template>
 
 <script>
+  const Dashboard = { template: '<p>Dashboard</p>'};
+  const Splashscreen = { template: '<p>Splashscreen</p>'};
+
+  const routes = {
+    '/': Splashscreen,
+    '/Dashboard': Dashboard,
+  };
+
   export default {
     name: 'IndexPage'
   }
