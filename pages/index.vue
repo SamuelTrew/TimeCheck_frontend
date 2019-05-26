@@ -2,7 +2,7 @@
   <div class="particles">
     <!-- add vue particle code if you have time by stripping the original stuff -->
     <button>
-    <nuxt-link to="dashboard">group page</nuxt-link>
+    <nuxt-link to="dashboard">dashboard page</nuxt-link>
     </button>
   </div>
 </template>
