@@ -4,20 +4,23 @@
     <h1>
        I am the dashboard
        </h1>
-      <group_taskbar/>
+      <Taskbar/>
     </div>
   </div>
 </template>
 
-<script>
-  import group_taskbar from "../components/group_taskbar.vue";
+<script lang="ts">
+  import Vue from 'vue'
+  import Component from 'vue-class-component'
 
-  export default {
-    name: 'dashboard',
+  import Taskbar from '../components/Taskbar.vue'
+
+  @Component({
     components: {
-      group_taskbar,
+      Taskbar,
     }
-  }
+  })
+  export default class DashboardPage extends Vue {}
 </script>
 
 <style>

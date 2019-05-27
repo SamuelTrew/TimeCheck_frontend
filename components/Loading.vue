@@ -2,10 +2,12 @@
   <div class="loading"></div>
 </template>
 
-<script>
-  export default {
-    name: 'Loading'
-  }
+<script lang="ts">
+  import Vue from 'vue'
+  import Component from 'vue-class-component'
+
+  @Component
+  export default class Loading extends Vue {}
 </script>
 
 <style lang="scss">

@@ -17,22 +17,27 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+  import Vue from 'vue'
+  import Component from 'vue-class-component'
   import { mapActions } from 'vuex'
 
   import Loading from '~/components/Loading.vue'
 
-  export default {
-    name: 'JWTAuthPage',
+  @Component({
     layout: 'blank',
     components: {
       Loading
     },
-    data() {
-      return {
-        loading: true
-      }
-    },
+    methods: {
+      ...mapActions({
+        setUser: 'user/setUser'
+      })
+    }
+  })
+  export default class AuthJWTPage extends Vue {
+    loading = true
+
     async mounted() {
       const token = this.$route.query.token
       if (token === null) {
@@ -47,16 +52,11 @@
         )
         // TODO: Make this more elegant?
         window.opener.$timecheck.$store.dispatch('auth/setUser', response.data)
-        window.close()
+        //window.close()
       } catch (err) {
         // TODO: Error handling
         console.error(err)
       }
-    },
-    methods: {
-      ...mapActions({
-        setUser: 'user/setUser'
-      })
     }
   }
 </script>

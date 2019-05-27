@@ -9,24 +9,27 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+  import Vue from 'vue'
+  import Component from 'vue-class-component'
   import { mapActions, mapGetters } from 'vuex'
 
-  export default {
-    name: 'DefaultLayout',
+  @Component({
     computed: {
       ...mapGetters({
         auth: 'auth/user'
       })
-    },
-    mounted() {
-      this.$store.dispatch('auth/init')
     },
     methods: {
       ...mapActions({
         login: 'auth/login',
         logout: 'auth/logout'
       })
+    }
+  })
+  export default class DefaultLayout extends Vue {
+    mounted() {
+      this.$store.dispatch('auth/init')
     }
   }
 </script>

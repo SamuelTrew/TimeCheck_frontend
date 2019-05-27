@@ -7,7 +7,13 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+  import Vue from 'vue'
+  import Component from 'vue-class-component'
+
+
+  // Don't think this stuff is necessary - creating a page (.vue file in the page directory) with the
+  // relevant name (i.e. dashboard.vue) will do the routing automatically
   const Dashboard = { template: '<p>Dashboard</p>'};
   const Splashscreen = { template: '<p>Splashscreen</p>'};
 
@@ -16,9 +22,9 @@
     '/dashboard': Dashboard,
   };
 
-  export default {
-    name: 'IndexPage'
-  }
+
+  @Component
+  export default class IndexPage extends Vue {}
 </script>
 
 <style>
