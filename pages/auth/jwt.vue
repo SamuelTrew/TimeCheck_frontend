@@ -51,8 +51,9 @@
           { withCredentials: false }
         )
         // TODO: Make this more elegant?
+        // TODO: Error if cannot set window.opener data or close window
         window.opener.$timecheck.$store.dispatch('auth/setUser', response.data)
-        //window.close()
+        window.close()
       } catch (err) {
         // TODO: Error handling
         console.error(err)

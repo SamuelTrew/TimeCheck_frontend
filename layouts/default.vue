@@ -1,11 +1,7 @@
 <template>
-  <div>
-    <p class="title is-4">User: {{ auth }}</p>
-    <div class="debug" v-if="auth.ready">
-      <button class="button is-primary is-large" @click="logout" v-if="auth.loggedIn">Log out, {{ auth.details.name }}</button>
-      <button class="button is-primary is-large" @click="login" v-else>Log in</button>
-    </div>
-    <nuxt />
+  <div id="main">
+    <Sidebar />
+    <nuxt id="page" />
   </div>
 </template>
 
@@ -13,8 +9,10 @@
   import Vue from 'vue'
   import Component from 'vue-class-component'
   import { mapActions, mapGetters } from 'vuex'
+  import Sidebar from "~/components/Sidebar.vue"
 
   @Component({
+    components: {Sidebar},
     computed: {
       ...mapGetters({
         auth: 'auth/user'
@@ -53,9 +51,14 @@
     margin: 0;
   }
 
-  .debug {
-    button {
-      margin: 1rem;
-    }
+  #main {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+  }
+
+  #page {
+    flex: 1 1 auto;
   }
 </style>
