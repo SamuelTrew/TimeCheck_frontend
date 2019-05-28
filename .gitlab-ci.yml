@@ -1,3 +1,6 @@
+stages:
+  - deploy
+
 before_script:
   - sudo apt-get update -qq
   - sudo apt-get install -qq git
@@ -9,10 +12,10 @@ before_script:
   - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
     
 deploy_dev:
-  type: deploy
+  stage: deploy
   environment:
     name: dev
-    url: dev.timecheck.app
+    url: https://dev.timecheck.app
   script:
     - ssh timecheck@frontend.timecheck.server.mattcorp.com "cd /home/timecheck/frontend && git checkout master && git reset --hard HEAD && git pull origin master && npm install && npm run build && pm2 restart timecheck && exit"
   only:
