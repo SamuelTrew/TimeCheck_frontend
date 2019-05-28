@@ -67,11 +67,8 @@
 <script>
   import { mapGetters } from 'vuex'
 
-  import Taskbar from '../components/Taskbar.vue'
-
   export default {
     components: {
-      Taskbar,
     },
     computed: {
       ...mapGetters({
