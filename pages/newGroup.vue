@@ -3,14 +3,21 @@
 
     <section class="hero is-primary is-bold">
       <div class="hero-body">
-        <div style="float: left;">
-          <b-icon href="dashboard" icon="arrow-left" type="is-light" size="is-medium"></b-icon>
-        </div>
         <div class="container has-text-centered">
           <h1 class="title is-1">
             New Group
           </h1>
         </div>
+        <nuxt-link to="/dashboard">
+          <div style="float: left;">
+            <b-icon href="dashboard" icon="arrow-left" type="is-light" size="is-medium"></b-icon>
+          </div>
+        </nuxt-link>
+        <nuxt-link to="/addGroupMembers">
+        <div style="float: left;">
+          <b-icon href="addGroupMembers" icon="arrow-right" type="is-light" size="is-medium"></b-icon>
+        </div>
+        </nuxt-link>
       </div>
     </section>
 
@@ -31,7 +38,6 @@
         <button @click="removeImage">Remove image</button>
       </div>
     </section>
-
 
   </section>
 </template>
