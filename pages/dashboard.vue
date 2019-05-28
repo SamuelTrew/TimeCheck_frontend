@@ -23,8 +23,6 @@
 
 <script>
   import { mapGetters } from 'vuex'
-
-  import Taskbar from '../components/Taskbar.vue'
   import GroupFeatures from '../components/GroupFeatures.vue'
   import Updates from "../components/Updates";
 
@@ -32,7 +30,6 @@
     components: {
       Updates,
       GroupFeatures,
-      Taskbar,
     },
     computed: {
       ...mapGetters({
