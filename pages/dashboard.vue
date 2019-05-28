@@ -17,19 +17,19 @@
         </header>
         <ul class="menu-list">
           <li><a>
-            Hello
+            <img src="../assets/alarm.svg" alt="Alarms">
           </a></li>
           <li><a>
-            Hello
+            <img src="../assets/poll.svg" alt="Polls">
           </a></li>
           <li><a>
-            Hello
+            <img src="../assets/location.svg" alt="Location">
           </a></li>
           <li><a>
-            Hello
+            <img src="../assets/calendar.svg" alt="Calendar">
           </a></li>
           <li><a>
-            Hello
+            <img src="../assets/documents.svg" alt="Documents">
           </a></li>
         </ul>
       </aside>
