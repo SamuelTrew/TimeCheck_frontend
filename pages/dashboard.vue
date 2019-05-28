@@ -10,31 +10,9 @@
       </div>
     </section>
 
-    <div class="columns">
-      <aside class="column is-narrow">
-        <header class="menu-label">
-          Features
-        </header>
-        <ul class="menu-list">
-          <li><a>
-            <img src="../assets/alarm.svg" alt="Alarms">
-          </a></li>
-          <li><a>
-            <img src="../assets/poll.svg" alt="Polls">
-          </a></li>
-          <li><a>
-            <img src="../assets/location.svg" alt="Location">
-          </a></li>
-          <li><a>
-            <img src="../assets/calendar.svg" alt="Calendar">
-          </a></li>
-          <li><a>
-            <img src="../assets/documents.svg" alt="Documents">
-          </a></li>
-        </ul>
-      </aside>
-      <div class="column"></div>
-      <div class="column is-two-thirds">
+    <section class="columns">
+      <GroupFeatures />
+      <div class="column is-four-fifths">
         <section class="section updates">
           <div class="card">
             <div class="card-content">
@@ -60,7 +38,7 @@
           </div>
         </section>
       </div>
-    </div>
+    </section>
   </section>
 </template>
 
@@ -68,9 +46,11 @@
   import { mapGetters } from 'vuex'
 
   import Taskbar from '../components/Taskbar.vue'
+  import GroupFeatures from '../components/GroupFeatures.vue'
 
   export default {
     components: {
+      GroupFeatures,
       Taskbar,
     },
     computed: {
@@ -82,6 +62,7 @@
 </script>
 
 <style>
+
   .updates{
     background: #f7f8fb;
     background-position: center center;

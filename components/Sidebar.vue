@@ -47,8 +47,8 @@
   .sidebar-group,
   .group-thumb {
     display: block;
-    width: 4rem;
-    height: 4rem;
+    width: 4.5vw;
+    height: 4.5vw;
     overflow: hidden;
   }
 
