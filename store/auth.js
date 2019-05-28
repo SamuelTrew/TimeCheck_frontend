@@ -1,7 +1,7 @@
 export const state = () => {
   return {
     ready: false,
-    details: {},
+    details: null,
     loggedIn: false,
     admin: false
   }
@@ -50,10 +50,9 @@ export const actions = {
   logout({ commit }) {
     // TODO: Change redirect to only if required (i.e. auth required page)
     // if (rootState.route.name === 'account')
-    this.$router.push('/')
     this.$axios.get('/user/logout')
-    localStorage.removeItem('user:token')
     commit('LOGOUT')
+    this.$router.push('/')
   }
 }
 
@@ -68,7 +67,7 @@ export const mutations = {
   LOGOUT(state) {
     this.$axios.setToken(false)
     localStorage.removeItem('user:token')
-    state.details = {}
+    state.details = null
     state.loggedIn = false
     state.ready = true
   }

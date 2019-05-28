@@ -1,69 +1,10 @@
 <template>
   <section>
-    <section class="hero is-warning is-bold">    <!-- Hero head: will stick at the top -->
-      <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand ">
-          <a class="navbar-item" href="https://timecheck.app">
-            <img src="../assets/tc_logo.png" alt="Logo" width="150" height="100">
-          </a>
-
-          <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </a>
-        </div>
-
-        <div id="navbarBasicExample" class="navbar-menu">
-          <div class="navbar-start">
-            <a class="navbar-item">
-              Home
-            </a>
-            <a class="navbar-item">
-              Dashboard
-            </a>
-            <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link">
-                More
-              </a>
-              <div class="navbar-dropdown">
-                <a class="navbar-item">
-                  About
-                </a>
-                <a class="navbar-item">
-                  Jobs
-                </a>
-                <a class="navbar-item">
-                  Contact
-                </a>
-                <hr class="navbar-divider">
-                <a class="navbar-item">
-                  Report an issue
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="navbar-end">
-            <div class="navbar-item">
-              <div class="buttons">
-                <a class="button is-primary">
-                  <strong>Sign up</strong>
-                </a>
-                <a class="button is-light">
-                  Log in
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      <!-- Hero content: will be in the middle -->
+    <section class="hero is-primary is-bold">
       <div class="hero-body">
         <div class="container has-text-centered">
-          <h1 class="title">
-            Radhika's Dashboard
+          <h1 class="title is-1">
+            {{ user.details.name.split(" ")[0] }}'s Dashboard
           </h1>
         </div>
       </div>
@@ -123,18 +64,21 @@
   </section>
 </template>
 
-<script lang="ts">
-  import Vue from 'vue'
-  import Component from 'vue-class-component'
+<script>
+  import { mapGetters } from 'vuex'
 
   import Taskbar from '../components/Taskbar.vue'
 
-  @Component({
+  export default {
     components: {
       Taskbar,
+    },
+    computed: {
+      ...mapGetters({
+        user: 'auth/user'
+      })
     }
-  })
-  export default class DashboardPage extends Vue {}
+  }
 </script>
 
 <style>
@@ -143,10 +87,6 @@
     background-position: center center;
     background-size: cover;
     background-repeat: repeat;
-  }
-  .title{
-    font-family: sans-serif;
-    font-size: 350%;
   }
 
 </style>
