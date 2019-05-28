@@ -3,6 +3,9 @@
 
     <section class="hero is-primary is-bold">
       <div class="hero-body">
+        <div style="float: left;">
+          <b-icon icon="arrow-left" type="is-light" size="is-medium"></b-icon>
+        </div>
         <div class="container has-text-centered">
           <h1 class="title is-1">
             New Group
@@ -21,23 +24,25 @@
       </div>
     </section>
 
-    <section>
-      <div class="pic">
-        <div v-if="!image">
-          <img src="../assets/camera.svg" alt="temp"/>
-        </div>
-        <div v-else>
-          <img :src="image" alt="Image"/>
-        </div>
-      </div>
-
-      <div v-if="!image">
-        <input type="file" @change="onFileChange">
-      </div>
-      <div v-else>
-        <button @click="removeImage">Remove image</button>
+    <section class="pic">
+      <div class="file has-name">
+        <label class="file-label">
+          <input class="file-input" type="file" name="resume">
+          <span class="file-cta">
+            <span class="file-icon">
+              <i class="fas fa-upload"></i>
+            </span>
+            <span class="file-label">
+              Choose a file…
+            </span>
+          </span>
+          <span class="file-name">
+            Your Group Photo
+          </span>
+        </label>
       </div>
     </section>
+    <input class="input is-Rounded" type="text" placeholder="Group Name">
 
   </section>
 </template>
@@ -74,6 +79,15 @@
 
 
 <style>
+.name {
+  justify-content: center;
+  align-items: center;
+  float: right;
+}
+
 .pic {
+  justify-content: center;
+  align-items: center;
+  float: left;
 }
 </style>

@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
-    "cropperjs": "^1.5.1",
     "cross-env": "^5.2.0",
     "nuxt": "^2.4.0",
     "nuxt-buefy": "^0.3.6",
