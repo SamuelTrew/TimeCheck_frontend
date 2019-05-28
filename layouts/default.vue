@@ -1,31 +1,34 @@
 <template>
-  <div id="main">
-    <Sidebar />
-    <nuxt id="page" />
+  <div v-if="user.ready">
+    <div id="main">
+      <Sidebar />
+      <nuxt id="page" />
+    </div>
+  </div>
+
+  <div v-else class="section">
+    <div class="container has-text-centered">
+        <h3 class="title">Loading TimeCheck</h3>
+        <p class="content">This should only take a moment</p>
+        <Loading />
+    </div>
   </div>
 </template>
 
-<script lang="ts">
-  import Vue from 'vue'
-  import Component from 'vue-class-component'
-  import { mapActions, mapGetters } from 'vuex'
-  import Sidebar from "~/components/Sidebar.vue"
+<script>
+  import { mapGetters } from 'vuex'
 
-  @Component({
-    components: {Sidebar},
+  import Sidebar from '~/components/Sidebar'
+  import Loading from '~/components/Loading'
+
+  export default {
+    name: 'DefaultLayout',
+    components: { Loading, Sidebar },
     computed: {
       ...mapGetters({
-        auth: 'auth/user'
+        user: 'auth/user'
       })
     },
-    methods: {
-      ...mapActions({
-        login: 'auth/login',
-        logout: 'auth/logout'
-      })
-    }
-  })
-  export default class DefaultLayout extends Vue {
     mounted() {
       this.$store.dispatch('auth/init')
     }

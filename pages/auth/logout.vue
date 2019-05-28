@@ -1,17 +1,22 @@
 <template>
-  <div class="home">
-    <!-- add vue particle code if you have time by stripping the original stuff -->
-    <nuxt-link v-if="user.loggedIn" to="/dashboard" class="button is-large is-light">Dashboard</nuxt-link>
-    <button v-else @click="login" class="button is-large is-light">Login</button>
+  <div class="section">
+    <div class="container has-text-centered">
+      <h3 class="title">Logging Out</h3>
+      <p class="content">This should only take a moment</p>
+      <Loading />
+    </div>
   </div>
 </template>
 
 <script>
   import { mapActions, mapGetters } from 'vuex'
 
+  import Loading from '~/components/Loading'
+
   export default {
     name: 'IndexPage',
     layout: 'blank',
+    components: { Loading },
     computed: {
       ...mapGetters({
         user: 'auth/user'
@@ -19,18 +24,13 @@
     },
     methods: {
       ...mapActions({
-        login: 'auth/login',
+        logout: 'auth/logout',
       })
     },
-    // TODO: Automatically redirect to dashboard if logged in (index will then be a splash page)
-    // beforeRouteEnter(to, from, next) {
-    //   console.info('Hello!')
-    //   next(vm => {
-    //     if (vm.user.ready && vm.user.loggedIn) {
-    //       vm.$router.push('/dashboard')
-    //     }
-    //   })
-    // }
+    mounted() {
+      console.info('logging out')
+      this.logout()
+    }
   }
 </script>
 

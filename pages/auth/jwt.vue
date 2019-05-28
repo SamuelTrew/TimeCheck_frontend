@@ -4,7 +4,7 @@
       <template v-if="loading">
         <h3 class="title">Logging In</h3>
         <p class="content">This should only take a moment</p>
-        <loading />
+        <Loading />
       </template>
       <template v-else>
         <h3 class="title">Error</h3>
