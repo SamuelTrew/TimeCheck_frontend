@@ -78,6 +78,9 @@
     flex: 1 1 0;
     overflow: scroll;
   }
+  .sidebar-groups::-webkit-scrollbar {
+    width: 0 !important
+  }
 
   .sidebar-logo,
   .sidebar-item,
