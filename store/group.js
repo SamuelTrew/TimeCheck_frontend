@@ -1,28 +1,31 @@
 export const state = () => {
   return {
-    groups: [
-      {
-        id: 'fake_id_1',
-        name: 'Fake Group 1',
-        thumb: 'https://www.w3schools.com/w3css/img_lights.jpg'
-      },
-      {
-        id: 'fake_id_2',
-        name: 'Fake Group 2'
-      },
-      {
-        id: 'mattcorp',
-        name: 'MattCorp Employees',
-        thumb: 'https://mattcorp.com/android-chrome-192x192.png'
-      },
-      {
-        id: 'radico',
-        name: 'RadiCo, a MattCorp company'
-      }
-    ]
+    groups: []
   }
 }
 
 export const getters = {
-  list: state => state.groups
+  list: state => state.groups,
+  getGroupById: state => id => {
+    return state.groups.find(group => group.id === id)
+  }
+}
+
+export const actions = {
+  async fetchGroups({ commit }) {
+    try {
+      const groups = await this.$axios.$get('/group')
+      console.info(groups)
+      commit('SET_GROUPS', { groups })
+    } catch (err) {
+      // TODO: Error logging
+      console.error(err)
+    }
+  }
+}
+
+export const mutations = {
+  SET_GROUPS(state, { groups }) {
+    state.groups = groups
+  }
 }
