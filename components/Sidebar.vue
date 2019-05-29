@@ -11,7 +11,7 @@
       </nuxt-link>
     </div>
     <div class="sidebar-divider"></div>
-    <nuxt-link to="/group/new" class="sidebar-add">
+    <nuxt-link to="/group/new" class="sidebar-item">
       <b-icon icon="plus" type="is-light" size="is-medium"></b-icon>
     </nuxt-link>
     <nuxt-link to="/auth/logout" class="sidebar-item">
@@ -40,11 +40,11 @@
     background-color: #3c3744;
     display: flex;
     flex-direction: column;
+    padding: 1rem;
   }
 
   .sidebar-logo,
   .sidebar-item,
-  .sidebar-add,
   .sidebar-group,
   .group-thumb {
     display: block;
@@ -53,30 +53,24 @@
     overflow: hidden;
   }
 
-  .sidebar-item,
-  .sidebar-add {
+  .sidebar-item {
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
   }
 
-  .sidebar-logo,
+  .sidebar-logo {
+    margin-bottom: 1rem;
+  }
   .sidebar-item,
   .sidebar-group {
-    margin: 1rem;
-  }
-
-  .sidebar-add {
-    margin-left: 1rem;
-    margin-right: 1rem;
     margin-top: 1rem;
   }
 
   .sidebar-divider {
     width: 4rem;
     height: 1px;
-    margin: 0 1rem;
     background-color: whitesmoke;
   }
 
@@ -90,7 +84,6 @@
 
   .sidebar-logo,
   .sidebar-item,
-  .sidebar-add,
   .group-thumb {
     border-radius: 50%;
     border: 0 solid whitesmoke;
@@ -99,14 +92,12 @@
   }
 
   .sidebar-item:hover,
-  .sidebar-add:hover,
   .group-thumb:hover {
     border: 3px solid whitesmoke;
     box-shadow: 0 0 1px 0 whitesmoke inset, 0 0 1px 0 whitesmoke;
   }
 
   .sidebar-item,
-  .sidebar-add,
   .group-thumb {
     background-color: #302c36;
   }
