@@ -9,13 +9,11 @@
         <div v-if="group.thumb" class="group-thumb group-thumb-img" :style="{ backgroundImage: `url('${group.thumb}')` }"></div>
         <div v-else class="group-thumb group-thumb-text">{{ group.name.charAt(0).toUpperCase() }}</div>
       </nuxt-link>
-      <div class="sidebar-item group-new">
-        <nuxt-link to="/group/new">
-          <b-icon icon="plus" type="is-light" size="is-medium"></b-icon>
-        </nuxt-link>
-      </div>
     </div>
     <div class="sidebar-divider"></div>
+    <nuxt-link to="/group/new" class="sidebar-add">
+      <b-icon icon="plus" type="is-light" size="is-medium"></b-icon>
+    </nuxt-link>
     <nuxt-link to="/auth/logout" class="sidebar-item">
       <b-icon icon="logout" type="is-light" size="is-medium"></b-icon>
     </nuxt-link>
@@ -46,6 +44,7 @@
 
   .sidebar-logo,
   .sidebar-item,
+  .sidebar-add,
   .sidebar-group,
   .group-thumb {
     display: block;
@@ -54,7 +53,8 @@
     overflow: hidden;
   }
 
-  .sidebar-item {
+  .sidebar-item,
+  .sidebar-add {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -65,6 +65,12 @@
   .sidebar-item,
   .sidebar-group {
     margin: 1rem;
+  }
+
+  .sidebar-add {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 1rem;
   }
 
   .sidebar-divider {
@@ -84,6 +90,7 @@
 
   .sidebar-logo,
   .sidebar-item,
+  .sidebar-add,
   .group-thumb {
     border-radius: 50%;
     border: 0 solid whitesmoke;
@@ -92,12 +99,14 @@
   }
 
   .sidebar-item:hover,
+  .sidebar-add:hover,
   .group-thumb:hover {
     border: 3px solid whitesmoke;
     box-shadow: 0 0 1px 0 whitesmoke inset, 0 0 1px 0 whitesmoke;
   }
 
   .sidebar-item,
+  .sidebar-add,
   .group-thumb {
     background-color: #302c36;
   }
