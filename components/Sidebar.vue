@@ -63,9 +63,13 @@
   .sidebar-logo {
     margin-bottom: 1rem;
   }
-  .sidebar-item,
+  .sidebar-item {
+    margin-top: 1rem;
+  }
+
   .sidebar-group {
     margin-top: 1rem;
+    margin-bottom: 1rem;
   }
 
   .sidebar-divider {
@@ -76,7 +80,8 @@
 
   .sidebar-groups {
     flex: 1 1 0;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
   }
   .sidebar-groups::-webkit-scrollbar {
     width: 0 !important
