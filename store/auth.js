@@ -23,8 +23,8 @@ export const actions = {
     if (token) {
       this.$axios.setToken(token, 'Token')
       try {
-        const response = await this.$axios.$get('/user/me')
-        commit('LOGIN', { details: response.data, token })
+        const details = await this.$axios.$get('/user/me')
+        commit('LOGIN', { details, token })
         dispatch('group/fetchGroups', null, { root: true })
       } catch (err) {
         // TODO: Error logging

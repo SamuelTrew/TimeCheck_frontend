@@ -1,12 +1,16 @@
 export const state = () => {
   return {
+    ready: false,
     groups: []
   }
 }
 
 export const getters = {
+  ready: state => state.ready,
   list: state => state.groups,
   getGroupById: state => id => {
+    console.info('getting group ', id)
+    console.info(state.groups)
     return state.groups.find(group => group.id === id)
   }
 }
@@ -27,5 +31,6 @@ export const actions = {
 export const mutations = {
   SET_GROUPS(state, { groups }) {
     state.groups = groups
+    state.ready = true
   }
 }
