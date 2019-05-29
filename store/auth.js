@@ -17,21 +17,22 @@ export const getters = {
 }
 
 export const actions = {
-  async init({ commit }) {
+  async init({ commit, dispatch }) {
     const token = localStorage.getItem('user:token')
     console.info("Token: ", token)
     if (token) {
       this.$axios.setToken(token, 'Token')
       try {
-        const response = await this.$axios('/user/me')
+        const response = await this.$axios.$get('/user/me')
         commit('LOGIN', { details: response.data, token })
+        dispatch('group/fetchGroups', null, { root: true })
       } catch (err) {
         // TODO: Error logging
         console.error(err)
-        commit('LOGOUT')
+        dispatch('logout', { tellServer: false })
       }
     } else {
-      commit('LOGOUT')
+      dispatch('logout', { tellServer: false })
     }
   },
   login() {
@@ -47,12 +48,16 @@ export const actions = {
     // TODO: For use in showing unconfirmed user details temporarily
     // localStorage.setItem('user:details', JSON.stringify(details))
   },
-  logout({ commit }) {
+  logout({ commit }, { tellServer = true } = {}) {
     // TODO: Change redirect to only if required (i.e. auth required page)
     // if (rootState.route.name === 'account')
-    this.$axios.get('/user/logout')
+    if (tellServer) {
+      this.$axios.get('/user/logout')
+    }
     commit('LOGOUT')
-    this.$router.push('/')
+    if (this.$router.currentRoute.name !== 'index') {
+      this.$router.push('/')
+    }
   }
 }
 

@@ -1,7 +1,7 @@
 <template>
   <div v-if="user.ready">
     <div id="main">
-      <Sidebar />
+      <Sidebar v-if="user.loggedIn" />
       <nuxt id="page" />
     </div>
   </div>

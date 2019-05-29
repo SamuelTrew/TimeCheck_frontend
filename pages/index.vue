@@ -11,7 +11,6 @@
 
   export default {
     name: 'IndexPage',
-    layout: 'blank',
     computed: {
       ...mapGetters({
         user: 'auth/user'

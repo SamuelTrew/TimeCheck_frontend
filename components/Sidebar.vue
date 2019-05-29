@@ -10,7 +10,7 @@
         <div v-else class="group-thumb group-thumb-text">{{ group.name.charAt(0).toUpperCase() }}</div>
       </nuxt-link>
       <div class="sidebar-item group-new">
-        <nuxt-link to="/newGroup">
+        <nuxt-link to="/group/new">
           <b-icon icon="plus" type="is-light" size="is-medium"></b-icon>
         </nuxt-link>
       </div>
