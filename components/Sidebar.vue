@@ -76,6 +76,7 @@
 
   .sidebar-groups {
     flex: 1 1 0;
+    overflow: scroll;
   }
 
   .sidebar-logo,
