@@ -11,10 +11,14 @@
         </nuxt-link>
       </div>
         <div class="sidebar-item group-feature">
-          <b-icon icon="clock" type="is-light" size="is-medium" ></b-icon>
+          <nuxt-link to="/alarm">
+            <b-icon icon="clock" type="is-light" size="is-medium" ></b-icon>
+          </nuxt-link>
         </div>
         <div class="sidebar-item group-feature">
-          <b-icon icon="map-marker" type="is-light" size="is-medium"></b-icon>
+          <nuxt-link to="/maps">
+            <b-icon icon="map-marker" type="is-light" size="is-medium"></b-icon>
+          </nuxt-link>
         </div>
         <div class="sidebar-item group-feature">
           <b-icon icon="file-document" type="is-light" size="is-medium"></b-icon>

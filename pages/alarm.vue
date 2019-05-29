@@ -9,24 +9,24 @@
                 <b-icon href="dashboard" icon="arrow-left" type="is-light" size="is-medium"></b-icon>
               </div>
             </nuxt-link>
-            Calendar
+            Alarms
           </h1>
         </div>
       </div>
     </section>
-    <section>
-      <!--dates functionality-->
-    </section>
+
+
   </section>
 </template>
 
+
 <script>
   export default {
-    name: "calendar"
+
   }
 </script>
 
-<style scoped>
+
+<style>
 
 </style>
-

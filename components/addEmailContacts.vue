@@ -9,7 +9,7 @@
     <div class="field container is-fluid">
     <label class="label">Email</label>
     <div class="control has-icons-left has-icons-right">
-      <input class="input is-danger" type="email" placeholder="Email input" value="hello@">
+      <input class="input is-danger" type="email" placeholder="Email input" value="">
       <span class="icon is-small is-left">
       <i class="fas fa-envelope"></i>
     </span>
