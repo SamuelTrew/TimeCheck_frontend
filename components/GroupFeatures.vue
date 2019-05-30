@@ -38,6 +38,7 @@
     width: 7rem;
     display: flex;
     flex-direction: column;
+    margin: 1rem;
   }
 
   .group-feature{

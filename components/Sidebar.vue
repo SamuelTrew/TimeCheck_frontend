@@ -35,10 +35,12 @@
 </script>
 
 <style>
+
+  /* Mobile */
   #sidebar {
     width: 6rem;
     background-color: #3c3744;
-    display: flex;
+    display: none;
     flex-direction: column;
     padding: 1rem;
   }
@@ -119,4 +121,12 @@
     align-items: center;
     justify-content: center;
   }
+
+  /* Desktop */
+  @media only screen and (min-width: 600px) {
+    #sidebar {
+      display: flex;
+    }
+  }
+
 </style>
