@@ -26,6 +26,9 @@
       </div>
       <div class="column is-four-fifths">
         <Updates />       <!-- TODO: make this customisable -->
+        <button
+          class="button is-primary"
+          @click="deleteGroup">Delete group</button>
       </div>
     </section>
   </section>
@@ -60,6 +63,13 @@
           }
         },
         immediate: true
+      }
+    },
+    methods: {
+      async deleteGroup() {
+        const group = await this.$axios.$post('/group', { name: this.name })
+        console.info(group)
+        this.$store.dispatch('group/fetchGroups')
       }
     },
     asyncData ({ params }) {
