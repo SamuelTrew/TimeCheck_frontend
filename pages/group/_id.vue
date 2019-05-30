@@ -1,33 +1,46 @@
 <template>
-  <div v-if="group">
-    <section class="hero is-primary is-bold">
-      <div class="hero-body">
-        <div class="container has-text-centered">
-          <h1 class="title is-1">
-            {{ group.name }}
-          </h1>
+  <section>
+    <div v-if="group">
+      <section class="hero is-primary is-bold">
+        <div class="hero-body">
+          <div class="container has-text-centered">
+            <h1 class="title is-1">
+              {{ group.name }}
+            </h1>
+          </div>
         </div>
+      </section>
+    </div>
+
+    <div v-else class="section">
+      <div class="container has-text-centered">
+        <h3 class="title">Loading group</h3>
+        <p class="content">This should only take a moment</p>
+        <Loading />
+      </div>
+    </div>
+
+    <section class="columns">
+      <div id="column">
+        <GroupFeatures/>  <!-- TODO: make this customisable -->
+      </div>
+      <div class="column is-four-fifths">
+        <Updates />       <!-- TODO: make this customisable -->
       </div>
     </section>
-  </div>
-
-  <div v-else class="section">
-    <div class="container has-text-centered">
-      <h3 class="title">Loading group</h3>
-      <p class="content">This should only take a moment</p>
-      <Loading />
-    </div>
-  </div>
+  </section>
 </template>
 
 <script>
   import { mapGetters } from 'vuex'
 
   import Loading from '~/components/Loading'
+  import Updates from "../../components/Updates";
+  import GroupFeatures from "../../components/GroupFeatures";
 
   export default {
     name: 'GroupViewPage',
-    components: { Loading },
+    components: {GroupFeatures, Updates, Loading },
     data() {
       return {
         group: null
