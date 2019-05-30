@@ -10,6 +10,18 @@
           </div>
         </div>
       </section>
+
+      <section class="columns">
+        <div id="column">
+          <GroupFeatures/>  <!-- TODO: make this customisable -->
+        </div>
+        <div class="column is-four-fifths">
+          <Updates />       <!-- TODO: make this customisable -->
+          <button
+            class="button is-primary"
+            @click="deleteGroup">Delete group</button>
+        </div>
+      </section>
     </div>
 
     <div v-else class="section">
@@ -19,18 +31,6 @@
         <Loading />
       </div>
     </div>
-
-    <section class="columns">
-      <div id="column">
-        <GroupFeatures/>  <!-- TODO: make this customisable -->
-      </div>
-      <div class="column is-four-fifths">
-        <Updates />       <!-- TODO: make this customisable -->
-        <button
-          class="button is-primary"
-          @click="deleteGroup">Delete group</button>
-      </div>
-    </section>
   </section>
 </template>
 
