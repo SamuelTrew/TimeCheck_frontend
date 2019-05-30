@@ -59,7 +59,14 @@
       ready: {
         handler(ready) {
           if (ready) {
-            this.group = this.getGroupById(this.id)
+            const group = this.getGroupById(this.id)
+            if (group) {
+              this.group = group
+            } else {
+              // Could not find group
+              // TODO: Display error about group 404 not found
+              this.$router.push('/dashboard')
+            }
           }
         },
         immediate: true
@@ -67,8 +74,14 @@
     },
     methods: {
       async deleteGroup() {
-        await this.$axios.$delete(`/group/${this.id}`);
-        this.$store.dispatch('group/fetchGroups');
+        try {
+          await this.$axios.$delete(`/group/${this.id}`)
+          this.$store.dispatch('group/fetchGroups')
+          this.$router.push('/dashboard')
+        } catch (e) {
+          // TODO: Handle 404 on delete (can't delete)
+          console.error("Delete 404", e)
+        }
       }
     },
     asyncData ({ params }) {

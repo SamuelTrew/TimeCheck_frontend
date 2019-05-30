@@ -49,6 +49,8 @@ const config: NuxtConfiguration = {
   */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
+    //baseURL: 'http://localhost:8000',
+    //browserBaseURL: 'http://localhost:8000'
     baseURL: 'https://api.timecheck.app',
     browserBaseURL: 'https://api.timecheck.app'
   },
