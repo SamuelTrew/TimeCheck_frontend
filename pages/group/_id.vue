@@ -67,9 +67,8 @@
     },
     methods: {
       async deleteGroup() {
-        const group = await this.$axios.$post('/group', { name: this.name })
-        console.info(group)
-        this.$store.dispatch('group/fetchGroups')
+        await this.$axios.$delete(`/group/${this.id}`);
+        this.$store.dispatch('group/fetchGroups');
       }
     },
     asyncData ({ params }) {
