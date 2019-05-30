@@ -20,6 +20,15 @@
           <button
             class="button is-primary"
             @click="deleteGroup">Delete group</button>
+          <div>
+            <b-field label="Rename Group">
+              <b-input v-model="name"></b-input>
+            </b-field>
+            <button
+              class="button is-primary"
+              :disabled="name.length === 0"
+              @click="updateName">Rename group</button>
+          </div>
         </div>
       </section>
     </div>
@@ -46,7 +55,8 @@
     components: {GroupFeatures, Updates, Loading },
     data() {
       return {
-        group: null
+        group: null,
+        name: '',
       }
     },
     computed: {
@@ -69,6 +79,13 @@
       async deleteGroup() {
         await this.$axios.$delete(`/group/${this.id}`);
         this.$store.dispatch('group/fetchGroups');
+      },
+
+      async updateName() {
+        const group = await this.$axios.$patch(`/group/${this.id}`, { name: this.name })
+        console.info(group)
+        this.$store.dispatch('group/fetchGroups')
+        //todo make the name in title update automatically (without refresh)
       }
     },
     asyncData ({ params }) {
