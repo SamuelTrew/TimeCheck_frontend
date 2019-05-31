@@ -1,5 +1,7 @@
 <template>
   <section class="section updates">
+    <h3 v-if="group" class="title">Group Activity Feed</h3>
+    <h3 v-else class="title">Overall Activity Feed</h3>
     <div class="card">
       <div class="card-content">
         <div class="media">
@@ -26,11 +28,12 @@
 </template>
 
 <script>
-    export default {
-        name: "Updates"
-    }
+  export default {
+    name: "Updates",
+    props: ['group']
+  }
 </script>
 
-<style scoped>
+<style>
 
 </style>

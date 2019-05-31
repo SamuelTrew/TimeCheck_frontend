@@ -11,10 +11,10 @@
     </section>
 
     <section class="columns">
-      <div id="column">
-      <GroupFeatures />
+      <div class="column is-narrow">
+        <GroupFeatures />
       </div>
-      <div class="column is-four-fifths">
+      <div class="column">
         <Updates />
       </div>
     </section>

@@ -26,6 +26,9 @@ export const actions = {
         const details = await this.$axios.$get('/user/me')
         commit('LOGIN', { details, token })
         dispatch('group/fetchGroups', null, { root: true })
+        if (this.$router.currentRoute.name === 'index') {
+          this.$router.push('/dashboard')
+        }
       } catch (err) {
         // TODO: Error logging
         console.error(err)
@@ -45,8 +48,12 @@ export const actions = {
   },
   setUser({ commit }, { details, token }) {
     commit('LOGIN', { details, token })
+    this.$router.push('/dashboard')
     // TODO: For use in showing unconfirmed user details temporarily
     // localStorage.setItem('user:details', JSON.stringify(details))
+    if (this.$router.currentRoute.name === 'index') {
+      this.$router.push('/dashboard')
+    }
   },
   logout({ commit }, { tellServer = true } = {}) {
     // TODO: Change redirect to only if required (i.e. auth required page)

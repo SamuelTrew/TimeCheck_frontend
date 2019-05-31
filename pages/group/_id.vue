@@ -12,23 +12,11 @@
       </section>
 
       <section class="columns">
-        <div id="column">
-          <GroupFeatures/>  <!-- TODO: make this customisable -->
+        <div class="column is-narrow">
+          <GroupFeatures :group="group" />  <!-- TODO: make this customisable -->
         </div>
-        <div class="column is-four-fifths">
-          <Updates />       <!-- TODO: make this customisable -->
-          <button
-            class="button is-primary"
-            @click="deleteGroup">Delete group</button>
-          <div>
-            <b-field label="Rename Group">
-              <b-input v-model="name"></b-input>
-            </b-field>
-            <button
-              class="button is-primary"
-              :disabled="name.length === 0"
-              @click="updateName">Rename group</button>
-          </div>
+        <div class="column">
+          <nuxt-child :group="group" />
         </div>
       </section>
     </div>
@@ -82,24 +70,7 @@
         immediate: true
       }
     },
-    methods: {
-      async deleteGroup() {
-        try {
-          await this.$axios.$delete(`/group/${this.id}`)
-          this.$store.dispatch('group/fetchGroups')
-          this.$router.push('/dashboard')
-        } catch (e) {
-          // TODO: Handle 404 on delete (can't delete)
-          console.error("Delete 404", e)
-        }
-      },
-      async updateName() {
-        const group = await this.$axios.$patch(`/group/${this.id}`, { name: this.name })
-        console.info(group)
-        this.$store.dispatch('group/fetchGroups')
-        //todo make the name in title update automatically (without refresh)
-      }
-    },
+    methods: {},
     asyncData ({ params }) {
       return { id: params.id }
     }

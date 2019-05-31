@@ -63,5 +63,8 @@
 
   #page {
     flex: 1 1 auto;
+    height: 100vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
   }
 </style>

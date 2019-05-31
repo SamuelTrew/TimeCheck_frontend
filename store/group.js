@@ -1,27 +1,35 @@
 export const state = () => {
   return {
     ready: false,
-    groups: []
+    groups: {}
   }
 }
 
 export const getters = {
   ready: state => state.ready,
-  list: state => state.groups,
+  map: state => state.groups,
+  list: state => Object.values(state.groups),
   getGroupById: state => id => {
-    return state.groups.find(group => group.id === id)
+    return state.groups[id] || null
   }
 }
 
 export const actions = {
   async fetchGroups({ commit }) {
     try {
-      const groups = await this.$axios.$get('/group')
-      commit('SET_GROUPS', { groups })
+      const groups_list = await this.$axios.$get('/group')
+      const groups_map = {}
+      groups_list.forEach(group => {
+        groups_map[group.id] = group
+      })
+      commit('SET_GROUPS', { groups: groups_map })
     } catch (err) {
       // TODO: Error logging
       console.error(err)
     }
+  },
+  updateName({ commit }, { id, name }) {
+    commit('SET_NAME', { id, name })
   }
 }
 
@@ -29,5 +37,8 @@ export const mutations = {
   SET_GROUPS(state, { groups }) {
     state.groups = groups
     state.ready = true
+  },
+  SET_NAME(state, { id, name }) {
+    state.groups[id].name = name
   }
 }
