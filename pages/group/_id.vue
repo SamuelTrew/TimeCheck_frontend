@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <div>
     <div v-if="group">
       <section class="hero is-primary is-bold">
         <div class="hero-body">
@@ -28,7 +28,7 @@
         <Loading />
       </div>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>

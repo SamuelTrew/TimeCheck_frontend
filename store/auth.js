@@ -8,6 +8,7 @@ export const state = () => {
 }
 
 export const getters = {
+  ready: state => state.ready,
   user: state => ({
     ready: state.ready,
     details: state.details,

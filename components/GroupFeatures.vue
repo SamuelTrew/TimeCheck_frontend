@@ -28,6 +28,11 @@
           <b-icon icon="settings" type="is-light" size="is-medium"></b-icon>
         </nuxt-link>
       </div>
+      <div v-if="group" class="sidebar-item group-feature">
+        <nuxt-link :to="`/group/${group.id}/invite`">
+          <b-icon icon="account-multiple-plus" type="is-light" size="is-medium"></b-icon>
+        </nuxt-link>
+      </div>
   </section>
 </template>
 

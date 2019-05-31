@@ -1,13 +1,88 @@
 <template>
-  
+  <div>
+    <section class="hero is-primary is-bold">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <h1 class="title is-1">
+            Accept Invitation
+          </h1>
+        </div>
+      </div>
+    </section>
+
+    <section v-if="group" class="section">
+      <div class="container">
+        <div class="columns">
+          <div class="column is-8 is-offset-2 form">
+            <p>You have been invited to join "{{ group.name }}"</p>
+            <p>Do you want to join this group?</p>
+
+            <button class="button" @click="cancel">Cancel</button>
+            <button class="button is-primary" @click="join">Join</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
+
   export default {
     name: "InviteByCodePage",
+    data() {
+      return {
+        group: null
+      }
+    },
+    computed: {
+      ...mapGetters({
+        ready: 'auth/ready'
+      })
+    },
+    watch: {
+      ready: {
+        async handler(ready) {
+          if (ready) {
+            try {
+              const group = await this.$axios.$get(`/invite/${this.id}/group`)
+              console.info(group)
+              this.group = group
+            } catch (e) {
+              // TODO: Error handling
+              console.error(e)
+            }
+          }
+        },
+        immediate: true
+      }
+    },
+    methods: {
+      cancel() {
+        this.$router.push('/dashboard')
+      },
+      async join() {
+        try {
+          const data = await this.$axios.$get(`/invite/${this.id}/accept`)
+          console.info(data)
+          this.$store.dispatch('group/fetchGroups')
+          this.$router.push(`/group/${this.group.id}`)
+        } catch (e) {
+          // TODO: Error handling
+          console.error(e)
+        }
+      }
+    },
+    asyncData ({ params }) {
+      return { id: params.id }
+    }
   }
 </script>
 
 <style>
-
+  .form > :not(:last-child) {
+    margin-bottom: 2rem;
+  }
 </style>

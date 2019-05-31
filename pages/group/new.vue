@@ -36,10 +36,11 @@
 
             <div>You will be able to invite members in the next step</div>
 
-            <button
+            <b-button
               class="button is-primary"
               :disabled="name.length === 0"
-              @click="createGroup">Create group</button>
+              :loading="loading"
+              @click="createGroup">Create group</b-button>
           </div>
         </div>
       </div>
@@ -54,14 +55,18 @@
     data() {
       return {
         name: '',
-        file: null
+        file: null,
+        loading: false
       }
     },
     methods: {
       async createGroup() {
+        this.loading = true
         const group = await this.$axios.$post('/group', { name: this.name })
         console.info(group)
-        this.$store.dispatch('group/fetchGroups')
+        await this.$store.dispatch('group/fetchGroups')
+        this.loading = false
+        this.$router.push(`/group/${group.id}/invite`)
       },
       onFileChange(e) {
         let files = e.target.files || e.dataTransfer.files;
