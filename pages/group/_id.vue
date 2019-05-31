@@ -10,6 +10,27 @@
           </div>
         </div>
       </section>
+
+      <section class="columns">
+        <div id="column">
+          <GroupFeatures/>  <!-- TODO: make this customisable -->
+        </div>
+        <div class="column is-four-fifths">
+          <Updates />       <!-- TODO: make this customisable -->
+          <button
+            class="button is-primary"
+            @click="deleteGroup">Delete group</button>
+          <div>
+            <b-field label="Rename Group">
+              <b-input v-model="name"></b-input>
+            </b-field>
+            <button
+              class="button is-primary"
+              :disabled="name.length === 0"
+              @click="updateName">Rename group</button>
+          </div>
+        </div>
+      </section>
     </div>
 
     <div v-else class="section">
@@ -19,18 +40,6 @@
         <Loading />
       </div>
     </div>
-
-    <section class="columns">
-      <div id="column">
-        <GroupFeatures/>  <!-- TODO: make this customisable -->
-      </div>
-      <div class="column is-four-fifths">
-        <Updates />       <!-- TODO: make this customisable -->
-        <button
-          class="button is-primary"
-          @click="deleteGroup">Delete group</button>
-      </div>
-    </section>
   </section>
 </template>
 
@@ -46,7 +55,8 @@
     components: {GroupFeatures, Updates, Loading },
     data() {
       return {
-        group: null
+        group: null,
+        name: '',
       }
     },
     computed: {
@@ -82,6 +92,12 @@
           // TODO: Handle 404 on delete (can't delete)
           console.error("Delete 404", e)
         }
+      },
+      async updateName() {
+        const group = await this.$axios.$patch(`/group/${this.id}`, { name: this.name })
+        console.info(group)
+        this.$store.dispatch('group/fetchGroups')
+        //todo make the name in title update automatically (without refresh)
       }
     },
     asyncData ({ params }) {
