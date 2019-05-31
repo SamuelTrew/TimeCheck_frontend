@@ -67,7 +67,7 @@
         try {
           const data = await this.$axios.$get(`/invite/${this.id}/accept`)
           console.info(data)
-          this.$store.dispatch('group/fetchGroups')
+          await this.$store.dispatch('group/fetchGroups')
           this.$router.push(`/group/${this.group.id}`)
         } catch (e) {
           // TODO: Error handling
