@@ -1,4 +1,5 @@
 stages:
+  - test
   - deploy
 
 before_script:
@@ -12,7 +13,7 @@ before_script:
   - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
 
 test:
-  state: test
+  stage: test
   script:
     - npm install
     - npm run test
