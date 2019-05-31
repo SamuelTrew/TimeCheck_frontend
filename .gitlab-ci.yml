@@ -10,7 +10,13 @@ before_script:
   - ssh-add <(echo "$SSH_PRIVATE_KEY")
   - mkdir -p ~/.ssh
   - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
-    
+
+test:
+  state: test
+  script:
+    npm install
+    npm run test
+
 deploy_dev:
   stage: deploy
   environment:
