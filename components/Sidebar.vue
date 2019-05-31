@@ -39,7 +39,7 @@
   /* Mobile */
   #sidebar {
     width: 6rem;
-    background-color: #3c3744;
+    background-color: white;
     display: none;
     flex-direction: column;
     padding: 1rem;
