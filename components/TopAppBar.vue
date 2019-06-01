@@ -3,7 +3,7 @@
     <div class="hero-body">
       <div class="container has-text-centered">
         <h1 class="title is-1">
-          <nuxt-link v-if=hasBack to="/dashboard">
+          <nuxt-link v-if=hasBack :to=parent>
             <div style="float: left;">
               <b-icon href="dashboard" icon="arrow-left" type="is-light" size="is-medium"></b-icon>
             </div>

@@ -3,7 +3,7 @@ a start
 
 <template>
   <section>
-    <TopAppBar title="Maps" has-back="true"/>
+    <TopAppBar title="Maps" :has-back="true" parent="/dashboard"/>
     <section>
       <div>
         <div>

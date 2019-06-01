@@ -1,6 +1,6 @@
 <template>
   <section>
-    <TopAppBar title="Calendar" has-back="true"/>
+    <TopAppBar title="Calendar" :has-back="true" parent="/dashboard"/>
     <section>
       <!--dates functionality-->
     </section>
