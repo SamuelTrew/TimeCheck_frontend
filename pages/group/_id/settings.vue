@@ -1,8 +1,9 @@
 <template>
-  <section class="section">
+  <section class="section" v-bind:style="bgc">
     <h3 class="title">Group Settings</h3>
     <br />
     <div>
+      <!-- Changing the Group Name -->
       <h4 class="title is-4">Rename Group</h4>
       <b-field>
         <b-input v-model="name"></b-input>
@@ -13,6 +14,7 @@
       <br />
       <br />
 
+      <!-- Changing the Group Profile Image -->
       <h4 class="title is-4">Change Profile Image</h4>
       <b-message type="is-info">
         Your image must be no larger than 10MB - we accept PNG and JPEG images
@@ -23,6 +25,21 @@
       <br />
       <br />
 
+      <!-- Changing the Group Colour -->
+      <h4 class="title is-4">Group Colour</h4>
+      <b-message type="is-info">
+        Enter any colour name, RGB, HEX or HSL in the input below to test<br/>
+        Click Change to confirm the changes
+      </b-message>
+        <div class="box" v-bind:style="tempBgc"></div>
+        <input type="text" v-on:input="tempBgc.backgroundColor = $event.target.value"/>
+      <b-button type="is-primary" primary @click="updateColour">Change</b-button>
+
+      <br />
+      <br />
+      <br />
+
+      <!-- Leaving the Group -->
       <h4 class="title is-4">Leave Group</h4>
       <b-message type="is-info">
         If you are the only admin then a random group member will be made an admin<br />
@@ -34,6 +51,7 @@
       <br />
       <br />
 
+      <!-- Deleting the Group -->
       <h4 class="title is-4">Delete Group</h4>
       <b-message type="is-danger">
         <b>Warning!</b> This action cannot be undone - only proceed if you are sure that you want to permanently delete the group and all associated data
@@ -49,7 +67,13 @@
     props: ['group'],
     data() {
       return {
-        name: ''
+        name: '',
+        bgc: {
+          backgroundColor: ''
+        },
+        tempBgc: {
+          backgroundColor: ''
+        },
       }
     },
     methods: {
@@ -97,11 +121,24 @@
           // TODO: Handle error on update (can't update - group may not exist)
           console.error("Update name error", e)
         }
-      }
+      },
+      async updateColour() {
+        this.bgc = this.tempBgc
+        try {
+          const group = await this.$axios.$patch(`/group/${this.group.id}`, { name: this.name })
+          console.info(group)
+          this.$store.dispatch('group/colour', { id: this.group.id, name: this.name, colour: this.bgc })
+        } catch (e) {
+          console.error("Update colour error", e)
+        }
+      },
     }
   }
 </script>
 
 <style>
-
+  .box {
+    height: 1em;
+    width: 1em;
+  }
 </style>
