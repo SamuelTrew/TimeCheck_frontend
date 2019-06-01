@@ -127,7 +127,7 @@
         try {
           const group = await this.$axios.$patch(`/group/${this.group.id}`, { name: this.name })
           console.info(group)
-          this.$store.dispatch('group/colour', { id: this.group.id, name: this.name, colour: this.bgc })
+          this.$store.dispatch('group/updateColour', { id: this.group.id, name: this.name, colour: this.bgc })
         } catch (e) {
           console.error("Update colour error", e)
         }
