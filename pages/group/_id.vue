@@ -1,15 +1,7 @@
 <template>
   <div>
     <div v-if="group">
-      <section class="hero is-primary is-bold">
-        <div class="hero-body">
-          <div class="container has-text-centered">
-            <h1 class="title is-1">
-              {{ group.name }}
-            </h1>
-          </div>
-        </div>
-      </section>
+      <TopAppBar :title="group.name" />
 
       <section class="columns">
         <div class="column is-narrow">
@@ -37,10 +29,11 @@
   import Loading from '~/components/Loading'
   import Updates from "../../components/Updates";
   import GroupFeatures from "../../components/GroupFeatures";
+  import TopAppBar from "../../components/TopAppBar";
 
   export default {
     name: 'GroupViewPage',
-    components: {GroupFeatures, Updates, Loading },
+    components: {TopAppBar, GroupFeatures, Updates, Loading },
     data() {
       return {
         group: null,

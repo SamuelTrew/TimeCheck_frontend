@@ -1,6 +1,6 @@
 <template>
   <section>
-    <TopAppBar title="Polls" />
+    <TopAppBar title="Polls" has-back="true"/>
     <section>
       <!--polls functionality-->
     </section>

@@ -1,6 +1,6 @@
 <template>
   <section>
-    <TopAppBar title="Calendar" />
+    <TopAppBar title="Calendar" has-back="true"/>
     <section>
       <!--dates functionality-->
     </section>

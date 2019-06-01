@@ -3,7 +3,7 @@ a start
 
 <template>
   <section>
-    <TopAppBar title="Maps" />
+    <TopAppBar title="Maps" has-back="true"/>
     <section>
       <div>
         <div>
