@@ -1,14 +1,6 @@
 <template>
   <section>
-    <section class="hero is-primary is-bold">
-      <div class="hero-body">
-        <div class="container has-text-centered">
-          <h1 class="title is-1">
-            {{ user.details.name.split(" ")[0] }}'s Dashboard
-          </h1>
-        </div>
-      </div>
-    </section>
+    <TopAppBar :title="this.getUserName + '\'s Dashboard'" />
 
     <section class="columns">
       <div class="column is-narrow">
@@ -25,17 +17,22 @@
   import { mapGetters } from 'vuex'
   import GroupFeatures from '../components/GroupFeatures.vue'
   import Updates from "../components/Updates";
+  import TopAppBar from "../components/TopAppBar";
 
   export default {
     components: {
+      TopAppBar,
       Updates,
       GroupFeatures,
     },
     computed: {
       ...mapGetters({
         user: 'auth/user'
-      })
-    }
+      }),
+      getUserName() {
+        return this.user.details.name.split(" ")[0]
+      }
+    },
   }
 </script>
 

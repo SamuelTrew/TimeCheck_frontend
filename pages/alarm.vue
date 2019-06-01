@@ -1,6 +1,6 @@
 <template>
   <section>
-    <TopAppBar title="Alarm" />
+    <TopAppBar title="Alarm" :has-back="true" parent="/dashboard"/>
     <section>
       <!--alarm functionality-->
     </section>
