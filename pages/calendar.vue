@@ -1,19 +1,6 @@
 <template>
   <section>
-    <section class="hero is-primary is-bold">
-      <div class="hero-body">
-        <div class="container has-text-centered">
-          <h1 class="title is-1">
-            <nuxt-link to="/dashboard">
-              <div style="float: left;">
-                <b-icon href="dashboard" icon="arrow-left" type="is-light" size="is-medium"></b-icon>
-              </div>
-            </nuxt-link>
-            Calendar
-          </h1>
-        </div>
-      </div>
-    </section>
+    <TopAppBar title="Calendar" />
     <section>
       <!--dates functionality-->
     </section>
@@ -21,8 +8,10 @@
 </template>
 
 <script>
+  import TopAppBar from "../components/TopAppBar";
   export default {
-    name: "calendar"
+    name: "calendar",
+    components: {TopAppBar},
   }
 </script>
 

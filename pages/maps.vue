@@ -3,56 +3,44 @@ a start
 
 <template>
   <section>
-    <section class="hero is-primary is-bold">
-      <div class="hero-body">
-        <div class="container has-text-centered">
-          <h1 class="title is-1">
-            <nuxt-link to="/dashboard">
-              <div style="float: left;">
-                <b-icon href="dashboard" icon="arrow-left" type="is-light" size="is-medium"></b-icon>
-              </div>
-            </nuxt-link>
-            Maps
-          </h1>
+    <TopAppBar title="Maps" />
+    <section>
+      <div>
+        <div>
+          <h2>Search and add a pin</h2>
+          <label>
+            <gmap-autocomplete
+              @place_changed="setPlace">
+            </gmap-autocomplete>
+            <button @click="addMarker">Add</button>
+          </label>
+          <br/>
+
         </div>
+        <br>
+        <gmap-map
+          :center="center"
+          :zoom="12"
+          style="width:100%;  height: 400px;"
+        >
+          <gmap-marker
+            :key="index"
+            v-for="(m, index) in markers"
+            :position="m.position"
+            @click="center=m.position"
+          ></gmap-marker>
+        </gmap-map>
       </div>
     </section>
-
-    <div>
-      <div>
-        <h2>Search and add a pin</h2>
-        <label>
-          <gmap-autocomplete
-            @place_changed="setPlace">
-          </gmap-autocomplete>
-          <button @click="addMarker">Add</button>
-        </label>
-        <br/>
-
-      </div>
-      <br>
-      <gmap-map
-        :center="center"
-        :zoom="12"
-        style="width:100%;  height: 400px;"
-      >
-        <gmap-marker
-          :key="index"
-          v-for="(m, index) in markers"
-          :position="m.position"
-          @click="center=m.position"
-        ></gmap-marker>
-      </gmap-map>
-    </div>
-
-
   </section>
 </template>
 
 
 <script>
+  import TopAppBar from "../components/TopAppBar";
   export default {
     name: "GoogleMap",
+    components: {TopAppBar},
     data() {
       return {
         // default to Montreal to keep it simple
