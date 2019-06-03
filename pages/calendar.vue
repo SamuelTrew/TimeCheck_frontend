@@ -16,8 +16,8 @@
 
 <style scoped>
   .calendar {
-    border-width:0;
-    height: 100%;
+    border-width: 0;
+    height: 90%;
     width: 100%;
   }
 </style>

@@ -92,7 +92,8 @@ a start
 <style>
   .map {
     border: 0;
-    height: 100%;
+    height: 90%;
+    width: 100%;
   }
 </style>
 
