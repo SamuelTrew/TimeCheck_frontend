@@ -3,14 +3,14 @@
     <div class="hero-body">
       <div class="container has-text-centered">
         <h1 class="title is-1">
-          <button @click="$store.dispatch('nav/toggleSidebar')">
-            Toggle Side Bar
-          </button>
           <nuxt-link v-if=hasBack :to=parent>
             <div style="float: left;">
               <b-icon href="dashboard" icon="arrow-left" type="is-light" size="is-medium"></b-icon>
             </div>
           </nuxt-link>
+          <button v-else class="menu" @click="$store.dispatch('nav/toggleSidebar')">
+            <b-icon style="float: left; margin: auto; vertical-align: middle" icon="menu" type="is-light" size="is-medium"></b-icon>
+          </button>
           {{ title }}
         </h1>
       </div>
@@ -30,5 +30,13 @@
 </script>
 
 <style scoped>
-
+  .menu {
+    display: flex;
+    float: left;
+    background-color: transparent;
+    border: none;
+    outline:none;
+    cursor:pointer;
+    align-items: center;
+  }
 </style>
