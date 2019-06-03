@@ -2,7 +2,9 @@ export const state = () => {
   return {
     ready: false,
     groups: {},
-    colour: {},
+    colour: {
+      backgroundColour: "#8B008B"
+    },
   }
 };
 

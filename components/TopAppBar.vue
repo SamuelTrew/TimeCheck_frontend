@@ -42,6 +42,12 @@
 </script>
 
 <style scoped>
+  .title {
+    font-size: 2rem;
+  }
+  .hero-body {
+    padding: 1rem;
+  }
   .menu {
     display: flex;
     float: left;
@@ -50,5 +56,9 @@
     outline:none;
     cursor:pointer;
     align-items: center;
+  }
+
+  .background {
+
   }
 </style>
