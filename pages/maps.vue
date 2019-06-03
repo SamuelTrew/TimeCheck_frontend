@@ -4,6 +4,7 @@ a start
 <template>
   <section>
     <TopAppBar title="Maps" :has-back="true" parent="/dashboard"/>
+    <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d317730.66577390715!2d-0.1237726!3d51.5265923!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2suk!4v1559589389352!5m2!1sen!2suk" width="600" height="450" frameborder="0" allowfullscreen></iframe>g
     <section>
       <div>
         <div>
@@ -87,7 +88,10 @@ a start
 
 
 <style>
-
+  .map {
+    border: 0;
+    height: 90%;
+  }
 </style>
 
 
