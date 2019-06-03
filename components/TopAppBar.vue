@@ -5,11 +5,11 @@
         <h1 class="title is-1">
           <nuxt-link v-if=hasBack :to=parent>
             <div style="float: left;">
-              <b-icon href="dashboard" icon="arrow-left" type="is-light" size="is-medium"></b-icon>
+              <b-icon href="dashboard" icon="arrow-left" type="is-dark" size="is-medium"></b-icon>
             </div>
           </nuxt-link>
           <button v-else class="menu" @click="toggleSidebar">
-            <b-icon style="float: left; margin: auto; vertical-align: middle" icon="menu" type="is-light" size="is-medium"></b-icon>
+            <b-icon class="icon" icon="menu" size="is-medium"></b-icon>
           </button>
           {{ title }}
         </h1>
@@ -57,7 +57,9 @@
     cursor:pointer;
     align-items: center;
   }
-
+  .icon {
+    float: left;
+  }
   .background {
 
   }
