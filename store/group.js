@@ -15,7 +15,9 @@ export const getters = {
   getGroupById: state => id => {
     return state.groups[id] || null
   },
-  colour: state => state.colour,
+  colour: state => id => {
+    return state.groups[id].colour || null
+  },
 };
 
 export const actions = {
@@ -35,8 +37,8 @@ export const actions = {
   updateName({ commit }, { id, name }) {
     commit('SET_NAME', { id, name })
   },
-  updateColour({commit}, {colour}) {
-    commit('SET_COLOUR', { colour })
+  updateColour({commit}, { id, colour }) {
+    commit('SET_COLOUR', { id, colour })
   }
 };
 
@@ -48,7 +50,7 @@ export const mutations = {
   SET_NAME(state, { id, name }) {
     state.groups[id].name = name;
   },
-  SET_COLOUR(state, { colour }) {
-    state.colour = colour;
+  SET_COLOUR(state, { id, colour }) {
+    state.groups[id].colour = colour;
   }
 };
