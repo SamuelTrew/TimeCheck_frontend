@@ -1,5 +1,5 @@
 <template>
-  <div id="sidebar" v-show="toggleSidebar">
+  <div id="sidebar" v-show="showSidebar">
     <nuxt-link to="/dashboard" class="sidebar-logo">
       <img src="~/assets/tc-thumb-white.svg" />
     </nuxt-link>
@@ -28,11 +28,9 @@
     computed: {
       ...mapGetters({
         groups: 'group/list',
-        user: 'auth/user'
-      }),
-      toggleSidebar() {
-        return this.$store.getters['nav/toggleSidebar']
-      }
+        user: 'auth/user',
+        showSidebar: 'nav/showSidebar'
+      })
     }
   }
 </script>

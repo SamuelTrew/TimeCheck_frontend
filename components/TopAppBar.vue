@@ -1,5 +1,5 @@
 <template>
-  <section :style="updateColour">
+  <section :style="color">
     <div class="hero-body">
       <div class="container has-text-centered">
         <h1 class="title is-1">
@@ -8,7 +8,7 @@
               <b-icon href="dashboard" icon="arrow-left" type="is-light" size="is-medium"></b-icon>
             </div>
           </nuxt-link>
-          <button v-else class="menu" @click="$store.dispatch('nav/toggleSidebar')">
+          <button v-else class="menu" @click="toggleSidebar">
             <b-icon style="float: left; margin: auto; vertical-align: middle" icon="menu" type="is-light" size="is-medium"></b-icon>
           </button>
           {{ title }}
@@ -19,6 +19,8 @@
 </template>
 
 <script>
+  import { mapActions, mapGetters } from 'vuex'
+
   export default {
     name: "TopAppBar",
     props: {
@@ -27,10 +29,15 @@
       parent: String,
     },
     computed: {
-      updateColour() {
-        return this.$store.getters['group/colour']
-      }
+      ...mapGetters({
+        color: 'group/colour'
+      })
     },
+    methods: {
+      ...mapActions({
+        toggleSidebar: 'nav/toggleSidebar'
+      })
+    }
   }
 </script>
 
