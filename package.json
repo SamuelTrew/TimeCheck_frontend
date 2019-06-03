@@ -17,10 +17,12 @@
   "dependencies": {
     "@material/drawer": "^2.3.0",
     "@nuxtjs/axios": "^5.3.6",
+    "@updivision/vue-easy-polls": "^1.0.5",
     "cross-env": "^5.2.0",
     "nuxt": "^2.4.0",
     "nuxt-buefy": "^0.3.6",
     "ts-node": "^8.1.0",
+    "vue-poll": "^0.1.8",
     "vue-upload-component": "^2.8.20",
     "vue2-google-maps": "^0.10.6"
   },
