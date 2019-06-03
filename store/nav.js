@@ -1,31 +1,23 @@
 // States
 export const state = () =>({
-
-  toggleSidebar: false
-
+  showSidebar: false
 })
 
-// mutations
-export const mutations = {
-
-  TOGGLE_SIDEBAR(state) {
-    state.toggleSidebar = !state.toggleSidebar
-  }
-
+// Getters
+export const getters = {
+  showSidebar: state => state.showSidebar,
 }
 
 // actions
 export const actions = {
-
   toggleSidebar({ commit }) {
     commit('TOGGLE_SIDEBAR')
   }
-
 }
 
-// Getters
-export const getters = {
-
-  toggleSidebar: state => state.toggleSidebar,
-
+// mutations
+export const mutations = {
+  TOGGLE_SIDEBAR(state) {
+    state.showSidebar = !state.showSidebar
+  }
 }
