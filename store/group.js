@@ -1,9 +1,10 @@
 export const state = () => {
   return {
     ready: false,
-    groups: {}
+    groups: {},
+    colour: {},
   }
-}
+};
 
 export const getters = {
   ready: state => state.ready,
@@ -11,8 +12,9 @@ export const getters = {
   list: state => Object.values(state.groups),
   getGroupById: state => id => {
     return state.groups[id] || null
-  }
-}
+  },
+  colour: state => state.colour,
+};
 
 export const actions = {
   async fetchGroups({ commit }) {
@@ -21,7 +23,7 @@ export const actions = {
       const groups_map = {}
       groups_list.forEach(group => {
         groups_map[group.id] = group
-      })
+      });
       commit('SET_GROUPS', { groups: groups_map })
     } catch (err) {
       // TODO: Error logging
@@ -30,15 +32,21 @@ export const actions = {
   },
   updateName({ commit }, { id, name }) {
     commit('SET_NAME', { id, name })
+  },
+  updateColour({commit}, {colour}) {
+    commit('SET_COLOUR', { colour })
   }
-}
+};
 
 export const mutations = {
   SET_GROUPS(state, { groups }) {
-    state.groups = groups
-    state.ready = true
+    state.groups = groups;
+    state.ready = true;
   },
   SET_NAME(state, { id, name }) {
-    state.groups[id].name = name
+    state.groups[id].name = name;
+  },
+  SET_COLOUR(state, { colour }) {
+    state.colour = colour;
   }
-}
+};

@@ -1,5 +1,5 @@
 <template>
-  <section class="section" v-bind:style="bgc">
+  <section class="section">
     <h3 class="title">Group Settings</h3>
     <br />
     <div>
@@ -31,8 +31,8 @@
         Enter any colour name, RGB, HEX or HSL in the input below to test<br/>
         Click Change to confirm the changes
       </b-message>
-        <div class="box" v-bind:style="tempBgc"></div>
-        <input type="text" v-on:input="tempBgc.backgroundColor = $event.target.value"/>
+        <div class="box" v-bind:style="bgc"></div>
+        <input type="text" v-on:input="bgc.backgroundColor = $event.target.value"/>
       <b-button type="is-primary" primary @click="updateColour">Change</b-button>
 
       <br />
@@ -71,9 +71,6 @@
         bgc: {
           backgroundColor: ''
         },
-        tempBgc: {
-          backgroundColor: ''
-        },
       }
     },
     methods: {
@@ -101,9 +98,9 @@
       },
       async leaveGroup() {
         try {
-          await this.$axios.$get(`/group/${this.group.id}/leave`)
-          this.$store.dispatch('group/fetchGroups')
-          this.$router.push('/dashboard')
+          await this.$axios.$get(`/group/${this.group.id}/leave`);
+          this.$store.dispatch('group/fetchGroups');
+          this.$router.push('/dashboard');
           this.$snackbar.open({
             message: 'Group left'
           })
@@ -115,7 +112,7 @@
       async updateName() {
         try {
           const group = await this.$axios.$patch(`/group/${this.group.id}`, { name: this.name })
-          console.info(group)
+          console.info(group);
           this.$store.dispatch('group/updateName', { id: this.group.id, name: this.name })
         } catch (e) {
           // TODO: Handle error on update (can't update - group may not exist)
@@ -123,11 +120,8 @@
         }
       },
       async updateColour() {
-        this.bgc = this.tempBgc
         try {
-          const group = await this.$axios.$patch(`/group/${this.group.id}`, { name: this.name })
-          console.info(group)
-          this.$store.dispatch('group/updateColour', { id: this.group.id, name: this.name, colour: this.bgc })
+          this.$store.dispatch('group/updateColour', {colour: this.bgc});
         } catch (e) {
           console.error("Update colour error", e)
         }
