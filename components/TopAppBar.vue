@@ -35,6 +35,12 @@
 </script>
 
 <style scoped>
+  .title {
+    font-size: 2rem;
+  }
+  .hero-body {
+    padding: 1rem;
+  }
   .menu {
     display: flex;
     float: left;
