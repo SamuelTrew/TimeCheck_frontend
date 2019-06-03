@@ -5,6 +5,9 @@
       <!--polls functionality-->
       <Poll />
     </section>
+    <section>
+
+    </section>
   </section>
 </template>
 

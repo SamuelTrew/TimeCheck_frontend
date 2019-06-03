@@ -21,7 +21,9 @@
         </nuxt-link>
       </div>
       <div class="sidebar-item group-feature">
-        <b-icon icon="file-document" type="is-light" size="is-medium"></b-icon>
+        <nuxt-link to="/docs">
+          <b-icon icon="file-document" type="is-light" size="is-medium"></b-icon>
+        </nuxt-link>
       </div>
       <div v-if="group" class="sidebar-item group-feature">
         <nuxt-link :to="`/group/${group.id}/settings`">
