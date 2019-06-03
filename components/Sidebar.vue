@@ -1,5 +1,5 @@
 <template>
-  <div id="sidebar">
+  <div id="sidebar" v-show="toggleSidebar">
     <nuxt-link to="/dashboard" class="sidebar-logo">
       <img src="~/assets/tc-thumb-white.svg" />
     </nuxt-link>
@@ -29,7 +29,10 @@
       ...mapGetters({
         groups: 'group/list',
         user: 'auth/user'
-      })
+      }),
+      toggleSidebar() {
+        return this.$store.getters['nav/toggleSidebar']
+      }
     }
   }
 </script>
@@ -40,7 +43,7 @@
   #sidebar {
     width: 6rem;
     background-color: #3c3744;
-    display: none;
+    display: flex;
     flex-direction: column;
     padding: 1rem;
   }
@@ -120,13 +123,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-
-  /* Desktop */
-  @media only screen and (min-width: 600px) {
-    #sidebar {
-      display: flex;
-    }
   }
 
 </style>

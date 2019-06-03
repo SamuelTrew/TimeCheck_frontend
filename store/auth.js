@@ -3,12 +3,14 @@ export const state = () => {
     ready: false,
     details: null,
     loggedIn: false,
-    admin: false
+    admin: false,
+    showSidebar: false
   }
 }
 
 export const getters = {
   ready: state => state.ready,
+  showSidebar: state => state.showSidebar,
   user: state => ({
     ready: state.ready,
     details: state.details,
