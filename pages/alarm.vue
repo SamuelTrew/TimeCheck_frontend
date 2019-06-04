@@ -19,8 +19,8 @@
       </b-datepicker>
     </section>
 
-    <div>
-      {{ this.countdown }}
+    <div >
+      {{ `${this.countdown.days}:${this.countdown.hours}:${this.countdown.minutes}:${this.countdown.seconds}` }}
     </div>
 
     <b-button type="is-primary" @click="setDateTime">Set Timer</b-button>
@@ -44,63 +44,40 @@
           hours: 0,
           days: 0
         },
+        diff: 0,
         intervalSetter: null
       }
     },
     methods: {
       setDateTime() {
         const temp = new Date();
+        const alarmTime = this.getDateTime(this.time, this.date);
+        let diff = alarmTime.getTime() - temp.getTime();
+        if (diff < 0) {
+          return;
+        }
+        this.diff = diff = Math.floor(diff/1000);
 
-        let seconds = this.time.getSeconds() - temp.getSeconds();
-        let minutes = this.time.getMinutes() - temp.getMinutes();
-        let hours = this.time.getHours() - temp.getHours();
-        let days = this.date.getDate() - temp.getDate();
-
-        seconds = this.negCheck(seconds, 60);
-        minutes = this.negCheck(minutes, 60);
-        hours = this.negCheck(hours, 60);
-
-        this.countdown = {
-          seconds: seconds,
-          minutes: minutes,
-          hours: hours,
-          days: days,
-        };
+        this.decrement();
         this.intervalSetter = setInterval(this.decrement, 1000);
       },
-      negCheck(time, num) {
-        if (time < 0) {
-          return num + time;
-        }
-        return time;
+      getDateTime(time, date) {
+        return new Date(date.getFullYear(), date.getMonth(), date.getDate(),
+                        time.getHours(), time.getMinutes(), time.getSeconds());
       },
       decrement() {
-        if (this.countdown.seconds === 0) {
-          if (this.countdown.minutes === 0) {
-            if (this.countdown.hours === 0) {
-              if (this.countdown.days === 0) {
-                clearInterval(this.intervalSetter)
-              } else {
-                this.countdown.seconds = 59;
-                this.countdown.minutes = 59;
-                this.countdown.hours = 23;
-                this.countdown.days--;
-              }
-            } else {
-              this.countdown.seconds = 59;
-              this.countdown.minutes = 59;
-              this.countdown.hours--;
-            }
-          } else {
-            this.countdown.seconds = 59;
-            this.countdown.minutes--;
-          }
-        } else {
-          this.countdown.seconds--;
+        if (this.diff < 0) {
+          this.clear();
+          return;
         }
+        this.countdown.seconds = this.diff % 60;
+        this.countdown.minutes = Math.floor(this.diff/60) % 60;
+        this.countdown.hours = Math.floor(this.diff/3600) % 24;
+        this.countdown.days = Math.floor(this.diff/86400);
+        this.diff--;
       },
       clear() {
-        clearInterval(this.intervalSetter)
+        clearInterval(this.intervalSetter);
         this.countdown = {
           seconds: 0,
           minutes: 0,
