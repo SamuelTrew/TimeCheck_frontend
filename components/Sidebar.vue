@@ -1,49 +1,111 @@
 <template>
   <div id="sidebar" v-show="showSidebar">
-    <nuxt-link to="/dashboard" class="sidebar-logo">
-      <img src="~/assets/tc-thumb-white.svg" />
-    </nuxt-link>
-    <div class="sidebar-divider"></div>
-    <div class="sidebar-groups">
-      <nuxt-link :to="`/group/${group.id}`" class="sidebar-group" v-for="group in groups" :key="group.id">
-        <div v-if="group.thumb" class="group-thumb group-thumb-img" :style="{ backgroundImage: `url('${group.thumb}')` }"></div>
-        <div v-else class="group-thumb group-thumb-text">{{ group.name.charAt(0).toUpperCase() }}</div>
+    <div class="column left-column">
+      <nuxt-link to="/dashboard" class="sidebar-logo">
+        <img src="~/assets/tc-thumb-white.svg" />
+      </nuxt-link>
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-groups">
+        <nuxt-link v-for="group in groups" :to="`/group/${group.id}`" class="sidebar-group" :key="group.id" >
+          <div v-if="group.thumb" class="group-thumb group-thumb-img" :style="{ backgroundImage: `url('${group.thumb}')` }"></div>
+          <div v-else class="group-thumb group-thumb-text">{{ group.name.charAt(0).toUpperCase() }}</div>
+        </nuxt-link>
+      </div>
+      <div class="sidebar-divider"></div>
+      <nuxt-link to="/group/new" class="sidebar-item">
+        <b-icon icon="plus" type="is-light" size="is-medium"></b-icon>
+      </nuxt-link>
+      <nuxt-link to="/auth/logout" class="sidebar-item">
+        <b-icon icon="logout" type="is-light" size="is-medium"></b-icon>
       </nuxt-link>
     </div>
-    <div class="sidebar-divider"></div>
-    <nuxt-link to="/group/new" class="sidebar-item">
-      <b-icon icon="plus" type="is-light" size="is-medium"></b-icon>
-    </nuxt-link>
-    <nuxt-link to="/auth/logout" class="sidebar-item">
-      <b-icon icon="logout" type="is-light" size="is-medium"></b-icon>
-    </nuxt-link>
+    <GroupFeatures v-if="this.group" class="column right-column" :group="group" />
   </div>
 </template>
 
 <script>
   import { mapGetters } from 'vuex'
+  import GroupFeatures from "./GroupFeatures";
 
   export default {
     name: 'Sidebar',
+    components: {GroupFeatures},
+    data() {
+      return {
+        // TODO get group from _id
+        group: null,
+        groupId: null
+      }
+    },
     computed: {
       ...mapGetters({
         groups: 'group/list',
         user: 'auth/user',
-        showSidebar: 'nav/showSidebar'
+        showSidebar: 'nav/showSidebar',
+        groupsReady: 'group/ready',
+        getGroupById: 'group/getGroupById'
       })
+    },
+    watch: {
+      groupsReady: {
+        handler(ready) {
+          if (ready) {
+            if (ready && this.groupId) {
+              this.fetchGroup()
+            }
+          }
+        },
+        immediate: true
+      },
+      '$route.params.id': {
+        handler(groupId) {
+          this.groupId = groupId
+          if (groupId && this.groupsReady) {
+            this.fetchGroup()
+          } else {
+            this.group = null
+          }
+        },
+        deep: true,
+        immediate: true
+      }
+    },
+    methods: {
+      fetchGroup() {
+        const group = this.getGroupById(this.groupId)
+        if (group) {
+          this.group = group
+        } else {
+          // Could not find group
+          // TODO: Display error about group 404 not found
+          this.$router.push('/dashboard')
+        }
+      }
+    },
+    asyncData ({ params }) {
+      return { id: params.id }
     }
   }
 </script>
 
 <style>
 
-  /* Mobile */
   #sidebar {
-    width: 6rem;
-    background-color: #3c3744;
+    display: flex;
+  }
+
+  .column {
+    flex: 50%;
+    align-items: center;
     display: flex;
     flex-direction: column;
-    padding: 1rem;
+  }
+  .left-column {
+    background-color: #3c3744;
+  }
+  .right-column {
+    padding-top: 1rem;
+    background-color: #474250;
   }
 
   .sidebar-logo,

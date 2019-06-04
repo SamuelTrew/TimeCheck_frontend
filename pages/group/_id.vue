@@ -4,9 +4,9 @@
       <TopAppBar :title="group.name" :group="group" />
 
       <section class="columns">
-        <div class="column is-narrow">
+        <!--div class="column is-narrow">
           <GroupFeatures :group="group" />  <!-- TODO: make this customisable -->
-        </div>
+        <!--/div-->
         <div class="column">
           <nuxt-child :group="group" />
         </div>
