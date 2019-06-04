@@ -2,19 +2,20 @@
   <section>
     <section>
       <!--alarm functionality-->
-      <b-field label="Select Alarm Time/Date">
-        <b-timepicker
-          placeholder="Type or select a date..."
-          icon="clock"
-          @input="test"
+<!--      <b-field>-->
+        <b-clockpicker
+          v-model="time"
+          inline
+          :type="is-primary"
+          :hour-format="format">
+        </b-clockpicker>
+
+        <b-datepicker
+          v-model="date"
+          inline
         >
-        </b-timepicker>
-      </b-field>
-      <b-datepicker
-        v-model="date"
-        inline
-      >
-      </b-datepicker>
+        </b-datepicker>
+<!--      </b-field>-->
     </section>
 
     <div class="timer">
@@ -47,13 +48,11 @@
           first: ``,
           next: ``,
         },
-        intervalSetter: null
+        intervalSetter: null,
+        isAmPm: false,
       }
     },
     methods: {
-      test (value) {
-        console.info(value)
-      },
       setDateTime() {
         const temp = new Date();
         const alarmTime = this.getDateTime(this.time, this.date);
@@ -99,7 +98,16 @@
           minutes: 0,
           hours: 0,
           days: 0
+        };
+        this.displayTime = {
+          first: ``,
+          next: ``
         }
+      }
+    },
+    computed: {
+      format() {
+        return this.isAmPm ? '12' : '24'
       }
     }
   }
