@@ -1,24 +1,46 @@
 <template>
   <div class="polls">
     <div class="polls-list">
-      <div class="create-poll" @click="selectedPoll = null; newPoll = true" :class="{selected: newPoll}">
+      <div class="create-poll" @click="selectedPoll = null; createPoll = true" :class="{selected: createPoll}">
         <b-icon icon="plus" size="is-medium"></b-icon>
       </div>
       <div class="polls-list-inner">
-        <div v-for="poll in polls" class="poll-list-item" @click="selectedPoll = poll; newPoll = false" :class="{selected: selectedPoll === poll}">
+        <div v-for="poll in polls" class="poll-list-item" @click="selectedPoll = poll; createPoll = false" :class="{selected: selectedPoll === poll}">
           <div class="content">
             {{ poll.question }}
           </div>
         </div>
       </div>
     </div>
+
     <div class="section polls-detail">
       <div v-if="selectedPoll" class="poll">
         <h4 class="title">{{ selectedPoll.question }}</h4>
+        <p>
+          <span v-if="selectedPoll.multiple">You can vote for <b>multiple</b> options in this poll</span>
+          <span v-else>You can only vote for <b>one</b> option in this poll</span>
+        </p>
         <div v-for="option in selectedPoll.options" ref="pollOptions" @click="vote(selectedPoll, option)" class="poll-option box" :class="{'selected': option.selected}">
           <div class="poll-bar" :style="calcStyle(selectedPoll, option)"></div>
           <p class="poll-option-name">{{ option.name }}</p>
           <p class="poll-option-votes">{{ option.votes }} votes</p>
+        </div>
+      </div>
+
+      <div v-else-if="createPoll">
+        <h4 class="title">New Poll</h4>
+
+        <div class="form">
+          <b-field label="Name">
+            <b-input v-model="newPoll.name"></b-input>
+          </b-field>
+
+          <b-field label="Multiple Votes">
+            <b-switch v-model="newPoll.multiple">
+              <span v-if="newPoll.multiple">Can vote multiple for multiple options</span>
+              <span v-else>Can vote for only one option</span>
+            </b-switch>
+          </b-field>
         </div>
       </div>
     </div>
@@ -129,7 +151,11 @@
       return {
         polls: DUMMY_POLLS_DATA,
         selectedPoll: null,
-        newPoll: false
+        createPoll: false,
+        newPoll: {
+          name: '',
+          multiple: false
+        }
       }
     },
     methods: {

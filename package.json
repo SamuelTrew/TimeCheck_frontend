@@ -17,14 +17,11 @@
   "dependencies": {
     "@material/drawer": "^2.3.0",
     "@nuxtjs/axios": "^5.5.3",
-    "@updivision/vue-easy-polls": "^1.0.5",
     "@xkeshi/image-compressor": "^0.5.3",
     "cropperjs": "^1.5.1",
     "cross-env": "^5.2.0",
     "nuxt": "^2.8.0",
     "nuxt-buefy": "^0.3.7",
-    "ts-node": "^8.2.0",
-    "vue-poll": "^0.1.8",
     "vue-upload-component": "^2.8.20",
     "vue2-google-maps": "^0.10.6"
   },
