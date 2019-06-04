@@ -62,8 +62,9 @@
   }
 
   #page {
-    flex: 1 1 auto;
+    position: absolute;
     height: 100vh;
+    width: 100vw;
     overflow-y: scroll;
     overflow-x: hidden;
   }

@@ -20,11 +20,14 @@
       </nuxt-link>
     </div>
     <GroupFeatures v-if="this.group" class="column right-column" :group="group" />
+    <div class="column hide-touch-area" @click="toggleSidebar">
+      <div style="width: 100vw" />
+    </div>
   </div>
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { mapActions, mapGetters } from 'vuex'
   import GroupFeatures from "./GroupFeatures";
 
   export default {
@@ -71,6 +74,9 @@
       }
     },
     methods: {
+      ...mapActions({
+        toggleSidebar: 'nav/toggleSidebar'
+      }),
       fetchGroup() {
         const group = this.getGroupById(this.groupId)
         if (group) {
@@ -92,6 +98,7 @@
 
   #sidebar {
     display: flex;
+    z-index: 1000;
   }
 
   .column {
@@ -102,10 +109,12 @@
   }
   .left-column {
     background-color: #3c3744;
+    z-index: 1003;
   }
   .right-column {
     padding-top: 1rem;
     background-color: #474250;
+    z-index: 1002;
   }
 
   .sidebar-logo,
@@ -183,6 +192,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .hide-touch-area {
+    display: flex;
+    flex: 50%;
+    width: 100%;
+    background: transparent;
+    z-index: 1001;
   }
 
 </style>
