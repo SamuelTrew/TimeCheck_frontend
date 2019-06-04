@@ -15,9 +15,10 @@
     <div class="section polls-detail">
       <div v-if="selectedPoll" class="poll">
         <h4 class="title">{{ selectedPoll.question }}</h4>
-        <div v-for="option in selectedPoll.options" @click="vote(selectedPoll, option)" class="poll-option">
-          <p class="subtitle is-marginless" :class="{'selected-poll': option.selected}">{{ option.name }}</p>
+        <div v-for="option in selectedPoll.options" ref="pollOptions" @click="vote(selectedPoll, option)" class="poll-option box" :class="{'selected': option.selected}">
           <div class="poll-bar" :style="calcStyle(selectedPoll, option)"></div>
+          <p class="poll-option-name">{{ option.name }}</p>
+          <p class="poll-option-votes">{{ option.votes }} votes</p>
         </div>
       </div>
     </div>
@@ -187,16 +188,6 @@
   .polls-detail {
     flex: 1 1 0;
   }
-
-  /*.polls-list-outer {*/
-  /*  align-items: stretch;*/
-  /*}*/
-  /*.polls-list-inner {*/
-  /*  flex: 1 1 0;*/
-  /*  display: flex;*/
-  /*  flex-direction: column;*/
-  /*  height: 100%;*/
-  /*}*/
   .create-poll,
   .poll-list-item {
     padding: 1rem;
@@ -211,15 +202,33 @@
     font-weight: 600;
     background-color: #ddd;
   }
-  .selected-poll {
-    font-weight: 600;
-  }
   .poll-option {
     cursor: pointer;
     margin: 2rem 0;
+    background-color: #fafafa;
+    position: relative;
+    overflow: hidden;
   }
   .poll-bar {
-    height: 1rem;
-    background-color: red;
+    background-color: purple;
+    opacity: 0.08;
+    width: 20%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .poll-option.selected .poll-bar {
+    opacity: 0.25;
+  }
+  .poll-option-name,
+  .poll-option-votes {
+    position: relative;
+  }
+  .poll-option-name {
+    font-size: 1.5rem;
+  }
+  .poll-option.selected .poll-option-name {
+    font-weight: 600;
   }
 </style>
