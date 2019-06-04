@@ -1,14 +1,12 @@
 <template>
   <section>
-    <TopAppBar title="Alarm" :has-back="true" parent="/dashboard"/>
     <section>
       <!--alarm functionality-->
       <b-field label="Select Alarm Time/Date">
         <b-timepicker
           placeholder="Type or select a date..."
           icon="clock"
-          editable
-          v-model="time"
+          @input="test"
         >
         </b-timepicker>
       </b-field>
@@ -19,8 +17,8 @@
       </b-datepicker>
     </section>
 
-    <div >
-      {{ `${this.countdown.days}:${this.countdown.hours}:${this.countdown.minutes}:${this.countdown.seconds}` }}
+    <div class="timer">
+      {{ `${this.displayTime.first}  ${this.displayTime.next}` }}
     </div>
 
     <b-button type="is-primary" @click="setDateTime">Set Timer</b-button>
@@ -30,7 +28,7 @@
 
 
 <script>
-  import TopAppBar from "../components/TopAppBar";
+  import TopAppBar from "../../../components/TopAppBar";
   export default {
     name: "alarm",
     components: {TopAppBar},
@@ -45,10 +43,17 @@
           days: 0
         },
         diff: 0,
+        displayTime: {
+          first: ``,
+          next: ``,
+        },
         intervalSetter: null
       }
     },
     methods: {
+      test (value) {
+        console.info(value)
+      },
       setDateTime() {
         const temp = new Date();
         const alarmTime = this.getDateTime(this.time, this.date);
@@ -75,6 +80,17 @@
         this.countdown.hours = Math.floor(this.diff/3600) % 24;
         this.countdown.days = Math.floor(this.diff/86400);
         this.diff--;
+
+        if (this.diff > 86400) {
+          this.displayTime.first = `${this.countdown.days} days`;
+          this.displayTime.next = `${this.countdown.hours} hours`;
+        } else if (this.diff > 3600) {
+          this.displayTime.first = `${this.countdown.hours} hours`;
+          this.displayTime.next = `${this.countdown.minutes} minutes`;
+        } else {
+          this.displayTime.first = `${this.countdown.minutes} minutes`;
+          this.displayTime.next = `${this.countdown.seconds} seconds`;
+        }
       },
       clear() {
         clearInterval(this.intervalSetter);
@@ -91,5 +107,7 @@
 
 
 <style>
-
+  .timer {
+    font-size: 50px;
+  }
 </style>

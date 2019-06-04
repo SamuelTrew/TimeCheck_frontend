@@ -11,7 +11,7 @@
       </nuxt-link>
     </div>
       <div class="group-feature">
-        <nuxt-link to="/alarm">
+        <nuxt-link :to="`/group/${group.id}/alarm`">
           <b-icon icon="clock" type="is-light" size="is-medium" ></b-icon>
         </nuxt-link>
       </div>
