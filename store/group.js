@@ -3,7 +3,8 @@ export const state = () => {
     ready: false,
     groups: {},
     colour: {
-      backgroundColour: "#8B008B"
+      backgroundColor: "#8B008B",
+      color: "white"
     },
   }
 };
@@ -16,7 +17,7 @@ export const getters = {
     return state.groups[id] || null
   },
   getColourById: state => id => {
-    return state.groups[id].colour || null
+    return state.groups[id].colour || state.colour
   },
 };
 

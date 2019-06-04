@@ -31,7 +31,7 @@
         Enter any colour name, RGB, HEX or HSL in the input below to test<br/>
         Click Change to confirm the changes
       </b-message>
-        <div class="box" v-bind:style="bgc"></div>
+        <div class="color-box" v-bind:style="bgc"></div>
         <input type="text" v-on:input="bgc.backgroundColor = $event.target.value"/>
       <b-button type="is-primary" primary @click="updateColour">Change</b-button>
 
@@ -131,7 +131,7 @@
 </script>
 
 <style>
-  .box {
+  .color-box {
     height: 1em;
     width: 1em;
   }

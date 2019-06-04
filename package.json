@@ -29,13 +29,10 @@
     "vue2-google-maps": "^0.10.6"
   },
   "devDependencies": {
-    "@nuxt/typescript": "^2.7.1",
     "ava": "^1.4.1",
     "jsdom": "^15.1.1",
     "node-sass": "^4.12.0",
     "nodemon": "^1.18.9",
-    "sass-loader": "^7.1.0",
-    "vue-class-component": "^7.1.0",
-    "vue-particles": "^1.0.9"
+    "sass-loader": "^7.1.0"
   }
 }

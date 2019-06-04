@@ -1,6 +1,6 @@
 // States
 export const state = () =>({
-  showSidebar: false
+  showSidebar: true
 })
 
 // Getters

@@ -2,7 +2,7 @@
   <section :style="colour">
     <div class="hero-body">
       <div class="container has-text-centered">
-        <h1 class="title is-1">
+        <h1 class="title is-1 group-title">
           <nuxt-link v-if=hasBack :to=parent>
             <div style="float: left;">
               <b-icon href="dashboard" icon="arrow-left" type="is-dark" size="is-medium"></b-icon>
@@ -37,7 +37,7 @@
         if (this.group) {
           return this.getColourById(this.group.id)
         } else {
-          return "#8B008B"
+          return {'background-color': "#8B008B"}
         }
       }
     },
@@ -70,5 +70,8 @@
   }
   .background {
 
+  }
+  .group-title {
+    color: inherit;
   }
 </style>
