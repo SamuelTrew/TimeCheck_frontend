@@ -26,7 +26,7 @@
     </section>
 
     <section>
-      <b-button type="is-success" :disabled="reminder.length === 0" @click="updateName">Set Reminder</b-button>
+      <b-button type="is-success" :disabled="reminder.length === 0" @click="addReminder">Set Reminder</b-button>
     </section>
     <!--todo: ensure button only enabled when name, date and time(?) have been set.-->
 
@@ -124,7 +124,14 @@
       format() {
         return this.isAmPm ? '12' : '24'
       }
-    }
+    },
+    async addReminder() {
+      try {
+        //todo add reminders
+      } catch (e) {
+        console.error("Reminder error", e)
+      }
+    },
   }
 </script>
 
