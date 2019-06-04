@@ -3,9 +3,9 @@
     <TopAppBar :title="this.getUserName + '\'s Dashboard'" />
 
     <section class="columns">
-      <div class="column is-narrow">
+      <!--div class="column is-narrow">
         <GroupFeatures />
-      </div>
+      </div-->
       <div class="column">
         <Updates />
       </div>

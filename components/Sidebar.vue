@@ -1,30 +1,41 @@
 <template>
   <div id="sidebar" v-show="showSidebar">
-    <nuxt-link to="/dashboard" class="sidebar-logo">
-      <img src="~/assets/tc-thumb-white.svg" />
-    </nuxt-link>
-    <div class="sidebar-divider"></div>
-    <div class="sidebar-groups">
-      <nuxt-link :to="`/group/${group.id}`" class="sidebar-group" v-for="group in groups" :key="group.id">
-        <div v-if="group.thumb" class="group-thumb group-thumb-img" :style="{ backgroundImage: `url('${group.thumb}')` }"></div>
-        <div v-else class="group-thumb group-thumb-text">{{ group.name.charAt(0).toUpperCase() }}</div>
+    <div class="column left-column">
+      <nuxt-link to="/dashboard" class="sidebar-logo">
+        <img src="~/assets/tc-thumb-white.svg" />
+      </nuxt-link>
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-groups">
+        <nuxt-link :to="`/group/${group.id}`" class="sidebar-group" v-for="group in groups" :key="group.id">
+          <div v-if="group.thumb" class="group-thumb group-thumb-img" :style="{ backgroundImage: `url('${group.thumb}')` }"></div>
+          <div v-else class="group-thumb group-thumb-text">{{ group.name.charAt(0).toUpperCase() }}</div>
+        </nuxt-link>
+      </div>
+      <div class="sidebar-divider"></div>
+      <nuxt-link to="/group/new" class="sidebar-item">
+        <b-icon icon="plus" type="is-light" size="is-medium"></b-icon>
+      </nuxt-link>
+      <nuxt-link to="/auth/logout" class="sidebar-item">
+        <b-icon icon="logout" type="is-light" size="is-medium"></b-icon>
       </nuxt-link>
     </div>
-    <div class="sidebar-divider"></div>
-    <nuxt-link to="/group/new" class="sidebar-item">
-      <b-icon icon="plus" type="is-light" size="is-medium"></b-icon>
-    </nuxt-link>
-    <nuxt-link to="/auth/logout" class="sidebar-item">
-      <b-icon icon="logout" type="is-light" size="is-medium"></b-icon>
-    </nuxt-link>
+    <GroupFeatures class="column right-column" :group="group" />
   </div>
 </template>
 
 <script>
   import { mapGetters } from 'vuex'
+  import GroupFeatures from "./GroupFeatures";
 
   export default {
     name: 'Sidebar',
+    components: {GroupFeatures},
+    data() {
+      return {
+        // TODO get group from _id
+        group: null,
+      }
+    },
     computed: {
       ...mapGetters({
         groups: 'group/list',
@@ -37,13 +48,9 @@
 
 <style>
 
-  /* Mobile */
   #sidebar {
-    width: 6rem;
     background-color: #3c3744;
     display: flex;
-    flex-direction: column;
-    padding: 1rem;
   }
 
   .sidebar-logo,
@@ -121,6 +128,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .column {
+    flex: 50%;
+  }
+  .left-column {
+    display: flex;
+    flex-direction: column;
+  }
+  .right-column {
+    display: flex;
+    flex-direction: column;
   }
 
 </style>
