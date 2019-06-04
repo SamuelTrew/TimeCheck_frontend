@@ -49,8 +49,21 @@
 <style>
 
   #sidebar {
-    background-color: #3c3744;
     display: flex;
+  }
+
+  .column {
+    flex: 50%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+  .left-column {
+    background-color: #3c3744;
+  }
+  .right-column {
+    padding-top: 1rem;
+    background-color: #474250;
   }
 
   .sidebar-logo,
@@ -128,18 +141,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-
-  .column {
-    flex: 50%;
-  }
-  .left-column {
-    display: flex;
-    flex-direction: column;
-  }
-  .right-column {
-    display: flex;
-    flex-direction: column;
   }
 
 </style>
