@@ -1,5 +1,5 @@
 <template>
-  <section class="section">
+  <section class="section form">
     <h3 class="title">Group Settings</h3>
     <br />
     <div>
