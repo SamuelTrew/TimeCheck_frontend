@@ -1,7 +1,14 @@
 <template>
   <section>
     <section>
-      <!--alarm functionality-->
+      <h4 class="title is-4">New Group Reminder</h4>
+      <section>
+      <b-field>
+        <b-input v-model="reminder"></b-input>
+      </b-field>
+      </section>
+    </section>
+    <section>
 <!--      <b-field>-->
         <b-clockpicker
           v-model="time"
@@ -18,9 +25,16 @@
 <!--      </b-field>-->
     </section>
 
+    <section>
+      <b-button type="is-success" :disabled="reminder.length === 0" @click="updateName">Set Reminder</b-button>
+    </section>
+    <!--todo: ensure button only enabled when name, date and time(?) have been set.-->
+
+    <section>
     <div class="timer">
       {{ `${this.displayTime.first}  ${this.displayTime.next}` }}
     </div>
+    </section>
 
     <b-button type="is-primary" @click="setDateTime">Set Timer</b-button>
     <b-button type="is-primary" @click="clear">Stop Timer</b-button>
@@ -35,6 +49,7 @@
     components: {TopAppBar},
     data() {
       return {
+        reminder: '',
         time: new Date(),
         date: new Date(),
         countdown: {
