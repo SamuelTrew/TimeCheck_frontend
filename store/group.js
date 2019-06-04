@@ -15,7 +15,7 @@ export const getters = {
   getGroupById: state => id => {
     return state.groups[id] || null
   },
-  colour: state => id => {
+  getColourById: state => id => {
     return state.groups[id].colour || null
   },
 };

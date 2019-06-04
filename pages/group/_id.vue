@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="group">
-      <TopAppBar :title="group.name" />
+      <TopAppBar :title="group.name" :group="group" />
 
       <section class="columns">
         <div class="column is-narrow">
