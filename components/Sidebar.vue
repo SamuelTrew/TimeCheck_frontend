@@ -6,7 +6,7 @@
       </nuxt-link>
       <div class="sidebar-divider"></div>
       <div class="sidebar-groups">
-        <nuxt-link :to="`/group/${group.id}`" class="sidebar-group" v-for="group in groups" :key="group.id">
+        <nuxt-link v-for="group in groups" :to="`/group/${group.id}`" class="sidebar-group" :key="group.id" >
           <div v-if="group.thumb" class="group-thumb group-thumb-img" :style="{ backgroundImage: `url('${group.thumb}')` }"></div>
           <div v-else class="group-thumb group-thumb-text">{{ group.name.charAt(0).toUpperCase() }}</div>
         </nuxt-link>
@@ -19,7 +19,7 @@
         <b-icon icon="logout" type="is-light" size="is-medium"></b-icon>
       </nuxt-link>
     </div>
-    <GroupFeatures class="column right-column" :group="group" />
+    <GroupFeatures v-if="this.group" class="column right-column" :group="group" />
   </div>
 </template>
 
@@ -34,14 +34,56 @@
       return {
         // TODO get group from _id
         group: null,
+        groupId: null
       }
     },
     computed: {
       ...mapGetters({
         groups: 'group/list',
         user: 'auth/user',
-        showSidebar: 'nav/showSidebar'
+        showSidebar: 'nav/showSidebar',
+        groupsReady: 'group/ready',
+        getGroupById: 'group/getGroupById'
       })
+    },
+    watch: {
+      groupsReady: {
+        handler(ready) {
+          if (ready) {
+            if (ready && this.groupId) {
+              this.fetchGroup()
+            }
+          }
+        },
+        immediate: true
+      },
+      '$route.params.id': {
+        handler(groupId) {
+          this.groupId = groupId
+          if (groupId && this.groupsReady) {
+            this.fetchGroup()
+          } else {
+            this.group = null
+          }
+        },
+        deep: true,
+        immediate: true
+      }
+    },
+    methods: {
+      fetchGroup() {
+        const group = this.getGroupById(this.groupId)
+        if (group) {
+          this.group = group
+        } else {
+          // Could not find group
+          // TODO: Display error about group 404 not found
+          this.$router.push('/dashboard')
+        }
+      }
+    },
+    asyncData ({ params }) {
+      return { id: params.id }
     }
   }
 </script>

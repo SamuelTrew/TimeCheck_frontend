@@ -26,12 +26,12 @@
         </nuxt-link>
       </div>
     <!-- TODO pass group from sidebar -->
-      <div v-if="group" class="group-feature">
+      <div class="group-feature">
         <nuxt-link :to="`/group/${group.id}/settings`">
           <b-icon icon="settings" type="is-light" size="is-medium"></b-icon>
         </nuxt-link>
       </div>
-      <div v-if="group" class="group-feature">
+      <div class="group-feature">
         <nuxt-link :to="`/group/${group.id}/invite`">
           <b-icon icon="account-multiple-plus" type="is-light" size="is-medium"></b-icon>
         </nuxt-link>
@@ -48,7 +48,6 @@
 
 <style>
   .features {
-    width: 6rem;
     display: flex;
     flex-direction: column;
   }
