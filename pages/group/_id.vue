@@ -1,24 +1,17 @@
 <template>
-  <div>
-    <div v-if="group">
-      <TopAppBar :title="group.name" />
+  <div v-if="group" class="group-page">
+    <TopAppBar :title="group.name" :group="group" />
 
-      <section class="columns">
-        <!--div class="column is-narrow">
-          <GroupFeatures :group="group" />  <!-- TODO: make this customisable -->
-        <!--/div-->
-        <div class="column">
-          <nuxt-child :group="group" />
-        </div>
-      </section>
+    <div class="group-content">
+      <nuxt-child :group="group" />
     </div>
+  </div>
 
-    <div v-else class="section">
-      <div class="container has-text-centered">
-        <h3 class="title">Loading group</h3>
-        <p class="content">This should only take a moment</p>
-        <Loading />
-      </div>
+  <div v-else class="section">
+    <div class="container has-text-centered">
+      <h3 class="title">Loading group</h3>
+      <p class="content">This should only take a moment</p>
+      <Loading />
     </div>
   </div>
 </template>
@@ -71,5 +64,15 @@
 </script>
 
 <style>
-
+  .group-page {
+    display: flex;
+    flex-direction: column;
+  }
+  .group-content {
+    flex: 1 1 0;
+    display: flex;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    flex-direction: column;
+  }
 </style>

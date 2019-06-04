@@ -1,5 +1,5 @@
 <template>
-  <section class="section">
+  <section class="section form">
     <h3 class="title">Group Settings</h3>
     <br />
     <div>
@@ -31,7 +31,7 @@
         Enter any colour name, RGB, HEX or HSL in the input below to test<br/>
         Click Change to confirm the changes
       </b-message>
-        <div class="box" v-bind:style="bgc"></div>
+        <div class="color-box" v-bind:style="bgc"></div>
         <input type="text" v-on:input="bgc.backgroundColor = $event.target.value"/>
       <b-button type="is-primary" primary @click="updateColour">Change</b-button>
 
@@ -83,9 +83,9 @@
           hasIcon: true,
           onConfirm: async () => {
             try {
-              await this.$axios.$delete(`/group/${this.group.id}`)
-              this.$store.dispatch('group/fetchGroups')
-              this.$router.push('/dashboard')
+              await this.$axios.$delete(`/group/${this.group.id}`);
+              this.$store.dispatch('group/fetchGroups');
+              this.$router.push('/dashboard');
               this.$snackbar.open({
                 message: 'Group deleted'
               })
@@ -111,9 +111,9 @@
       },
       async updateName() {
         try {
-          const group = await this.$axios.$patch(`/group/${this.group.id}`, { name: this.name })
+          const group = await this.$axios.$patch(`/group/${this.group.id}`, { name: this.name });
           console.info(group);
-          this.$store.dispatch('group/updateName', { id: this.group.id, name: this.name })
+          this.$store.dispatch('group/updateName', { id: this.group.id, name: this.name });
         } catch (e) {
           // TODO: Handle error on update (can't update - group may not exist)
           console.error("Update name error", e)
@@ -121,7 +121,7 @@
       },
       async updateColour() {
         try {
-          this.$store.dispatch('group/updateColour', {colour: this.bgc});
+          this.$store.dispatch('group/updateColour', {id: this.group.id, colour: this.bgc});
         } catch (e) {
           console.error("Update colour error", e)
         }
@@ -131,7 +131,7 @@
 </script>
 
 <style>
-  .box {
+  .color-box {
     height: 1em;
     width: 1em;
   }

@@ -1,10 +1,12 @@
+const DEFAULT_COLOUR = {
+  backgroundColor: "#8B008B",
+  color: "white"
+}
+
 export const state = () => {
   return {
     ready: false,
-    groups: {},
-    colour: {
-      backgroundColour: "#8B008B"
-    },
+    groups: {}
   }
 };
 
@@ -15,8 +17,8 @@ export const getters = {
   getGroupById: state => id => {
     return state.groups[id] || null
   },
-  colour: state => id => {
-    return state.groups[id].colour || null
+  getColourById: state => id => {
+    return state.groups[id].colour
   },
 };
 
@@ -26,6 +28,9 @@ export const actions = {
       const groups_list = await this.$axios.$get('/group')
       const groups_map = {}
       groups_list.forEach(group => {
+        if (!group.colour) {
+          group.colour = DEFAULT_COLOUR
+        }
         groups_map[group.id] = group
       });
       commit('SET_GROUPS', { groups: groups_map })

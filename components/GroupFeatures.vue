@@ -6,12 +6,12 @@
       </nuxt-link>
     </div>
     <div class="group-feature">
-      <nuxt-link to="/polls">
+      <nuxt-link :to="`/group/${group.id}/polls`">
         <b-icon icon="poll" type="is-light" size="is-medium"></b-icon>
       </nuxt-link>
     </div>
       <div class="group-feature">
-        <nuxt-link to="/alarm">
+        <nuxt-link :to="`/group/${group.id}/alarm`">
           <b-icon icon="clock" type="is-light" size="is-medium" ></b-icon>
         </nuxt-link>
       </div>
@@ -42,7 +42,12 @@
 <script>
   export default {
     name: "GroupFeatures",
-    props: ['group']
+    props: {
+      group: {
+        type: Object,
+        required: true
+      }
+    }
   }
 </script>
 

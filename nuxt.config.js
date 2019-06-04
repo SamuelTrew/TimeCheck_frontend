@@ -1,6 +1,4 @@
-import NuxtConfiguration from '@nuxt/config'
-
-const config: NuxtConfiguration = {
+export default {
   mode: 'universal',
 
   /*
@@ -83,6 +81,4 @@ const config: NuxtConfiguration = {
   },
 
   globalName: 'timecheck'
-};
-
-export default config
+}

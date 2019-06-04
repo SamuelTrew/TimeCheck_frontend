@@ -1,8 +1,8 @@
 <template>
-  <section :style="color">
+  <section :style="colour">
     <div class="hero-body">
       <div class="container has-text-centered">
-        <h1 class="title is-1">
+        <h1 class="title is-1 group-title">
           <nuxt-link v-if=hasBack :to=parent>
             <div style="float: left;">
               <b-icon href="dashboard" icon="arrow-left" type="is-dark" size="is-medium"></b-icon>
@@ -27,11 +27,19 @@
       title: String,
       hasBack: Boolean,
       parent: String,
+      group: Object
     },
     computed: {
       ...mapGetters({
-        color: 'group/colour'
-      })
+        getColourById: 'group/getColourById'
+      }),
+      colour() {
+        if (this.group) {
+          return this.getColourById(this.group.id)
+        } else {
+          return {'background-color': "#8B008B"}
+        }
+      }
     },
     methods: {
       ...mapActions({
@@ -62,5 +70,8 @@
   }
   .background {
 
+  }
+  .group-title {
+    color: inherit;
   }
 </style>

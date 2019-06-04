@@ -17,14 +17,13 @@
   </div>
 </template>
 
-<script lang="ts">
-  import Vue from 'vue'
-  import Component from 'vue-class-component'
+<script>
   import { mapActions } from 'vuex'
 
   import Loading from '~/components/Loading.vue'
 
-  @Component({
+  export default {
+    name: 'AuthJWTPage',
     layout: 'blank',
     components: {
       Loading
@@ -33,11 +32,12 @@
       ...mapActions({
         setUser: 'user/setUser'
       })
-    }
-  })
-  export default class AuthJWTPage extends Vue {
-    loading = true
-
+    },
+    data() {
+      return {
+        loading: true
+      }
+    },
     async mounted() {
       const token = this.$route.query.token
       if (token === null) {
