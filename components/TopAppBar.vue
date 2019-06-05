@@ -2,8 +2,8 @@
   <section :style="colour">
     <div class="hero-body">
       <div class="container has-text-centered">
-        <h1 class="title is-1 group-title">
-          <button v-if=hasBack class="menu" @click="toggleSidebar">
+        <h1 class="title is-1 group-title" style="display: flex; align-items: center">
+          <button v-if=hasBack class="menu">
             <nuxt-link :to=parent>
               <div class="icon">
                 <b-icon icon="arrow-left" type="is-light" size="is-medium" style="margin-left: 1rem"></b-icon>
@@ -71,7 +71,6 @@
   }
   .icon {
     float: left;
-    height: 100%;
     z-index: 2;
     margin-right: 1rem;
   }
