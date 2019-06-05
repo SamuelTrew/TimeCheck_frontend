@@ -109,6 +109,7 @@
     display: flex;
     z-index: 1000;
     background-color: #3c3744;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   }
 
   .column {
@@ -119,6 +120,7 @@
   .left-column {
     align-items: center;
     background-color: #3c3744;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   }
   .right-column {
     padding-top: 1rem;

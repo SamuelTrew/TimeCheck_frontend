@@ -1,5 +1,5 @@
 <template>
-  <section :style="colour">
+  <section id="topappbar" :style="colour">
     <div class="hero-body">
       <div class="container has-text-centered">
         <h1 class="title is-1 group-title top-bar-container" >
@@ -53,6 +53,10 @@
 </script>
 
 <style scoped>
+  #topappbar {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    z-index: 1000;
+  }
   .title {
     font-size: 2rem;
     white-space: nowrap;
