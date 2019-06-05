@@ -21,7 +21,7 @@
     </div>
     <GroupFeatures v-if="this.group" class="column right-column" :group="group" />
     <div class="column hide-touch-area" @click="toggleSidebar">
-      <div style="width: 100vw"></div>
+      <div style="width: 100%"></div>
     </div>
   </div>
 </template>
@@ -102,7 +102,7 @@
   }
 
   .column {
-    flex: 50%;
+    flex: 33%;
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -126,6 +126,22 @@
     }
     .right-column {
       z-index: 1002;
+    }
+  }
+
+  .hide-touch-area {
+    height: 100vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: absolute;
+    width: 100%;
+    background: transparent;
+    z-index: 1001;
+  }
+
+  @media only screen and (min-width: 768px) {
+    .hide-touch-area {
+      display: none;
     }
   }
 
@@ -204,20 +220,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-
-  .hide-touch-area {
-    display: flex;
-    flex: 50%;
-    width: 100%;
-    background: transparent;
-    z-index: 1001;
-  }
-
-  @media only screen and (min-width: 768px) {
-    .hide-touch-area {
-      display: none;
-    }
   }
 
 </style>
