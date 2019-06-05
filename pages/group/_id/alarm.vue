@@ -1,11 +1,11 @@
 <template>
   <section class="alarms">
     <div class="alarms-list">
-      <div class="create-alarm" @click="addAlarm; selectedAlarm=null" :class="{selected: createAlarm}">
+      <div class="create-alarm" @click="addAlarm" :class="{selected: createAlarm}">
         <b-icon icon="plus" size="is-medium"></b-icon>
       </div>
       <div class="alarms-list-inner">
-        <div v-for="alarm in alarms" class="alarm-list-item" @click="selectedAlarm = alarm;" :class="{selected: selectedAlarm === alarm}" >
+        <div v-for="alarm in alarms" class="alarm-list-item" @click="selectedAlarm = alarm; createAlarm = false" :class="{selected: selectedAlarm === alarm}" >
           <div class="content">
             {{ alarm.name }}
           </div>
@@ -169,6 +169,7 @@
         }
       },
       addAlarm() {
+        this.selectedAlarm = null;
         this.createAlarm = true;
         DUMMY_ALARMS_DATA.push({name: 'what is MaTt CoRp'})
       }
@@ -226,31 +227,9 @@
     font-weight: 600;
     background-color: #ddd;
   }
-  .alarm-option {
-    cursor: pointer;
-    margin: 2rem 0;
-    background-color: #fafafa;
-    position: relative;
-    overflow: hidden;
-  }
-  .alarm-bar {
-    background-color: purple;
-    opacity: 0.08;
-    width: 20%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
+
   .alarm-option.selected .alarm-bar {
     opacity: 0.25;
-  }
-  .alarm-option-name,
-  .alarm-option-votes {
-    position: relative;
-  }
-  .alarm-option-name {
-    font-size: 1.5rem;
   }
   .alarm-option.selected .alarm-option-name {
     font-weight: 600;
