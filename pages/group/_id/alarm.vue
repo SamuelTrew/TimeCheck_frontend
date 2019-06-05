@@ -1,15 +1,27 @@
 <template>
-  <section>
-    <section>
-      <h4 class="title is-4">New Group Reminder</h4>
-      <section>
-      <b-field>
-        <b-input v-model="reminder"></b-input>
-      </b-field>
-      </section>
-    </section>
-    <section>
-<!--      <b-field>-->
+  <section class="alarms">
+    <div class="alarms-list">
+      <div class="create-alarm" @click="addAlarm; selectedAlarm=null" :class="{selected: createAlarm}">
+        <b-icon icon="plus" size="is-medium"></b-icon>
+      </div>
+      <div class="alarms-list-inner">
+        <div v-for="alarm in alarms" class="alarm-list-item" @click="selectedAlarm = alarm;" :class="{selected: selectedAlarm === alarm}" >
+          <div class="content">
+            {{ alarm.name }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALARM DATA HERE -->
+    <section class="section alarms-detail">
+      <div v-if="selectedAlarm" class="alarm">
+        <h4 class="title is-4">New Group Reminder</h4>
+        <section>
+          <b-field>
+            <b-input v-model="reminder"></b-input>
+          </b-field>
+        </section>
         <b-clockpicker
           v-model="time"
           inline
@@ -22,33 +34,70 @@
           inline
         >
         </b-datepicker>
-<!--      </b-field>-->
+
+        <b-button type="is-success" :disabled="reminder.length === 0" @click="addReminder">Set Reminder</b-button>
+        <!--todo: ensure button only enabled when name, date and time(?) have been set.-->
+
+        <b-button type="is-primary" @click="setDateTime">Set Timer</b-button>
+        <b-button type="is-primary" @click="clear">Stop Timer</b-button>
+      </div>
+
+      <div v-else-if="createAlarm">
+        <h4 class="title">New Alarm</h4>
+
+        <div class="form">
+          <b-field label="Name">
+            <b-input v-model="newAlarm"></b-input>
+          </b-field>
+        </div>
+      </div>
     </section>
 
-    <section>
-      <b-button type="is-success" :disabled="reminder.length === 0" @click="addReminder">Set Reminder</b-button>
-    </section>
-    <!--todo: ensure button only enabled when name, date and time(?) have been set.-->
+
 
     <section>
     <div class="timer">
       {{ `${this.displayTime.first}  ${this.displayTime.next}` }}
     </div>
     </section>
-
-    <b-button type="is-primary" @click="setDateTime">Set Timer</b-button>
-    <b-button type="is-primary" @click="clear">Stop Timer</b-button>
   </section>
 </template>
 
 
 <script>
+  const DUMMY_ALARMS_DATA = [
+    { name: 'morning' },
+    { name: 'where is penny' },
+    { name: 'meeting 72' },
+    { name: 'Test' },
+    { name: 'Test' },
+    { name: 'Test' },
+    { name: 'Test' },
+    { name: 'Test' },
+    { name: 'Test' },
+    { name: 'Test' },
+    { name: 'Test' },
+    { name: 'Test' },
+    { name: 'Test' },
+    { name: 'Test' },
+    { name: 'Test' },
+    { name: 'Test' },
+    { name: 'Test' },
+    { name: 'Test' },
+    { name: 'Test' },
+    { name: 'Test' },
+  ];
+
   import TopAppBar from "../../../components/TopAppBar";
   export default {
     name: "alarm",
     components: {TopAppBar},
     data() {
       return {
+        newAlarm: '',
+        selectedAlarm: null,
+        createAlarm: false,
+        alarms: DUMMY_ALARMS_DATA,
         reminder: '',
         time: new Date(),
         date: new Date(),
@@ -118,6 +167,10 @@
           first: ``,
           next: ``
         }
+      },
+      addAlarm() {
+        this.createAlarm = true;
+        DUMMY_ALARMS_DATA.push({name: 'what is MaTt CoRp'})
       }
     },
     computed: {
@@ -139,5 +192,67 @@
 <style>
   .timer {
     font-size: 50px;
+  }
+  .alarms {
+    width: 100%;
+    height: 100%;
+    display: flex;
+  }
+  .alarms-list {
+    width: 300px;
+    background-color: #eee;
+    border-right: 1px solid #aaa;
+    display: flex;
+    flex-direction: column;
+  }
+  .alarms-list-inner {
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+  .alarms-detail {
+    flex: 1 1 0;
+  }
+  .create-alarm,
+  .alarm-list-item {
+    padding: 1rem;
+    border-bottom: 1px solid #aaa;
+    cursor: pointer;
+  }
+  .create-alarm {
+    text-align: center;
+  }
+  .create-alarm.selected,
+  .alarm-list-item.selected {
+    font-weight: 600;
+    background-color: #ddd;
+  }
+  .alarm-option {
+    cursor: pointer;
+    margin: 2rem 0;
+    background-color: #fafafa;
+    position: relative;
+    overflow: hidden;
+  }
+  .alarm-bar {
+    background-color: purple;
+    opacity: 0.08;
+    width: 20%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .alarm-option.selected .alarm-bar {
+    opacity: 0.25;
+  }
+  .alarm-option-name,
+  .alarm-option-votes {
+    position: relative;
+  }
+  .alarm-option-name {
+    font-size: 1.5rem;
+  }
+  .alarm-option.selected .alarm-option-name {
+    font-weight: 600;
   }
 </style>
