@@ -16,13 +16,13 @@
       </div>
       <div class="sidebar-divider"></div>
       <nuxt-link to="/group/new" class="sidebar-item">
-        <b-icon icon="plus" type="is-light" size="is-medium"></b-icon>
+        <b-icon icon="plus" type="is-light" size="is-small-medium"></b-icon>
       </nuxt-link>
       <div style="color: white;">
         Add
       </div>
       <nuxt-link to="/auth/logout" class="sidebar-item">
-        <b-icon icon="logout" type="is-light" size="is-medium"></b-icon>
+        <b-icon icon="logout" type="is-light" size="is-small-medium"></b-icon>
       </nuxt-link>
       <div style="color: white;">
         Logout
