@@ -2,7 +2,7 @@
   <section :style="colour">
     <div class="hero-body">
       <div class="container has-text-centered">
-        <h1 class="title is-1 group-title" style="display: flex; align-items: center">
+        <h1 class="title is-1 group-title top-bar-container" >
           <button v-if=hasBack class="menu">
             <nuxt-link :to=parent>
               <div class="icon">
@@ -56,9 +56,15 @@
   .title {
     font-size: 2rem;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .hero-body {
     padding: 1rem;
+  }
+  .top-bar-container {
+    display: flex;
+    align-items: center;
   }
   .menu {
     display: flex;

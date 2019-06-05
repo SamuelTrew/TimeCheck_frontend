@@ -113,11 +113,11 @@
 
   .column {
     flex: 33%;
-    align-items: center;
     display: flex;
     flex-direction: column;
   }
   .left-column {
+    align-items: center;
     background-color: #3c3744;
   }
   .right-column {
