@@ -196,6 +196,7 @@
     overflow-x: hidden;
   }
   .sidebar-groups::-webkit-scrollbar {
+    display: none;
     width: 0 !important
   }
 

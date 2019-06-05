@@ -31,9 +31,12 @@
         Enter any colour name, RGB, HEX or HSL in the input below to test<br/>
         Click Change to confirm the changes
       </b-message>
-        <div class="color-box" v-bind:style="bgc"></div>
+      <div class="color-box" v-bind:style="bgc"></div>
+      <div>
         <input type="text" v-on:input="bgc.backgroundColor = $event.target.value"/>
-      <b-button type="is-primary" primary @click="updateColour">Change</b-button>
+      </div>
+      <br />
+      <b-button type="is-primary" @click="updateColour">Change</b-button>
 
       <br />
       <br />
