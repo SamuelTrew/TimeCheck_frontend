@@ -1,6 +1,6 @@
 <template>
   <section>
-    <TopAppBar :title="this.getUserName + '\'s Dashboard'" />
+    <TopAppBar :title="this.getUserName + '\'s Dashboard'" style="color: white"/>
 
     <section class="columns">
       <!--div class="column is-narrow">

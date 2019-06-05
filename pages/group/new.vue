@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TopAppBar title="New Group" />
+    <TopAppBar title="New Group" :has-back="true" parent="/dashboard" style="color: white"/>
 
     <section class="section">
       <div class="container">

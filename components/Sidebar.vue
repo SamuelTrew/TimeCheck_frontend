@@ -99,6 +99,7 @@
   #sidebar {
     display: flex;
     z-index: 1000;
+    background-color: #3c3744;
   }
 
   .column {

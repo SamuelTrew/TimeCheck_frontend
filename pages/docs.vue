@@ -1,7 +1,7 @@
 <template>
   <section>
     <section>
-      <TopAppBar title="Documents" :has-back="true" parent="/dashboard"/>
+      <TopAppBar title="Documents" :has-back="true" parent="/dashboard" style="color: white"/>
     </section>
 
     <div class="container">
