@@ -21,6 +21,15 @@
           <br>
           <time datetime="2016-1-1">10:30 PM - Wednesday 19th June 2019</time>
         </div>
+        <div>
+          <div>
+          Let your group know your status by checking in below!
+          </div>
+          <br />
+          <a class="button is-success is-rounded">Arrived :)</a>
+          <a class="button is-warning is-rounded">On my way!</a>
+          <a class="button is-danger is-rounded">Going to be late :(</a>
+        </div>
       </div>
     </div>
     <br />
@@ -86,7 +95,7 @@
           </div>
           <div class="media-content">
             <p class="title is-4">Group 15's Night Out ;)</p>
-            <p class="subtitle is-6">@Event</p>
+            <p class="subtitle is-6">@Poll</p>
           </div>
         </div>
         <div class="content">
