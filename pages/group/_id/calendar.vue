@@ -1,7 +1,5 @@
 <template>
   <section>
-    <TopAppBar title="Calendar" :has-back="true" parent="/dashboard" style="color: white"/>
-    <!--dates functionality-->
     <div class="calendar-container">
       <div class="group-calendar-container">
         <h2>Group</h2>
@@ -36,7 +34,7 @@
 </template>
 
 <script>
-  import TopAppBar from "../components/TopAppBar";
+  import TopAppBar from "../../../components/TopAppBar";
   export default {
     name: "calendar",
     components: {TopAppBar},

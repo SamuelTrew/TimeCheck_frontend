@@ -1,6 +1,6 @@
 <template>
   <section class="features">
-    <nuxt-link class="group-feature" to="/calendar">
+    <nuxt-link class="group-feature" :to="`/group/${group.id}/calendar`">
       <b-icon icon="calendar" class="group-feature-icon" type="is-light" size="is-small-medium"></b-icon>
       Calendar
     </nuxt-link>
@@ -15,6 +15,7 @@
       Alarm
     </nuxt-link>
 
+    <!--
     <nuxt-link class="group-feature" to="/maps">
       <b-icon icon="map-marker" class="group-feature-icon" type="is-light" size="is-small-medium"></b-icon>
       Maps
@@ -24,6 +25,7 @@
       <b-icon icon="file-document" class="group-feature-icon" type="is-light" size="is-small-medium"></b-icon>
       Docs
     </nuxt-link>
+    -->
 
     <nuxt-link class="group-feature" :to="`/group/${group.id}/settings`">
       <b-icon icon="settings" class="group-feature-icon" type="is-light" size="is-small-medium"></b-icon>

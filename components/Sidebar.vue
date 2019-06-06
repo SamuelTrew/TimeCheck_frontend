@@ -6,7 +6,7 @@
           <img src="~/assets/tc-thumb-white.svg" />
         </nuxt-link>
         <div style="color: white;margin-bottom: 0.2rem">
-          Groups
+          Events
         </div>
         <div class="sidebar-divider"></div>
         <div class="sidebar-groups">
