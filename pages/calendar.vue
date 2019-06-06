@@ -4,30 +4,30 @@
     <!--dates functionality-->
     <div class="calendar-container">
       <div class="group-calendar-container">
-        <h2>Group Calendar</h2>
-        <v-calendar
+        <h2>Group</h2>
+        Dates when people are busy
+        <v-date-picker
           is-expanded
+          class="personal-calendar-container"
           :available-dates='availableDates'
-          :attributes='groupAttributes'>
-        </v-calendar>
+          mode='multiple'
+          :value='sharedDates'
+          color="blue"
+          is-inline></v-date-picker>
       </div>
 
       <div class="personal-calendar-container">
-        <h2>Personal Calendar</h2>
-        <v-calendar
-          class="personal-calendar"
-          is-expanded
-          :available-dates='availableDates'
-          :attributes='personalAttributes'>
-        </v-calendar>
-
-        <h3>Add dates you are available</h3>
+        <h2>Personal</h2>
+        Select dates when you are busy
         <v-date-picker
+          is-expanded
+          is-dark
           class="personal-calendar-container"
           :available-dates='availableDates'
           mode='multiple'
           v-model='pickedDates'
           :value="null"
+          color="red"
           is-inline></v-date-picker>
       </div>
     </div>
@@ -40,48 +40,29 @@
   export default {
     name: "calendar",
     components: {TopAppBar},
+    computed: {
+      sharedDates() {
+        return this.groupDates.concat(this.pickedDates);
+      }
+    },
     data() {
       return {
         startDate: new Date(),
         endDate: new Date(),
         availableDates: { start: new Date(), span: 14 },
-        pickedDates: [],
-        displayAttributes: [
-          {
-            key: 'Shared Availability',
-            highlight: true,
-            dates: [
-              { start: new Date('6/10/2019'), span: 7 },
-            ],
-          }
+        pickedDates: [
+          new Date('6/10/2019'),
+          new Date('6/11/2019'),
+          new Date('6/12/2019'),
+          new Date('6/13/2019'),
+          new Date('6/14/2019'),
         ],
-        groupAttributes: [
-          {
-            key: 'Hao',
-            highlight: true,
-            dates: [
-              { start: new Date('6/15/2019'), span: 3},
-              { start: new Date('6/19/2019') },
-            ]
-          },
-          {
-            key: 'Sam',
-            highlight: 'red',
-            dates: [
-              {start: new Date('6/12/2019'), span: 3},
-              new Date('6/16/2019'),
-            ]
-          }
+        groupDates: [
+          new Date('6/6/2019'),
+          new Date('6/7/2019'),
+          new Date('6/13/2019'),
+          new Date('6/14/2019'),
         ],
-        personalAttributes: [
-          {
-            key: 'My Availability',
-            highlight: true,
-            dates: [
-              { start: new Date('6/10/2019'), span: 7 },
-            ],
-          }
-        ]
       }
     }
   }
@@ -90,7 +71,6 @@
 <style scoped>
   h2 {
     font-size: 2rem;
-    margin-bottom: 0.5rem;
   }
   h3 {
     font-size: 1.5rem;
