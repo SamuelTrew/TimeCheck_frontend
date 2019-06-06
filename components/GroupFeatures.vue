@@ -1,16 +1,16 @@
 <template>
   <section class="features">
-    <nuxt-link class="group-feature" :to="`/group/${group.id}/calendar`">
+    <nuxt-link class="group-feature" :to="`/group/${group.id}/calendar`" v-on:click.native="toggleSidebar">
       <b-icon icon="calendar" class="group-feature-icon" type="is-light" size="is-small-medium"></b-icon>
       Calendar
     </nuxt-link>
 
-    <nuxt-link class="group-feature" :to="`/group/${group.id}/polls`">
+    <nuxt-link class="group-feature" :to="`/group/${group.id}/polls`" v-on:click.native="toggleSidebar">
       <b-icon icon="poll" class="group-feature-icon" type="is-light" size="is-small-medium"></b-icon>
       Polls
     </nuxt-link>
 
-    <nuxt-link class="group-feature bottom-items" :to="`/group/${group.id}/alarm`">
+    <nuxt-link class="group-feature bottom-items" :to="`/group/${group.id}/alarm`" v-on:click.native="toggleSidebar">
       <b-icon icon="clock" class="group-feature-icon" type="is-light" size="is-small-medium"></b-icon>
       Reminders
     </nuxt-link>
@@ -27,12 +27,12 @@
     </nuxt-link>
     -->
 
-    <nuxt-link class="group-feature settings" :to="`/group/${group.id}/settings`">
+    <nuxt-link class="group-feature settings" :to="`/group/${group.id}/settings`" v-on:click.native="toggleSidebar">
       <b-icon icon="settings" class="group-feature-icon" type="is-light" size="is-small-medium"></b-icon>
       Settings
     </nuxt-link>
 
-    <nuxt-link class="group-feature invite" :to="`/group/${group.id}/invite`">
+    <nuxt-link class="group-feature invite" :to="`/group/${group.id}/invite`" v-on:click.native="toggleSidebar">
       <b-icon icon="account-multiple-plus" class="group-feature-icon" type="is-light" size="is-small-medium"></b-icon>
       Invite
     </nuxt-link>
@@ -40,6 +40,8 @@
 </template>
 
 <script>
+  import { mapActions, mapGetters } from 'vuex'
+
   export default {
     name: "GroupFeatures",
     props: {
@@ -47,6 +49,11 @@
         type: Object,
         required: true
       }
+    },
+    methods: {
+      ...mapActions({
+        toggleSidebar: 'nav/toggleSidebar'
+      })
     }
   }
 </script>

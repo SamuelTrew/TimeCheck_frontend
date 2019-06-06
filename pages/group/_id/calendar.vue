@@ -7,7 +7,7 @@
         <v-date-picker
           is-expanded
           class="personal-calendar-container"
-          :available-dates='availableDates'
+          :available-dates='{end: new Date(1, 1, 1)}'
           mode='multiple'
           :value='sharedDates'
           color="blue"

@@ -16,7 +16,7 @@
           </nuxt-link>
         </div>
         <div class="sidebar-divider"></div>
-        <nuxt-link to="/group/new" class="sidebar-item">
+        <nuxt-link to="/group/new" class="sidebar-item" v-on:click.native="toggleSidebar">
           <b-icon icon="plus" type="is-light" size="is-small-medium"></b-icon>
         </nuxt-link>
         <div style="color: white;">
