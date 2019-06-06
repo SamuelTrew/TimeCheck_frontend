@@ -1,7 +1,8 @@
 <template>
+
   <section class="alarms">
     <div class="alarms-list">
-      <div class="create-alarm" @click="addAlarm" :class="{selected: createAlarm}">
+      <div class="create-alarm" @click="makeNewAlarm" :class="{selected: createAlarm}">
         <b-icon icon="plus" size="is-medium"></b-icon>
       </div>
       <div class="alarms-list-inner">
@@ -16,76 +17,72 @@
     <!-- ALARM DATA HERE -->
     <section class="section alarms-detail">
       <div v-if="selectedAlarm" class="alarm">
-        <h4 class="title is-4">New Group Reminder</h4>
-        <section>
-          <b-field>
-            <b-input v-model="reminder"></b-input>
-          </b-field>
-        </section>
-        <b-clockpicker
-          v-model="time"
-          inline
-          :type="is-primary"
-          :hour-format="format">
-        </b-clockpicker>
+        <h1 class="title">{{this.selectedAlarm.name}}</h1>
+        <b-field label="On this date">
+          <b-datepicker
+            placeholder="Click to view..."
+            icon="calendar-today">
+          </b-datepicker>
+        </b-field>
 
-        <b-datepicker
-          v-model="date"
-          inline
-        >
-        </b-datepicker>
-
-        <b-button type="is-success" :disabled="reminder.length === 0" @click="addReminder">Set Reminder</b-button>
-        <!--todo: ensure button only enabled when name, date and time(?) have been set.-->
-
-        <b-button type="is-primary" @click="setDateTime">Set Timer</b-button>
-        <b-button type="is-primary" @click="clear">Stop Timer</b-button>
+        <b-field label="At this time">
+          <b-timepicker
+            rounded
+            placeholder="Click to view..."
+            icon="clock">
+          </b-timepicker>
+        </b-field>
       </div>
 
       <div v-else-if="createAlarm">
-        <h4 class="title">New Alarm</h4>
-
+        <h4 class="title">New Group Reminder</h4>
         <div class="form">
           <b-field label="Name">
             <b-input v-model="newAlarm"></b-input>
           </b-field>
+          <div class="column">
+            <h1 class="title">Select Date</h1>
+            <b-datepicker
+              v-model="date"
+              inline>
+            </b-datepicker>
+          </div>
+          <div class="column">
+            <h1 class="title">Select Time</h1>
+            <b-clockpicker
+              v-model="time"
+              inline
+              :type="is-primary"
+              :hour-format="format">
+            </b-clockpicker>
+          </div>
+          <div>
+            <b-button type="is-primary"
+                      :disabled="newAlarm.length === 0"
+                      @click="addAlarm">Create Reminder</b-button>
+          </div>
         </div>
       </div>
     </section>
 
-
-
-    <section>
-    <div class="timer">
-      {{ `${this.displayTime.first}  ${this.displayTime.next}` }}
-    </div>
-    </section>
+    <!--<section>-->
+    <!--<div class="timer">-->
+    <!--{{ `${this.displayTime.first}  ${this.displayTime.next}` }}-->
+    <!--</div>-->
+    <!--</section>-->
   </section>
 </template>
 
 
 <script>
+
   const DUMMY_ALARMS_DATA = [
-    { name: 'morning' },
-    { name: 'where is penny' },
-    { name: 'meeting 72' },
-    { name: 'Test' },
-    { name: 'Test' },
-    { name: 'Test' },
-    { name: 'Test' },
-    { name: 'Test' },
-    { name: 'Test' },
-    { name: 'Test' },
-    { name: 'Test' },
-    { name: 'Test' },
-    { name: 'Test' },
-    { name: 'Test' },
-    { name: 'Test' },
-    { name: 'Test' },
-    { name: 'Test' },
-    { name: 'Test' },
-    { name: 'Test' },
-    { name: 'Test' },
+    { name: 'Meet at South Ken Station' },
+    { name: 'Find penny' },
+    { name: 'Party 21 charles lane' },
+    { name: 'Dinner with Radhika' },
+    { name: 'Slug Pres' },
+    { name: 'Get Bubble Tea' },
   ];
 
   import TopAppBar from "../../../components/TopAppBar";
@@ -117,6 +114,16 @@
       }
     },
     methods: {
+      makeNewAlarm() {
+        this.selectedAlarm = null;
+        this.createAlarm = true;
+        this.newAlarm = '';
+      },
+      addAlarm() {
+        this.selectedAlarm = null;
+        this.createAlarm = true;
+        DUMMY_ALARMS_DATA.push({name: this.newAlarm})
+      },
       setDateTime() {
         const temp = new Date();
         const alarmTime = this.getDateTime(this.time, this.date);
@@ -131,7 +138,7 @@
       },
       getDateTime(time, date) {
         return new Date(date.getFullYear(), date.getMonth(), date.getDate(),
-                        time.getHours(), time.getMinutes(), time.getSeconds());
+          time.getHours(), time.getMinutes(), time.getSeconds());
       },
       decrement() {
         if (this.diff < 0) {
@@ -168,22 +175,10 @@
           next: ``
         }
       },
-      addAlarm() {
-        this.selectedAlarm = null;
-        this.createAlarm = true;
-        DUMMY_ALARMS_DATA.push({name: 'what is MaTt CoRp'})
-      }
     },
     computed: {
       format() {
         return this.isAmPm ? '12' : '24'
-      }
-    },
-    async addReminder() {
-      try {
-        //todo add reminders
-      } catch (e) {
-        console.error("Reminder error", e)
       }
     },
   }
@@ -235,3 +230,4 @@
     font-weight: 600;
   }
 </style>
+
