@@ -22,6 +22,7 @@
     "cross-env": "^5.2.0",
     "nuxt": "^2.8.0",
     "nuxt-buefy": "^0.3.7",
+    "v-calendar": "^1.0.0-beta.14",
     "vue-upload-component": "^2.8.20",
     "vue2-google-maps": "^0.10.6"
   },
