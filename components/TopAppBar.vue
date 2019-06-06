@@ -1,15 +1,18 @@
 <template>
-  <section :style="colour">
+  <section id="topappbar" :style="colour">
     <div class="hero-body">
       <div class="container has-text-centered">
-        <h1 class="title is-1 group-title">
-          <nuxt-link v-if=hasBack :to=parent>
-            <div style="float: left;">
-              <b-icon href="dashboard" icon="arrow-left" type="is-dark" size="is-medium"></b-icon>
-            </div>
-          </nuxt-link>
+        <h1 class="title is-1 group-title top-bar-container" >
+          <button v-if=hasBack class="menu">
+            <nuxt-link :to=parent>
+              <div class="icon">
+                <b-icon icon="arrow-left" type="is-light" size="is-medium" style="margin-left: 1rem"></b-icon>
+              </div>
+            </nuxt-link>
+          </button>
+
           <button v-else class="menu" @click="toggleSidebar">
-            <b-icon class="icon" icon="menu" size="is-medium"></b-icon>
+            <b-icon class="icon" icon="menu" type="is-light" size="is-medium"></b-icon>
           </button>
           {{ title }}
         </h1>
@@ -50,26 +53,36 @@
 </script>
 
 <style scoped>
+  #topappbar {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    z-index: 1000;
+  }
   .title {
     font-size: 2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .hero-body {
     padding: 1rem;
+  }
+  .top-bar-container {
+    display: flex;
+    align-items: center;
   }
   .menu {
     display: flex;
     float: left;
     background-color: transparent;
     border: none;
-    outline:none;
-    cursor:pointer;
+    outline: none;
+    cursor: pointer;
     align-items: center;
   }
   .icon {
     float: left;
-  }
-  .background {
-
+    z-index: 2;
+    margin-right: 1rem;
   }
   .group-title {
     color: inherit;

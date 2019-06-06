@@ -62,9 +62,24 @@
   }
 
   #page {
-    flex: 1 1 auto;
     height: 100vh;
-    overflow-x: hidden;
     overflow-y: scroll;
+    overflow-x: hidden;
+    z-index: 1;
   }
+
+  @media only screen and (max-width: 767px) {
+    #page {
+      position: absolute;
+      width: 100vw;
+    }
+  }
+
+  @media only screen and (min-width: 768px) {
+    #page {
+      flex: 1 1 auto;
+    }
+  }
+
+
 </style>

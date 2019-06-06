@@ -4,6 +4,9 @@
       <nuxt-link to="/dashboard" class="sidebar-logo">
         <img src="~/assets/tc-thumb-white.svg" />
       </nuxt-link>
+      <div style="color: white;margin-bottom: 0.2rem">
+        Groups
+      </div>
       <div class="sidebar-divider"></div>
       <div class="sidebar-groups">
         <nuxt-link v-for="group in groups" :to="`/group/${group.id}`" class="sidebar-group" :key="group.id" >
@@ -13,18 +16,27 @@
       </div>
       <div class="sidebar-divider"></div>
       <nuxt-link to="/group/new" class="sidebar-item">
-        <b-icon icon="plus" type="is-light" size="is-medium"></b-icon>
+        <b-icon icon="plus" type="is-light" size="is-small-medium"></b-icon>
       </nuxt-link>
+      <div style="color: white;">
+        Add
+      </div>
       <nuxt-link to="/auth/logout" class="sidebar-item">
-        <b-icon icon="logout" type="is-light" size="is-medium"></b-icon>
+        <b-icon icon="logout" type="is-light" size="is-small-medium"></b-icon>
       </nuxt-link>
+      <div style="color: white;">
+        Logout
+      </div>
     </div>
     <GroupFeatures v-if="this.group" class="column right-column" :group="group" />
+    <div class="column hide-touch-area" @click="toggleSidebar">
+      <div style="width: 100%"></div>
+    </div>
   </div>
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { mapActions, mapGetters } from 'vuex'
   import GroupFeatures from "./GroupFeatures";
 
   export default {
@@ -71,6 +83,9 @@
       }
     },
     methods: {
+      ...mapActions({
+        toggleSidebar: 'nav/toggleSidebar'
+      }),
       fetchGroup() {
         const group = this.getGroupById(this.groupId)
         if (group) {
@@ -92,20 +107,52 @@
 
   #sidebar {
     display: flex;
+    z-index: 1000;
+    background-color: #3c3744;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   }
 
   .column {
-    flex: 50%;
-    align-items: center;
+    flex: 33%;
     display: flex;
     flex-direction: column;
   }
   .left-column {
+    align-items: center;
     background-color: #3c3744;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   }
   .right-column {
     padding-top: 1rem;
     background-color: #474250;
+  }
+
+  @media only screen and (max-width: 768px) {
+    #sidebar {
+      z-index: 1000;
+    }
+    .left-column {
+      z-index: 1003;
+    }
+    .right-column {
+      z-index: 1002;
+    }
+  }
+
+  .hide-touch-area {
+    height: 100vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: absolute;
+    width: 100%;
+    background: transparent;
+    z-index: 1001;
+  }
+
+  @media only screen and (min-width: 768px) {
+    .hide-touch-area {
+      display: none;
+    }
   }
 
   .sidebar-logo,
@@ -113,8 +160,8 @@
   .sidebar-group,
   .group-thumb {
     display: block;
-    width: 4rem;
-    height: 4rem;
+    width: 3.5rem;
+    height: 3.5rem;
     overflow: hidden;
   }
 
@@ -126,7 +173,7 @@
   }
 
   .sidebar-logo {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
   }
   .sidebar-item {
     margin-top: 1rem;
@@ -138,7 +185,7 @@
   }
 
   .sidebar-divider {
-    width: 4rem;
+    width: 3.5rem;
     height: 1px;
     background-color: whitesmoke;
   }
@@ -149,6 +196,7 @@
     overflow-x: hidden;
   }
   .sidebar-groups::-webkit-scrollbar {
+    display: none;
     width: 0 !important
   }
 
