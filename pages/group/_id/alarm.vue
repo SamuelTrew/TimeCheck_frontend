@@ -34,7 +34,7 @@
         </b-field>
       </div>
 
-      <div v-else-if="createAlarm">
+      <div v-else>
         <div>
         <h4 class="title">New Group Reminder</h4>
         </div>
