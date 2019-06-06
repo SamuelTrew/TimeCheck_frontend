@@ -20,7 +20,7 @@
         <h1 class="title">{{this.selectedAlarm.name}}</h1>
         <b-field label="On this date">
           <b-datepicker
-            placeholder="Click to view..."
+            placeholder="07/06/19"
             icon="calendar-today">
           </b-datepicker>
         </b-field>
@@ -28,7 +28,7 @@
         <b-field label="At this time">
           <b-timepicker
             rounded
-            placeholder="Click to view..."
+            placeholder="10:30"
             icon="clock">
           </b-timepicker>
         </b-field>
@@ -202,7 +202,7 @@
     display: flex;
   }
   .alarms-list {
-    width: 300px;
+    width: 30%;
     background-color: #eee;
     border-right: 1px solid #aaa;
     display: flex;
