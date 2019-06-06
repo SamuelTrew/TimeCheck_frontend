@@ -2,15 +2,36 @@
   <section>
     <TopAppBar title="Calendar" :has-back="true" parent="/dashboard" style="color: white"/>
     <!--dates functionality-->
-    <!--<iframe class="calendar" src="https://calendar.google.com/calendar/embed?height=1000&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=Europe%2FLondon&amp;src=ZW4udWsjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&amp;color=%23009688&amp;mode=MONTH" width="800" height="1000" frameborder="0" scrolling="no"></iframe>-->
-    <v-calendar></v-calendar>
-    <!--<v-calendar is-expanded></v-calendar>-->
-    <!--<v-date-picker-->
-      <!--mode="range"-->
-      <!--:value="null"-->
-      <!--color="red"-->
-      <!--is-dark-->
-      <!--is-inline></v-date-picker>-->
+    <div class="calendar-container">
+      <div class="group-calendar-container">
+        <h2>Group Calendar</h2>
+        <v-calendar
+          is-expanded
+          :available-dates='availableDates'
+          :attributes='groupAttributes'>
+        </v-calendar>
+      </div>
+
+      <div class="personal-calendar-container">
+        <h2>Personal Calendar</h2>
+        <v-calendar
+          class="personal-calendar"
+          is-expanded
+          :available-dates='availableDates'
+          :attributes='personalAttributes'>
+        </v-calendar>
+
+        <h3>Add dates you are available</h3>
+        <v-date-picker
+          class="personal-calendar-container"
+          :available-dates='availableDates'
+          mode='multiple'
+          v-model='pickedDates'
+          :value="null"
+          is-inline></v-date-picker>
+      </div>
+    </div>
+
   </section>
 </template>
 
@@ -19,14 +40,80 @@
   export default {
     name: "calendar",
     components: {TopAppBar},
+    data() {
+      return {
+        startDate: new Date(),
+        endDate: new Date(),
+        availableDates: { start: new Date(), span: 14 },
+        pickedDates: [],
+        displayAttributes: [
+          {
+            key: 'Shared Availability',
+            highlight: true,
+            dates: [
+              { start: new Date('6/10/2019'), span: 7 },
+            ],
+          }
+        ],
+        groupAttributes: [
+          {
+            key: 'Hao',
+            highlight: true,
+            dates: [
+              { start: new Date('6/15/2019'), span: 3},
+              { start: new Date('6/19/2019') },
+            ]
+          },
+          {
+            key: 'Sam',
+            highlight: 'red',
+            dates: [
+              {start: new Date('6/12/2019'), span: 3},
+              new Date('6/16/2019'),
+            ]
+          }
+        ],
+        personalAttributes: [
+          {
+            key: 'My Availability',
+            highlight: true,
+            dates: [
+              { start: new Date('6/10/2019'), span: 7 },
+            ],
+          }
+        ]
+      }
+    }
   }
 </script>
 
 <style scoped>
-  .calendar {
-    border-width: 0;
-    height: 90%;
-    width: 100%;
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .calendar-container {
+    padding: 1rem;
+    max-width: 768px;
+    margin: 0 auto;
+  }
+  .group-calendar-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  .personal-calendar-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .personal-calendar {
+    margin-bottom: 0.5rem;
   }
 </style>
 
