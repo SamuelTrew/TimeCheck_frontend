@@ -67,18 +67,18 @@
         <p class="title">
           And the location has been decided! - The Slug At Fulham :) </p>
         <p class="subtitle">
-          <a href="https://www.the-slug.co.uk/fulham">@TheSlugAtFulham</a>.
+          <a href="https://www.the-slug.co.uk/fulham" target="_blank">@TheSlugAtFulham</a>.
         </p>
       </div>
       <footer class="card-footer">
         <p class="card-footer-item">
       <span>
-        View Location on <a href="https://goo.gl/maps/CCRPJWUrndcKuuth8">Google Maps</a>
+        View Location on <a href="https://goo.gl/maps/CCRPJWUrndcKuuth8" target="_blank">Google Maps</a>
       </span>
         </p>
         <p class="card-footer-item">
       <span>
-        View Location on <a href="https://www.facebook.com/TheSlugAtFulham/">Facebook</a>
+        View Location on <a href="https://www.facebook.com/TheSlugAtFulham/" target="_blank">Facebook</a>
       </span>
         </p>
       </footer>
