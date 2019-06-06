@@ -1,38 +1,40 @@
 <template>
-  <div id="sidebar" v-show="showSidebar">
-    <div class="column left-column">
-      <nuxt-link to="/dashboard" class="sidebar-logo">
-        <img src="~/assets/tc-thumb-white.svg" />
-      </nuxt-link>
-      <div style="color: white;margin-bottom: 0.2rem">
-        Groups
-      </div>
-      <div class="sidebar-divider"></div>
-      <div class="sidebar-groups">
-        <nuxt-link v-for="group in groups" :to="`/group/${group.id}`" class="sidebar-group" :key="group.id" >
-          <div v-if="group.thumb" class="group-thumb group-thumb-img" :style="{ backgroundImage: `url('${group.thumb}')` }"></div>
-          <div v-else class="group-thumb group-thumb-text">{{ group.name.charAt(0).toUpperCase() }}</div>
+  <transition name="slide">
+    <div id="sidebar" v-show="showSidebar" >
+      <div class="column left-column">
+        <nuxt-link to="/dashboard" class="sidebar-logo">
+          <img src="~/assets/tc-thumb-white.svg" />
         </nuxt-link>
+        <div style="color: white;margin-bottom: 0.2rem">
+          Groups
+        </div>
+        <div class="sidebar-divider"></div>
+        <div class="sidebar-groups">
+          <nuxt-link v-for="group in groups" :to="`/group/${group.id}`" class="sidebar-group" :key="group.id" >
+            <div v-if="group.thumb" class="group-thumb group-thumb-img" :style="{ backgroundImage: `url('${group.thumb}')` }"></div>
+            <div v-else class="group-thumb group-thumb-text">{{ group.name.charAt(0).toUpperCase() }}</div>
+          </nuxt-link>
+        </div>
+        <div class="sidebar-divider"></div>
+        <nuxt-link to="/group/new" class="sidebar-item">
+          <b-icon icon="plus" type="is-light" size="is-small-medium"></b-icon>
+        </nuxt-link>
+        <div style="color: white;">
+          Add
+        </div>
+        <nuxt-link to="/auth/logout" class="sidebar-item">
+          <b-icon icon="logout" type="is-light" size="is-small-medium"></b-icon>
+        </nuxt-link>
+        <div style="color: white;">
+          Logout
+        </div>
       </div>
-      <div class="sidebar-divider"></div>
-      <nuxt-link to="/group/new" class="sidebar-item">
-        <b-icon icon="plus" type="is-light" size="is-small-medium"></b-icon>
-      </nuxt-link>
-      <div style="color: white;">
-        Add
-      </div>
-      <nuxt-link to="/auth/logout" class="sidebar-item">
-        <b-icon icon="logout" type="is-light" size="is-small-medium"></b-icon>
-      </nuxt-link>
-      <div style="color: white;">
-        Logout
+      <GroupFeatures v-if="this.group" class="column right-column" :group="group" />
+      <div class="column hide-touch-area" @click="toggleSidebar">
+        <div style="width: 100%"></div>
       </div>
     </div>
-    <GroupFeatures v-if="this.group" class="column right-column" :group="group" />
-    <div class="column hide-touch-area" @click="toggleSidebar">
-      <div style="width: 100%"></div>
-    </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -110,6 +112,16 @@
     z-index: 1000;
     background-color: #3c3744;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  }
+  .slide-leave-active,
+  .slide-enter-active {
+    transition: 0.1s;
+  }
+  .slide-enter {
+    transform: translateX(-100%);
+  }
+  .slide-leave-to {
+    transform: translateX(-100%);
   }
 
   .column {
