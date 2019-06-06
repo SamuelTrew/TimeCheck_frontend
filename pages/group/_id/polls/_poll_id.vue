@@ -15,6 +15,8 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex';
+
   export default {
     name: "PollDetailPage",
     data() {
@@ -64,33 +66,43 @@
       }
     },
     computed: {
+      ...mapGetters({
+        getPoll: 'polls/getPoll'
+      }),
       totalVotes() {
-        let total = 0
-        if (!this.poll.options) return
+        let total = 0;
+        if (!this.poll.options) return;
         this.poll.options.forEach(opt => {
           total += opt.votes
-        })
+        });
         return total
+      },
+      setPoll(name) {
+        this.poll = {
+          id: 'bc3d',
+          question: name,
+          options: this.getPoll(name)
+        }
       }
     },
     methods: {
       vote(poll, option) {
         if (option.selected) {
-          // Unvote
-          this.$set(option, 'selected', false)
-          option.votes -= 1
+          // Un-vote
+          this.$set(option, 'selected', false);
+          option.votes -= 1;
           // TODO: Tell backend
         } else {
           // Vote
-          this.$set(option, 'selected', true)
-          option.votes += 1
+          this.$set(option, 'selected', true);
+          option.votes += 1;
           if (!poll.multiple) {
-            // Unvote others
+            // Un-vote others
             poll.options.forEach(opt => {
               if (opt !== option) {
                 if (opt.selected) {
-                  this.$set(opt, 'selected', false)
-                  opt.votes -= 1
+                  this.$set(opt, 'selected', false);
+                  opt.votes -= 1;
                 }
               }
             })
@@ -98,11 +110,11 @@
         }
       },
       calcStyle(poll, option) {
-        let total = 0
+        let total = 0;
         poll.options.forEach(opt => {
           total += opt.votes
-        })
-        let percentage = option.votes / total * 100
+        });
+        let percentage = option.votes / total * 100;
         return {width: `${percentage}%`}
       }
     }
