@@ -40,7 +40,7 @@
         </b-field>
       </div>
 
-      <b-button type="is-primary">Create Poll</b-button>
+      <b-button type="is-primary" @click="createPoll">Create Poll</b-button>
     </div>
   </div>
 </template>
@@ -56,7 +56,9 @@
         hidden: true,
         options: [
           {
-            text: ''
+            text: '',
+            votes: 0,
+            order: 1,
           }
         ]
       }
@@ -65,6 +67,13 @@
       newOption(index) {
         if (index === this.options.length - 1) {
           this.options.push({ text: '' })
+        }
+      },
+      async createPoll() {
+        try {
+          this.$store.dispatch('polls/createPoll', {name: this.name, poll: this.options})
+        } catch (e) {
+          console.error("Poll creation error", e);
         }
       }
     }
