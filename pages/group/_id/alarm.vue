@@ -35,34 +35,41 @@
       </div>
 
       <div v-else-if="createAlarm">
+        <div>
         <h4 class="title">New Group Reminder</h4>
+        </div>
+        <br />
         <div class="form">
           <b-field label="Name">
-            <b-input v-model="newAlarm"></b-input>
+          <b-input v-model="newAlarm"></b-input>
           </b-field>
-          <div class="column">
-            <h1 class="title">Select Date</h1>
+        </div>
+        <br />
+
+        <b-field label="Select date">
             <b-datepicker
               v-model="date"
               inline>
             </b-datepicker>
-          </div>
-          <div class="column">
-            <h1 class="title">Select Time</h1>
+          </b-field>
+        <br />
+
+        <b-field label="Select Time">
             <b-clockpicker
               v-model="time"
               inline
               :type="is-primary"
               :hour-format="format">
             </b-clockpicker>
-          </div>
-          <div>
+        </b-field>
+        <br />
+
+        <div>
             <b-button type="is-primary"
                       :disabled="newAlarm.length === 0"
                       @click="addAlarm">Create Reminder</b-button>
           </div>
         </div>
-      </div>
     </section>
 
     <!--<section>-->
@@ -207,12 +214,16 @@
   }
   .alarms-detail {
     flex: 1 1 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
   }
   .create-alarm,
   .alarm-list-item {
     padding: 1rem;
     border-bottom: 1px solid #aaa;
     cursor: pointer;
+    display: block;
+    color: inherit;
   }
   .create-alarm {
     text-align: center;

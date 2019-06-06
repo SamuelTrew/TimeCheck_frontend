@@ -12,7 +12,7 @@
 
     <nuxt-link class="group-feature bottom-items" :to="`/group/${group.id}/alarm`">
       <b-icon icon="clock" class="group-feature-icon" type="is-light" size="is-small-medium"></b-icon>
-      Alarm
+      Reminders
     </nuxt-link>
 
     <!--
