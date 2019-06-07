@@ -84,6 +84,7 @@
   .poll-bar {
     background-color: purple;
     opacity: 0.08;
+    width: 0;
     height: 100%;
     position: absolute;
     top: 0;

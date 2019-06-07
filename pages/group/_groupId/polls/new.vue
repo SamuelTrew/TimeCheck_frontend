@@ -14,14 +14,14 @@
     </b-field>
 
     <b-field label="Change Vote">
-      <b-switch v-model="poll.change">
+      <b-switch v-model="poll.change" :disabled="poll.multiple">
         <span v-if="poll.change">Can change choice after voting</span>
         <span v-else>Cannot change choice after voting</span>
       </b-switch>
     </b-field>
 
     <b-field label="Hide Results">
-      <b-switch v-model="poll.hidden">
+      <b-switch v-model="poll.hidden" disabled>
         <span v-if="poll.hidden">Results are hidden until after vote cast</span>
         <span v-else>Can view results before voting</span>
       </b-switch>
@@ -52,7 +52,7 @@
           question: '',
           multiple: false,
           change: true,
-          hidden: true,
+          hidden: false,
           options: [
             {
               text: '',
@@ -60,6 +60,13 @@
               order: 1,
             }
           ]
+        }
+      }
+    },
+    watch: {
+      'poll.multiple'(multiple) {
+        if (multiple) {
+          this.poll.change = true
         }
       }
     },

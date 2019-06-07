@@ -5,6 +5,10 @@
       <span v-if="poll.multiple">You can vote for <b>multiple</b> options in this poll</span>
       <span v-else>You can vote for only <b>one</b> option in this poll</span>
     </p>
+    <p>
+      <span v-if="poll.change">You <b>can</b> change your vote at any time</span>
+      <span v-else>You <b>cannot</b> change your vote<span v-if="!haveVoted"> after choosing</span></span>
+    </p>
     <div v-for="option in poll.options" ref="pollOptions" @click="vote(poll, option)" class="poll-option box" :class="{'selected': option.selected}">
       <div class="poll-bar" :style="calcStyle(poll, option)"></div>
       <p class="poll-option-name">{{ option.name }}</p>
@@ -88,19 +92,19 @@
         });
         return total
       },
-      setPoll(name) {
-        this.poll = {
-          id: 'bc3d',
-          question: name,
-          options: this.getPoll(name)
-        }
+      haveVoted() {
+        let voted = false
+        this.poll.options.forEach(opt => {
+          if (opt.selected) voted = true
+        })
+        return voted
       }
     },
     methods: {
       vote(poll, option) {
-        console.info('start')
-        this.$store.dispatch('polls/vote', { poll, option })
-        console.info('stop')
+        if (poll.change || !this.haveVoted) {
+          this.$store.dispatch('polls/vote', { poll, option })
+        }
       },
       calcStyle(poll, option) {
         let total = 0;

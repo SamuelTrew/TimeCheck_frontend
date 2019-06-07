@@ -1,21 +1,24 @@
 <template>
   <section id="topappbar" :style="colour">
     <div class="hero-body">
-      <div class="container has-text-centered">
-        <h1 class="title is-1 group-title top-bar-container" >
-          <button v-if=hasBack class="menu">
-            <nuxt-link :to=parent>
-              <div class="icon">
-                <b-icon icon="arrow-left" type="is-light" size="is-medium" style="margin-left: 1rem"></b-icon>
-              </div>
-            </nuxt-link>
-          </button>
+      <div class="has-text-centered">
+        <div class="top-bar-container">
+          <div class="menu-icon">
+            <button v-if=hasBack class="menu">
+              <nuxt-link :to=parent>
+                <div class="icon">
+                  <b-icon icon="arrow-left" type="is-light" size="is-medium" style="margin-left: 1rem"></b-icon>
+                </div>
+              </nuxt-link>
+            </button>
 
-          <button v-else class="menu" @click="toggleSidebar">
-            <b-icon class="icon" icon="menu" type="is-light" size="is-medium"></b-icon>
-          </button>
-          {{ title }}
-        </h1>
+            <button v-else class="menu" @click="toggleSidebar">
+              <b-icon class="icon" icon="menu" type="is-light" size="is-medium"></b-icon>
+            </button>
+          </div>
+
+          <h1 class="title is-1 group-title">{{ title }}</h1>
+        </div>
       </div>
     </div>
   </section>
@@ -72,7 +75,6 @@
   }
   .menu {
     display: flex;
-    float: left;
     background-color: transparent;
     border: none;
     outline: none;
@@ -80,11 +82,15 @@
     align-items: center;
   }
   .icon {
-    float: left;
     z-index: 2;
     margin-right: 1rem;
   }
   .group-title {
     color: inherit;
+  }
+  @media screen and (min-width: 768px) {
+    .menu-icon {
+      display: none;
+    }
   }
 </style>

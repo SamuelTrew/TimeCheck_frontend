@@ -26,7 +26,8 @@ const DUMMY_POLLS_DATA = [
         votes: 0
       }
     ],
-    multiple: true
+    multiple: true,
+    change: true
   },
   {
     id: 'bcd3',
@@ -35,8 +36,7 @@ const DUMMY_POLLS_DATA = [
       {
         name: 'Matthew',
         order: 1,
-        votes: 5,
-        selected: true
+        votes: 5
       },
       {
         name: 'David',
@@ -52,26 +52,10 @@ const DUMMY_POLLS_DATA = [
         name: 'Radhika',
         order: 4,
         votes: 1
-      },
-      {
-        name: 'Radhika',
-        order: 4,
-        votes: 1
-      },
-      {
-        name: 'Radhika',
-        order: 4,
-        votes: 1
-      },
-      {
-        name: 'Radhika',
-        order: 4,
-        votes: 1
       }
-    ]
-  },
-  { id: 'test1', question: 'Test' },
-  { id: 'test2', question: 'Test' },
+    ],
+    change: false
+  }
 ];
 const DUMMY_POLLS_DATA_MAP = {}
 DUMMY_POLLS_DATA.forEach(poll => {
