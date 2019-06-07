@@ -26,9 +26,17 @@
           Let your group know your status by checking in below!
           </div>
           <br />
+          <div>
           <a class="button is-success is-rounded">Arrived :)</a>
+          </div>
+          <br />
+          <div>
           <a class="button is-warning is-rounded">On my way!</a>
+          </div>
+          <br />
+          <div>
           <a class="button is-danger is-rounded">Going to be late :(</a>
+          </div>
         </div>
       </div>
     </div>
