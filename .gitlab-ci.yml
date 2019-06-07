@@ -24,6 +24,6 @@ deploy_dev:
     name: dev
     url: https://dev.timecheck.app
   script:
-    - ssh timecheck@frontend.timecheck.server.mattcorp.com "cd /home/timecheck/frontend && git checkout master && git reset --hard HEAD && git pull origin master && npm install && npm run build && pm2 restart timecheck && exit"
+    - ssh timecheck@frontend.timecheck.server.mattcorp.com "cd /home/timecheck/frontend && git checkout master && git fetch --all && git reset --hard origin/master && npm install && npm run build && pm2 restart timecheck && exit"
   only:
     - master
