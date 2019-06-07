@@ -94,9 +94,12 @@
       },
       haveVoted() {
         let voted = false
-        this.poll.options.forEach(opt => {
-          if (opt.selected) voted = true
-        })
+        // Quick fix for TODO need to check if this is correct
+        if (this.poll.options) {
+          this.poll.options.forEach(opt => {
+            if (opt.selected) voted = true
+          })
+        }
         return voted
       }
     },
