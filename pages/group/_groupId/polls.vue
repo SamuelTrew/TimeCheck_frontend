@@ -20,116 +20,14 @@
 </template>
 
 <script>
-  const DUMMY_POLLS_DATA = [
-    {
-      id: 'a1b2',
-      question: 'What food should we get?',
-      options: [
-        {
-          name: 'Chinese',
-          order: 3,
-          votes: 2,
-        },
-        {
-          name: 'Dominos',
-          order: 1,
-          votes: 4
-        },
-        {
-          name: 'I don\'t care :D',
-          order: 4,
-          votes: 1
-        },
-        {
-          name: 'Tacos',
-          order: 2,
-          votes: 0
-        }
-      ],
-      multiple: true
-    },
-    {
-      id: 'bcd3',
-      question: 'Who is the best?',
-      options: [
-        {
-          name: 'Matthew',
-          order: 1,
-          votes: 5,
-          selected: true
-        },
-        {
-          name: 'David',
-          order: 2,
-          votes: 6
-        },
-        {
-          name: 'Pull',
-          order: 3,
-          votes: 3
-        },
-        {
-          name: 'Radhika',
-          order: 4,
-          votes: 1
-        },
-        {
-          name: 'Radhika',
-          order: 4,
-          votes: 1
-        },
-        {
-          name: 'Radhika',
-          order: 4,
-          votes: 1
-        },
-        {
-          name: 'Radhika',
-          order: 4,
-          votes: 1
-        }
-      ]
-    },
-    { id: 'test1', question: 'Test' },
-    { id: 'test2', question: 'Test' },
-    { id: 'test3', question: 'Test' },
-    { id: 'test4', question: 'Test' },
-    { id: 'test5', question: 'Test' },
-    { id: 'test6', question: 'Test' },
-    { id: 'test7', question: 'Test' },
-    { id: 'test8', question: 'Test' },
-    { id: 'test9', question: 'Test' },
-    { id: 'test10', question: 'Test' },
-    { id: 'test11', question: 'Test' },
-    { id: 'test12', question: 'Test' },
-    { id: 'test13', question: 'Test' },
-    { id: 'test14', question: 'Test' },
-    { id: 'test15', question: 'Test' },
-    { id: 'test16', question: 'Test' },
-    { id: 'test17', question: 'Test' },
-    { id: 'test18', question: 'Test' },
-    { id: 'test19', question: 'Test' },
-    { id: 'test20', question: 'Test' },
-    { id: 'test21', question: 'Test' },
-    { id: 'test22', question: 'Test' },
-    { id: 'test23', question: 'Test' },
-    { id: 'test24', question: 'Test' },
-    { id: 'test25', question: 'Test' },
-    { id: 'test26', question: 'Test' },
-    { id: 'test27', question: 'Test' },
-    { id: 'test28', question: 'Test' },
-    { id: 'test29', question: 'Test' },
-    { id: 'test30', question: 'Test' },
-    { id: 'test31', question: 'Test' },
-    { id: 'test32', question: 'Test' }
-  ];
+  import { mapGetters } from 'vuex'
 
   export default {
-    name: "GroupPollsPage",
-    data() {
-      return {
-        polls: DUMMY_POLLS_DATA
-      }
+    name: 'GroupPollsPage',
+    computed: {
+      ...mapGetters({
+        polls: 'polls/list'
+      })
     },
     asyncData ({ params }) {
       return { groupId: params.groupId }
@@ -177,7 +75,8 @@
   }
   .poll-option {
     cursor: pointer;
-    margin: 2rem 0;
+    margin: 1.5rem 0;
+    padding: 0.5rem 1rem;
     background-color: #fafafa;
     position: relative;
     overflow: hidden;

@@ -8,7 +8,7 @@ export const state = () => {
     ready: false,
     groups: {}
   }
-};
+}
 
 export const getters = {
   ready: state => state.ready,
@@ -20,7 +20,7 @@ export const getters = {
   getColourById: state => id => {
     return state.groups[id].colour
   },
-};
+}
 
 export const actions = {
   async fetchGroups({ commit }) {
@@ -45,17 +45,17 @@ export const actions = {
   updateColour({commit}, { id, colour }) {
     commit('SET_COLOUR', { id, colour })
   }
-};
+}
 
 export const mutations = {
   SET_GROUPS(state, { groups }) {
-    state.groups = groups;
-    state.ready = true;
+    state.groups = groups
+    state.ready = true
   },
   SET_NAME(state, { id, name }) {
-    state.groups[id].name = name;
+    state.groups[id].name = name
   },
   SET_COLOUR(state, { id, colour }) {
-    state.groups[id].colour = colour;
+    state.groups[id].colour = colour
   }
-};
+}

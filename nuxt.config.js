@@ -32,7 +32,8 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    {src: '~plugins/v-calendar.js', ssr: false}
+    {src: '~plugins/v-calendar.js', ssr: false},
+    {src: '~plugins/window-size.js', ssr: false}
   ],
 
   /*

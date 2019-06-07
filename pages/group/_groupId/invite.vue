@@ -13,8 +13,13 @@
 
 <script>
   export default {
-    name: "GroupInvitePage",
-    props: ['group'],
+    name: 'GroupInvitePage',
+    props: {
+      group: {
+        type: Object,
+        required: true
+      }
+    },
     data() {
       return {
         code: null

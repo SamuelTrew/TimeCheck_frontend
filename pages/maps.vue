@@ -41,9 +41,10 @@ a start
 
 <script>
   import TopAppBar from "../components/TopAppBar";
+
   export default {
-    name: "GoogleMap",
-    components: {TopAppBar},
+    name: 'GoogleMapPage',
+    components: { TopAppBar },
     data() {
       return {
         // default to Montreal to keep it simple

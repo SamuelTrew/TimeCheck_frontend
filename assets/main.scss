@@ -27,6 +27,19 @@ $colors: (
 
 
 
+//////////
+// FORM //
+//////////
+
+.form {
+  max-width: 800px;
+  margin: 0 auto;
+
+  > :not(:last-child) {
+    margin-bottom: 2rem;
+  }
+}
+
 // From Recipea (not sure if needed, can't remember where its used)
 
 //$link: darken($primary, 5%);

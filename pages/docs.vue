@@ -20,9 +20,7 @@
   import TopAppBar from '../components/TopAppBar';
 
   export default {
-    components: {
-      TopAppBar,
-    },
+    components: { TopAppBar },
     methods: {
       handleFileUpload() {
         this.file = this.$refs.file.files[0];

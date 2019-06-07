@@ -58,7 +58,7 @@
             <b-clockpicker
               v-model="time"
               inline
-              :type="is-primary"
+              type="is-primary"
               :hour-format="format">
             </b-clockpicker>
         </b-field>
@@ -94,8 +94,8 @@
 
   import TopAppBar from "../../../components/TopAppBar";
   export default {
-    name: "alarm",
-    components: {TopAppBar},
+    name: 'GroupAlarmPage',
+    components: { TopAppBar },
     data() {
       return {
         newAlarm: '',

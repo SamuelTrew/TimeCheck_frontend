@@ -12,8 +12,13 @@
   import Updates from "../../../components/Updates"
 
   export default {
-    name: "GroupIndexPage",
-    props: ['group'],
+    name: 'GroupIndexPage',
+    props: {
+      group: {
+        type: Object,
+        required: true
+      }
+    },
     components: { Updates }
   }
 </script>

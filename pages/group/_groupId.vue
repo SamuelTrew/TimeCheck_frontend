@@ -26,7 +26,7 @@
 
   export default {
     name: 'GroupViewPage',
-    components: {TopAppBar, GroupFeatures, Updates, Loading },
+    components: { TopAppBar, GroupFeatures, Updates, Loading },
     data() {
       return {
         group: null,

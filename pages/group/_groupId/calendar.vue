@@ -36,8 +36,8 @@
 <script>
   import TopAppBar from "../../../components/TopAppBar";
   export default {
-    name: "calendar",
-    components: {TopAppBar},
+    name: 'GroupCalendarPage',
+    components: { TopAppBar },
     computed: {
       sharedDates() {
         return this.groupDates.concat(this.pickedDates);

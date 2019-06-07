@@ -66,8 +66,13 @@
 
 <script>
   export default {
-    name: "GroupSettingsPage",
-    props: ['group'],
+    name: 'GroupSettingsPage',
+    props: {
+      group: {
+        type: Object,
+        required: true
+      }
+    },
     data() {
       return {
         name: '',

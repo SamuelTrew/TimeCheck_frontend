@@ -31,7 +31,7 @@
   import { mapGetters } from 'vuex'
 
   export default {
-    name: "InviteByCodePage",
+    name: 'InviteByCodePage',
     data() {
       return {
         group: null
@@ -83,7 +83,5 @@
 </script>
 
 <style>
-  .form > :not(:last-child) {
-    margin-bottom: 2rem;
-  }
+
 </style>

@@ -43,7 +43,7 @@
   import { mapActions, mapGetters } from 'vuex'
 
   export default {
-    name: "GroupFeatures",
+    name: 'GroupFeatures',
     props: {
       group: {
         type: Object,

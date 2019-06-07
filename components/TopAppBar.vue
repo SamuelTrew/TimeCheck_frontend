@@ -25,7 +25,7 @@
   import { mapActions, mapGetters } from 'vuex'
 
   export default {
-    name: "TopAppBar",
+    name: 'TopAppBar',
     props: {
       title: String,
       hasBack: Boolean,

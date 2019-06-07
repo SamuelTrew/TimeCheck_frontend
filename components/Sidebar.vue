@@ -1,12 +1,12 @@
 <template>
   <transition name="slide">
-    <div id="sidebar" v-show="showSidebar" >
+    <div id="sidebar" v-show="showSidebar || windowWidth >= 768">
       <div class="column left-column">
         <nuxt-link to="/dashboard" class="sidebar-logo">
           <img src="~/assets/tc-thumb-white.svg" />
         </nuxt-link>
         <div style="color: white;margin-bottom: 0.2rem">
-          Events
+          {{ windowWidth }}
         </div>
         <div class="sidebar-divider"></div>
         <div class="sidebar-groups">
@@ -43,7 +43,7 @@
 
   export default {
     name: 'Sidebar',
-    components: {GroupFeatures},
+    components: { GroupFeatures },
     data() {
       return {
         // TODO get group from _id
@@ -141,9 +141,13 @@
     background-color: #474250;
   }
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 767px) {
     #sidebar {
       z-index: 1000;
+      /*display: none;*/
+    }
+    #sidebar.sidebar-visible {
+      /*display: flex;*/
     }
     .left-column {
       z-index: 1003;
@@ -164,7 +168,7 @@
   }
 
   @media only screen and (min-width: 768px) {
-    .hide-touch-area {
+    #sidebar > .column.hide-touch-area {
       display: none;
     }
   }

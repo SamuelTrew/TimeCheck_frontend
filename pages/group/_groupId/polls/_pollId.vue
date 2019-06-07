@@ -18,9 +18,10 @@
   import { mapGetters } from 'vuex';
 
   export default {
-    name: "PollDetailPage",
+    name: 'PollDetailPage',
     data() {
       return {
+        pollId: null,
         poll: {
           id: 'bcd3',
           question: 'Who is the best?',
@@ -65,9 +66,19 @@
         }
       }
     },
+    watch: {
+      '$route.params.pollId': {
+        async handler(pollId) {
+          this.pollId = pollId
+          this.poll = await this.getPollById(pollId)
+        },
+        deep: true,
+        immediate: true
+      }
+    },
     computed: {
       ...mapGetters({
-        getPoll: 'polls/getPoll'
+        getPollById: 'polls/getPollById'
       }),
       totalVotes() {
         let total = 0;
@@ -87,27 +98,9 @@
     },
     methods: {
       vote(poll, option) {
-        if (option.selected) {
-          // Un-vote
-          this.$set(option, 'selected', false);
-          option.votes -= 1;
-          // TODO: Tell backend
-        } else {
-          // Vote
-          this.$set(option, 'selected', true);
-          option.votes += 1;
-          if (!poll.multiple) {
-            // Un-vote others
-            poll.options.forEach(opt => {
-              if (opt !== option) {
-                if (opt.selected) {
-                  this.$set(opt, 'selected', false);
-                  opt.votes -= 1;
-                }
-              }
-            })
-          }
-        }
+        console.info('start')
+        this.$store.dispatch('polls/vote', { poll, option })
+        console.info('stop')
       },
       calcStyle(poll, option) {
         let total = 0;

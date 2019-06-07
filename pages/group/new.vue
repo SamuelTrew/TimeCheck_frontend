@@ -45,7 +45,7 @@
   import TopAppBar from "../../components/TopAppBar";
   export default {
     name: 'NewGroupPage',
-    components: {TopAppBar},
+    components: { TopAppBar },
     data() {
       return {
         name: '',
@@ -87,7 +87,5 @@
 
 
 <style>
-  .form > :not(:last-child) {
-    margin-bottom: 2rem;
-  }
+
 </style>

@@ -118,8 +118,13 @@
 
 <script>
   export default {
-    name: "Updates",
-    props: ['group']
+    name: 'Updates',
+    props: {
+      group: {
+        type: Object,
+        required: true
+      }
+    }
   }
 </script>
 

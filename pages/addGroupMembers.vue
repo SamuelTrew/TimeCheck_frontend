@@ -24,7 +24,7 @@
     import AddEmailContacts from "../components/AddEmailContacts";
     export default {
         name: "addGroupMembers",
-      components: {AddEmailContacts}
+      components: { AddEmailContacts }
     }
 </script>
 
