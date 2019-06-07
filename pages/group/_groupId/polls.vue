@@ -132,7 +132,7 @@
       }
     },
     asyncData ({ params }) {
-      return { groupId: params.id }
+      return { groupId: params.groupId }
     }
   }
 </script>
@@ -185,11 +185,11 @@
   .poll-bar {
     background-color: purple;
     opacity: 0.08;
-    width: 20%;
     height: 100%;
     position: absolute;
     top: 0;
     left: 0;
+    transition: width 0.5s ease-in-out;
   }
   .poll-option.selected .poll-bar {
     opacity: 0.25;

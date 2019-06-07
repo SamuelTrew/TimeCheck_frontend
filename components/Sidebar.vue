@@ -71,7 +71,7 @@
         },
         immediate: true
       },
-      '$route.params.id': {
+      '$route.params.groupId': {
         handler(groupId) {
           this.groupId = groupId
           if (groupId && this.groupsReady) {
@@ -89,18 +89,20 @@
         toggleSidebar: 'nav/toggleSidebar'
       }),
       fetchGroup() {
+        console.info("Group ID: ", this.groupId)
         const group = this.getGroupById(this.groupId)
         if (group) {
           this.group = group
         } else {
           // Could not find group
           // TODO: Display error about group 404 not found
+          console.info('Going dashboard - group not found (sidebar)')
           this.$router.push('/dashboard')
         }
       }
     },
     asyncData ({ params }) {
-      return { id: params.id }
+      return { groupId: params.groupId }
     }
   }
 </script>

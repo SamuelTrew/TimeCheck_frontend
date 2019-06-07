@@ -86,9 +86,10 @@
           hasIcon: true,
           onConfirm: async () => {
             try {
-              await this.$axios.$delete(`/group/${this.group.id}`);
-              this.$store.dispatch('group/fetchGroups');
-              this.$router.push('/dashboard');
+              await this.$axios.$delete(`/group/${this.group.id}`)
+              this.$store.dispatch('group/fetchGroups')
+              console.info('Going dashboard - group deletion')
+              this.$router.push('/dashboard')
               this.$snackbar.open({
                 message: 'Group deleted'
               })
@@ -101,9 +102,10 @@
       },
       async leaveGroup() {
         try {
-          await this.$axios.$get(`/group/${this.group.id}/leave`);
-          this.$store.dispatch('group/fetchGroups');
-          this.$router.push('/dashboard');
+          await this.$axios.$get(`/group/${this.group.id}/leave`)
+          this.$store.dispatch('group/fetchGroups')
+          console.info('Going dashboard - left group')
+          this.$router.push('/dashboard')
           this.$snackbar.open({
             message: 'Group left'
           })
@@ -114,9 +116,9 @@
       },
       async updateName() {
         try {
-          const group = await this.$axios.$patch(`/group/${this.group.id}`, { name: this.name });
+          const group = await this.$axios.$patch(`/group/${this.group.id}`, { name: this.name })
           console.info(group);
-          this.$store.dispatch('group/updateName', { id: this.group.id, name: this.name });
+          this.$store.dispatch('group/updateName', { id: this.group.id, name: this.name })
         } catch (e) {
           // TODO: Handle error on update (can't update - group may not exist)
           console.error("Update name error", e)
@@ -124,7 +126,7 @@
       },
       async updateColour() {
         try {
-          this.$store.dispatch('group/updateColour', {id: this.group.id, colour: this.bgc});
+          this.$store.dispatch('group/updateColour', {id: this.group.id, colour: this.bgc})
         } catch (e) {
           console.error("Update colour error", e)
         }

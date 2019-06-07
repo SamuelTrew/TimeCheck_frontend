@@ -47,7 +47,7 @@
         async handler(ready) {
           if (ready) {
             try {
-              const group = await this.$axios.$get(`/invite/${this.id}/group`)
+              const group = await this.$axios.$get(`/invite/${this.inviteId}/group`)
               console.info(group)
               this.group = group
             } catch (e) {
@@ -61,11 +61,12 @@
     },
     methods: {
       cancel() {
+        console.info('Going dashboard - invite cancel')
         this.$router.push('/dashboard')
       },
       async join() {
         try {
-          const data = await this.$axios.$get(`/invite/${this.id}/accept`)
+          const data = await this.$axios.$get(`/invite/${this.inviteId}/accept`)
           console.info(data)
           await this.$store.dispatch('group/fetchGroups')
           this.$router.push(`/group/${this.group.id}`)
@@ -76,7 +77,7 @@
       }
     },
     asyncData ({ params }) {
-      return { id: params.id }
+      return { inviteId: params.inviteId }
     }
   }
 </script>

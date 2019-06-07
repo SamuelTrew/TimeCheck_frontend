@@ -43,12 +43,13 @@
       ready: {
         handler(ready) {
           if (ready) {
-            const group = this.getGroupById(this.id)
+            const group = this.getGroupById(this.groupId)
             if (group) {
               this.group = group
             } else {
               // Could not find group
               // TODO: Display error about group 404 not found
+              console.info('Going dashboard - group not found')
               this.$router.push('/dashboard')
             }
           }
@@ -58,7 +59,7 @@
     },
     methods: {},
     asyncData ({ params }) {
-      return { id: params.id }
+      return { groupId: params.groupId }
     }
   }
 </script>
