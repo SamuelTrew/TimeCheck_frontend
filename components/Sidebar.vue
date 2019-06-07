@@ -126,7 +126,7 @@
     transform: translateX(-100%);
   }
 
-  .column {
+  #sidebar > .column {
     flex: 33%;
     display: flex;
     flex-direction: column;
