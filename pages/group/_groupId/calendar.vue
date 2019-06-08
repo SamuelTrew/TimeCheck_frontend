@@ -1,35 +1,51 @@
 <template>
-  <section>
-    <div class="calendar-container">
-      <div class="group-calendar-container">
-        <h2>Group</h2>
-        Dates when people are busy
-        <v-date-picker
-          is-expanded
-          class="personal-calendar-container"
-          :available-dates='{end: new Date(1, 1, 1)}'
-          mode='multiple'
-          :value='sharedDates'
-          color="blue"
-          is-inline></v-date-picker>
-      </div>
+  <section class="calendar">
+    <section class="calendar-displays">
+      <div class="calendar-title">Calendars</div>
 
-      <div class="personal-calendar-container">
-        <h2>Personal</h2>
-        Select dates when you are busy
-        <v-date-picker
-          is-expanded
-          is-dark
-          class="personal-calendar-container"
-          :available-dates='availableDates'
-          mode='multiple'
-          v-model='pickedDates'
-          :value="null"
-          color="red"
-          is-inline></v-date-picker>
-      </div>
-    </div>
+      <div class="calendar-page-container">
+        <div class="calendar-container">
+          <p class="calendar-sub-title">
+            Group
+          </p>
+          <p> Dates when people are busy </p>
+          <v-date-picker
+            is-expanded
+            :available-dates='{end: new Date(1, 1, 1)}'
+            mode='multiple'
+            :value='sharedDates'
+            color="blue"
+            is-inline></v-date-picker>
+        </div>
 
+        <div class="calendar-container">
+          <p class="calendar-sub-title">
+            Personal
+          </p>
+          <p> Select dates when you are busy </p>
+          <v-date-picker
+            is-expanded
+            is-dark
+            :available-dates='availableDates'
+            mode='multiple'
+            v-model='pickedDates'
+            :value="null"
+            color="red"
+            is-inline></v-date-picker>
+        </div>
+      </div>
+    </section>
+
+    <section class="calendar-settings">
+      <div class="calendar-title">Calendar Settings</div>
+
+      <div>
+        <div class="calendar-sub-title">Available dates range</div>
+        <v-date-picker
+          mode='range'
+          v-model='availableDates'></v-date-picker>
+      </div>
+    </section>
   </section>
 </template>
 
@@ -47,7 +63,7 @@
       return {
         startDate: new Date(),
         endDate: new Date(),
-        availableDates: { start: new Date(), span: 14 },
+        availableDates: null,
         pickedDates: [
           new Date('6/10/2019'),
           new Date('6/11/2019'),
@@ -67,31 +83,44 @@
 </script>
 
 <style scoped>
-  h2 {
-    font-size: 2rem;
-  }
-  h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-  }
-  .calendar-container {
+  .calendar {
     padding: 1rem;
-    max-width: 768px;
-    margin: 0 auto;
   }
-  .group-calendar-container {
+
+  .calendar-page-container {
+    max-width: 1440px;
+    margin: 0 auto 1rem;
+  }
+
+  .calendar-title {
+    font-size: 2rem;
+    text-align: center;
+    font-weight: 500;
+  }
+  .calendar-sub-title {
+    font-size: 1.5rem;
+  }
+
+  .calendar-container {
     display: flex;
     align-items: center;
     flex-direction: column;
     margin-bottom: 1rem;
   }
-  .personal-calendar-container {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+
+  /* Desktop */
+  @media only screen and (min-width: 1024px) {
+    .calendar-page-container {
+      display: flex;
+    }
+
+    .calendar-container {
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 45%;
+    }
   }
-  .personal-calendar {
-    margin-bottom: 0.5rem;
-  }
+
 </style>
 
