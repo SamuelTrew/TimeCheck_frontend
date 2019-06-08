@@ -42,15 +42,16 @@
     display: flex;
   }
   .polls-list {
-    width: 300px;
-    background-color: #eee;
-    border-right: 1px solid #aaa;
+    width: 30%;
     display: flex;
     flex-direction: column;
   }
   .polls-list-inner {
     overflow-x: hidden;
     overflow-y: scroll;
+  }
+  .polls-list-inner::-webkit-scrollbar {
+    display: none;
   }
   .polls-detail {
     flex: 1 1 0;
@@ -60,7 +61,7 @@
   .create-poll,
   .poll-list-item {
     padding: 1rem;
-    border-bottom: 1px solid #aaa;
+    border-bottom: 1px solid #dddddd;
     cursor: pointer;
     display: block;
     color: inherit;
@@ -71,7 +72,7 @@
   .create-poll.selected,
   .poll-list-item.selected {
     font-weight: 600;
-    background-color: #ddd;
+    background-color: #dddddd;
   }
   .poll-option {
     cursor: pointer;
