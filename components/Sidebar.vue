@@ -5,7 +5,7 @@
         <nuxt-link to="/dashboard" class="sidebar-logo">
           <img src="~/assets/tc-thumb-white.svg" />
         </nuxt-link>
-        <div style="color: white;margin-bottom: 0.2rem">
+        <div class="sidebar-label" style="margin-bottom: 0.2rem">
           Events
         </div>
         <div class="sidebar-divider"></div>
@@ -19,13 +19,13 @@
         <nuxt-link to="/group/new" class="sidebar-item" v-on:click.native="toggleSidebar">
           <b-icon icon="plus" type="is-light" size="is-small-medium"></b-icon>
         </nuxt-link>
-        <div style="color: white;">
+        <div class="sidebar-label">
           Add
         </div>
         <nuxt-link to="/auth/logout" class="sidebar-item">
           <b-icon icon="logout" type="is-light" size="is-small-medium"></b-icon>
         </nuxt-link>
-        <div style="color: white;">
+        <div class="sidebar-label" style="padding-bottom: 0.5rem">
           Logout
         </div>
       </div>
@@ -132,6 +132,7 @@
     flex-direction: column;
   }
   .left-column {
+    padding-top: 1rem;
     align-items: center;
     background-color: #3c3744;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
@@ -249,6 +250,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .sidebar-label {
+    color: white;
   }
 
 </style>
