@@ -160,7 +160,7 @@
 
   .hide-touch-area {
     height: 100vh;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     position: absolute;
     width: 100%;
@@ -211,7 +211,7 @@
 
   .sidebar-groups {
     flex: 1 1 0;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
   }
   .sidebar-groups::-webkit-scrollbar {

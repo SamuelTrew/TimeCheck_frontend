@@ -48,7 +48,7 @@
   }
   .polls-list-inner {
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
   }
   .polls-list-inner::-webkit-scrollbar {
     display: none;
@@ -56,7 +56,7 @@
   .polls-detail {
     flex: 1 1 0;
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
   }
   .create-poll,
   .poll-list-item {

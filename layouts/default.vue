@@ -45,6 +45,7 @@
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     box-sizing: border-box;
+    overflow-y: auto;
   }
 
   *,
@@ -63,7 +64,7 @@
 
   #page {
     height: 100vh;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     z-index: 1;
   }

@@ -203,24 +203,22 @@
   }
   .alarms-list {
     width: 30%;
-    background-color: #eee;
-    border-right: 1px solid #aaa;
     display: flex;
     flex-direction: column;
   }
   .alarms-list-inner {
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
   }
   .alarms-detail {
     flex: 1 1 0;
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
   }
   .create-alarm,
   .alarm-list-item {
     padding: 1rem;
-    border-bottom: 1px solid #aaa;
+    border-bottom: 1px solid #dddddd;
     cursor: pointer;
     display: block;
     color: inherit;
