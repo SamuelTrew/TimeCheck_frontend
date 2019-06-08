@@ -41,9 +41,11 @@
 
       <div>
         <div class="calendar-sub-title">Available dates range</div>
-        <v-date-picker
-          mode='range'
-          v-model='availableDates'></v-date-picker>
+        <div class="calendar-range-picker">
+          <v-date-picker
+            mode='range'
+            v-model='availableDates'></v-date-picker>
+        </div>
       </div>
     </section>
   </section>
@@ -99,6 +101,7 @@
   }
   .calendar-sub-title {
     font-size: 1.5rem;
+    margin-bottom: 0.5rem;
   }
 
   .calendar-container {
@@ -115,11 +118,20 @@
     }
 
     .calendar-container {
-      max-width: 600px;
+      max-width: 540px;
       margin-left: auto;
       margin-right: auto;
       width: 45%;
     }
+  }
+
+  .calendar-settings {
+    margin: auto;
+    max-width: 768px;
+  }
+
+  .calendar-range-picker {
+    max-width: 300px;
   }
 
 </style>
