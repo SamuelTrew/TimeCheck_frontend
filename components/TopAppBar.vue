@@ -43,7 +43,7 @@
         if (this.group) {
           return this.getColourById(this.group.id)
         } else {
-          return {'background-color': "#8B008B"}
+          return {'background-color': "#8e588b"}
         }
       }
     },

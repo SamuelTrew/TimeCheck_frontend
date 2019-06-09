@@ -1,5 +1,5 @@
 const DEFAULT_COLOUR = {
-  backgroundColor: "#8B008B",
+  backgroundColor: "#8e588b",
   color: "white"
 }
 

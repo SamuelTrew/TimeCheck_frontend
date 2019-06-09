@@ -3,7 +3,7 @@
     <TopAppBar :title="group.name" :group="group" />
 
     <div class="group-content">
-      <nuxt-child :group="group" />
+      <nuxt-child :group="group"/>
     </div>
   </div>
 

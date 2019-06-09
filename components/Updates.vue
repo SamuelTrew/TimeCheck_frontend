@@ -13,15 +13,14 @@
                 </figure>
               </div>
               <div class="media-content">
-                <p class="title is-4">Group 15's Night Out ;)</p>
+                <p class="title is-4">Group 15's End of Year Night Out ;)</p>
                 <p class="subtitle is-6">@Reminder</p>
               </div>
             </div>
             <div class="content">
-              Meeting Today at The Slug Club in Fulham - Don't be late!
-              <a href="https://www.the-slug.co.uk/fulham">@TheSlugAtFulham</a>.
+              Meeting <b>Today</b> at <b>The Slug Club</b> in Fulham - Don't be late!
               <br>
-              <time datetime="2016-1-1">10:30 PM - Wednesday 19th June 2019</time>
+              <b>10:30 PM - Wednesday 19th June 2019</b>
             </div>
             <div>
               <div>
@@ -37,7 +36,7 @@
               </div>
               <br />
               <div>
-                <a class="button is-danger is-rounded">Going to be late :(</a>
+                <a class="button is-danger is-rounded">Gonna be late :(</a>
               </div>
             </div>
           </div>
@@ -50,25 +49,24 @@
             <div class="media">
               <div class="media-left">
                 <figure class="image is-48x48">
-                  <img class="is-rounded" src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+                  <img class="is-rounded" src="https://spectator.imgix.net/content/uploads/2018/06/l.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550" alt="Placeholder image">
                 </figure>
               </div>
               <div class="media-content">
-                <p class="title is-4">Group 15's Night Out ;)</p>
+                <p class="title is-4">Group 15's End of Year Night Out ;)</p>
                 <p class="subtitle is-6">@Calendar</p>
               </div>
             </div>
             <div class="content">
-              The Calendar Results are Out:
-              <a href="https://www.the-slug.co.uk/fulham">@TheSlugAtFulham</a>.
+              The <b>Calendar Results</b> are Out:
               <br>
-              Availabilty Dates Result:
+              When are you free next week?
               <br>
-              - Wednesday: 100%
-              <br>
-              - Thursday: 60%
+              - <b>Wednesday</b>: 100%
               <br>
               - Friday: 80%
+              <br>
+              - Thursday: 60%
               <br>
             </div>
           </div>
@@ -80,9 +78,6 @@
           <div class="card-content">
             <p class="title">
               And the location has been decided! - The Slug At Fulham :) </p>
-            <p class="subtitle">
-              <a href="https://www.the-slug.co.uk/fulham" target="_blank">@TheSlugAtFulham</a>.
-            </p>
           </div>
           <footer class="card-footer">
             <p class="card-footer-item">
@@ -105,25 +100,24 @@
             <div class="media">
               <div class="media-left">
                 <figure class="image is-48x48">
-                  <img class="is-rounded" src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+                  <img class="is-rounded" src="https://spectator.imgix.net/content/uploads/2018/06/l.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550" alt="Placeholder image">
                 </figure>
               </div>
               <div class="media-content">
-                <p class="title is-4">Group 15's Night Out ;)</p>
+                <p class="title is-4">Group 15's End of Year Night Out ;)</p>
                 <p class="subtitle is-6">@Poll</p>
               </div>
             </div>
             <div class="content">
-              The Calendar Results are Out:
-              <a href="https://www.the-slug.co.uk/fulham">@TheSlugAtFulham</a>.
+              The <b>Poll Results</b> are Out:
               <br>
-              Location Poll Result:
+              Which club should we go to?
               <br>
-              - Slug: 9 votes
+              - <b>Slug</b>: 9 votes
               <br>
               - Xoyo: 3 votes
               <br>
-              - Roxy: 0 votes
+              - Roxy: 1 votes
               <br>
             </div>
           </div>
