@@ -20,12 +20,12 @@
       <b-icon icon="map-marker" class="group-feature-icon" type="is-light" size="is-small-medium"></b-icon>
       Maps
     </nuxt-link>
-
-    <nuxt-link class="group-feature" to="/docs">
+  -->
+    <nuxt-link class="group-feature" :to="`/group/${group.id}/notes`" v-on:click.native="toggleSidebar">
       <b-icon icon="file-document" class="group-feature-icon" type="is-light" size="is-small-medium"></b-icon>
-      Docs
+      Notes
     </nuxt-link>
-    -->
+
 
     <nuxt-link class="group-feature settings" :to="`/group/${group.id}/settings`" v-on:click.native="toggleSidebar">
       <b-icon icon="settings" class="group-feature-icon" type="is-light" size="is-small-medium"></b-icon>
