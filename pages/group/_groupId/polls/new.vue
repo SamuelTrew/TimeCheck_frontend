@@ -1,6 +1,8 @@
 <template>
-  <div class="section form">
-    <h4 class="title">New Poll</h4>
+  <div class="form polls-display">
+    <h4 class="title">
+      New Poll
+    </h4>
 
     <b-field label="Name">
       <b-input v-model="poll.question"></b-input>
@@ -94,4 +96,7 @@
 </script>
 
 <style>
+  .polls-display {
+    padding: 0 1rem 1rem;
+  }
 </style>

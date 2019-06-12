@@ -1,5 +1,5 @@
 <template>
-  <div class="section" v-if="poll">
+  <div class="form polls-display" v-if="poll">
     <h4 class="title">{{ poll.question }}</h4>
     <p>
       <span v-if="poll.multiple">You can vote for <b>multiple</b> options in this poll</span>

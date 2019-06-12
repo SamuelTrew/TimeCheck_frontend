@@ -24,24 +24,28 @@
           </button>
           {{this.selectedAlarm.name}}
         </h1>
-        <b-field label="On this date">
-          <b-datepicker
-            placeholder="07/06/19"
-            icon="calendar-today">
-          </b-datepicker>
-        </b-field>
 
-        <b-field label="At this time">
-          <b-timepicker
-            rounded
-            placeholder="10:30"
-            icon="clock">
-          </b-timepicker>
-        </b-field>
+        <div class="form">
+          <b-field label="On this date">
+            <b-datepicker
+              placeholder="07/06/19"
+              icon="calendar-today">
+            </b-datepicker>
+          </b-field>
+
+          <b-field label="At this time">
+            <b-timepicker
+              rounded
+              placeholder="10:30"
+              icon="clock">
+            </b-timepicker>
+          </b-field>
+        </div>
+
       </div>
 
       <div v-else class="reminder-new-page">
-        <div>
+        <div class="reminder-new-page-title">
           <h4 class="title">
             <button class="reminders-back-button" @click="toggleListItemSelected">
               <b-icon class="icon" icon="arrow-left" type="is-dark" size="is-medium"></b-icon>
@@ -52,41 +56,41 @@
 
         <br />
 
-        <div class="form">
-          <b-field label="Name">
-          <b-input v-model="newAlarm"></b-input>
+        <div class="reminder-new-page-body">
+          <div class="form">
+            <b-field label="Name">
+              <b-input v-model="newAlarm"></b-input>
+            </b-field>
+          </div>
+
+          <br />
+
+          <b-field label="Select date">
+            <b-datepicker
+              v-model="date"
+              inline>
+            </b-datepicker>
           </b-field>
-        </div>
 
-        <br />
+          <br />
 
-        <b-field label="Select date">
-          <b-datepicker
-            v-model="date"
-            inline
-          >
-          </b-datepicker>
-        </b-field>
+          <b-field label="Select Time">
+            <b-clockpicker
+              v-model="time"
+              inline
+              type="is-primary"
+              :hour-format="format">
+            </b-clockpicker>
+          </b-field>
 
-        <br />
+          <br />
 
-        <b-field label="Select Time">
-          <b-clockpicker
-            v-model="time"
-            inline
-            type="is-primary"
-            :hour-format="format">
-          </b-clockpicker>
-        </b-field>
-
-
-        <br />
-
-        <div>
-          <b-button type="is-primary"
-                    :disabled="newAlarm.length === 0"
-                    @click="addAlarm">Create Reminder
-          </b-button>
+          <div>
+            <b-button type="is-primary"
+                      :disabled="newAlarm.length === 0"
+                      @click="addAlarm">Create Reminder
+            </b-button>
+          </div>
         </div>
       </div>
     </section>
@@ -226,6 +230,9 @@
   .timer {
     font-size: 50px;
   }
+  .alarm {
+    align-items: center;
+  }
   .alarms {
     width: 100%;
     height: 100%;
@@ -277,8 +284,10 @@
     cursor: pointer;
     align-items: center;
   }
-  .reminder-new-page {
+  .reminder-new-page-body {
     align-items: center;
+    display: flex;
+    flex-direction: column;
   }
 </style>
 

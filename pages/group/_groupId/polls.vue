@@ -1,11 +1,11 @@
 <template>
   <div class="polls">
-    <div class="polls-list">
-      <nuxt-link class="create-poll" :to="`/group/${groupId}/polls/new`" active-class="selected">
+    <div v-if="!listItemSelected" class="polls-list">
+      <nuxt-link class="create-poll" :to="`/group/${groupId}/polls/new`" active-class="selected" @click.native="toggleListItemSelected">
         <b-icon icon="plus" size="is-medium"></b-icon>
       </nuxt-link>
       <div class="polls-list-inner">
-        <nuxt-link v-for="poll in polls" :key="poll.id" class="poll-list-item" :to="`/group/${groupId}/polls/${poll.id}`" active-class="selected">
+        <nuxt-link v-for="poll in polls" :key="poll.id" class="poll-list-item" :to="`/group/${groupId}/polls/${poll.id}`" active-class="selected" @click.native="toggleListItemSelected">
           <div class="content">
             {{ poll.question }}
           </div>
@@ -13,7 +13,10 @@
       </div>
     </div>
 
-    <div class="polls-detail">
+    <div v-else class="polls-detail">
+      <button class="polls-back-button" @click="toggleListItemSelected">
+        <b-icon class="icon" icon="arrow-left" type="is-dark" size="is-medium"></b-icon>
+      </button>
       <nuxt-child />
     </div>
   </div>
@@ -29,6 +32,19 @@
         polls: 'polls/list'
       })
     },
+    data() {
+      return {
+        listItemSelected: false,
+      }
+    },
+    methods: {
+      toggleListItemSelected() {
+        this.listItemSelected = !this.listItemSelected;
+      },
+    },
+    toggleListItemSelected() {
+      this.listItemSelected = !this.listItemSelected;
+    },
     asyncData ({ params }) {
       return { groupId: params.groupId }
     }
@@ -42,7 +58,7 @@
     display: flex;
   }
   .polls-list {
-    width: 30%;
+    width: 100%;
     background-color: #fafafa;
     border-right: 1px solid #dddddd;
     display: flex;
@@ -78,5 +94,13 @@
   }
   .poll-option.selected .poll-bar {
     opacity: 0.25;
+  }
+  .polls-back-button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    align-items: center;
+    padding: 1rem;
   }
 </style>
