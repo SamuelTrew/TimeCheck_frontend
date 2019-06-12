@@ -25,23 +25,15 @@
     name: 'PollDetailPage',
     data() {
       return {
-        pollId: null,
-      }
-    },
-    watch: {
-      '$route.params.pollId': {
-        handler(pollId) {
-          this.pollId = pollId
-          //this.poll = await this.getPollById(pollId)
-        },
-        deep: true,
-        immediate: true
       }
     },
     computed: {
       ...mapGetters({
         polls: 'polls/map'
       }),
+      pollId() {
+        return this.$route.params.pollId || null
+      },
       poll() {
         if (this.pollId) {
           const poll = this.polls[this.pollId]
