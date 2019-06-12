@@ -76,35 +76,7 @@
     font-weight: 600;
     background-color: #e8e8e8;
   }
-  .poll-option {
-    cursor: pointer;
-    margin: 1.5rem 0;
-    padding: 0.5rem 1rem;
-    background-color: #fafafa;
-    position: relative;
-    overflow: hidden;
-  }
-  .poll-bar {
-    background-color: purple;
-    opacity: 0.08;
-    width: 0;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: width 0.5s ease-in-out;
-  }
   .poll-option.selected .poll-bar {
     opacity: 0.25;
-  }
-  .poll-option-name,
-  .poll-option-votes {
-    position: relative;
-  }
-  .poll-option-name {
-    font-size: 1.5rem;
-  }
-  .poll-option.selected .poll-option-name {
-    font-weight: 600;
   }
 </style>

@@ -15,12 +15,12 @@
       Reminders
     </nuxt-link>
 
-    <!--
-    <nuxt-link class="group-feature" to="/maps">
-      <b-icon icon="map-marker" class="group-feature-icon" type="is-light" size="is-small-medium"></b-icon>
-      Maps
+
+    <nuxt-link class="group-feature" :to="`/group/${group.id}/docs`" v-on:click.native="toggleSidebar">
+      <b-icon icon="folder-outline" class="group-feature-icon" type="is-light" size="is-small-medium"></b-icon>
+      Docs
     </nuxt-link>
-  -->
+
     <nuxt-link class="group-feature" :to="`/group/${group.id}/notes`" v-on:click.native="toggleSidebar">
       <b-icon icon="file-document" class="group-feature-icon" type="is-light" size="is-small-medium"></b-icon>
       Notes
