@@ -49,8 +49,9 @@ export const actions = {
       'height=600,width=518'
     )
   },
-  setUser({ commit }, { details, token }) {
+  setUser({ commit, dispatch }, { details, token }) {
     commit('LOGIN', { details, token })
+    dispatch('groups/fetchGroups', null, { root: true })
     this.$router.push('/dashboard')
     // TODO: For use in showing unconfirmed user details temporarily
     // localStorage.setItem('user:details', JSON.stringify(details))
