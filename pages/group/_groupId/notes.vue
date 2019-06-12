@@ -1,6 +1,8 @@
 <template>
-  <section class="section updates">
-
+  <section class="notes">
+    <section class="notes-displays">
+      <div class="notes-title">Group Notes</div>
+      <div class="notes-page-container">
     <div class="columns is-multiline">
       <div v-for="(line, index) in lines" v-bind:key="index" class="row">
         <div class="column">
@@ -8,19 +10,15 @@
             <div class="card-content">
               <div class="media">
                 <div class="media-content">
-                  <p class="title">Hello</p>
-                  <p class="subtitle">{{line.date.toDateString()}}</p>
-                  <p class="subtitle">{{line.date.toTimeString()}}</p>
+                  <div class="delete-button">
+                    <b-button type="is-danger" size="is-small-medium" @click="removeLine(index)">X</b-button>
+                  </div>
+                  <p class="title">Note</p>
+                  <p class="notes-sub-title">{{line.date.toLocaleString()}}</p>
                 </div>
               </div>
               <div class="content">
-                <b-field horizontal v-model="line.message" label="message">
-                  <b-input type="textarea"></b-input>
-                </b-field>
-
-                <div class="block float-right">
-                  <b-button type="is-primary" @click="removeLine(index)">Remove Note</b-button>
-                </div>
+                <b-input v-model="line.message" type="textarea"></b-input>
               </div>
             </div>
 
@@ -34,7 +32,8 @@
       <b-button type="is-primary" @click="addLine"> Add Note </b-button>
     </div>
   </div>
-
+      </div>
+    </section>
   </section>
 </template>
 
@@ -73,5 +72,34 @@
 
 
 <style scoped>
+
+  .notes {
+    padding: 1rem;
+  }
+
+  .notes-page-container {
+    max-width: 1440px;
+    margin: 0 auto 1rem;
+  }
+
+  .notes-title {
+    font-size: 2rem;
+    text-align: center;
+    font-weight: 500;
+  }
+  .notes-sub-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .delete-button {
+    float: right;
+  }
+  .notes-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
 
 </style>
