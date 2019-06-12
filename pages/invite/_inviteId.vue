@@ -47,8 +47,7 @@
         async handler(ready) {
           if (ready) {
             try {
-              const group = await this.$axios.$get(`/invite/${this.inviteId}/group`)
-              this.group = group
+              this.group = await this.$axios.$get(`/invite/${this.inviteId}/group`)
             } catch (e) {
               // TODO: Error handling
               console.error(e)

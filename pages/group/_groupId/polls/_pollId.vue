@@ -30,7 +30,7 @@
     },
     watch: {
       '$route.params.pollId': {
-        async handler(pollId) {
+        handler(pollId) {
           this.pollId = pollId
           //this.poll = await this.getPollById(pollId)
         },

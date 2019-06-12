@@ -128,7 +128,7 @@
           console.error("Update name error", e)
         }
       },
-      async updateColour() {
+      updateColour() {
         try {
           this.$store.dispatch('groups/updateColour', {id: this.group.id, colour: this.bgc})
         } catch (e) {
