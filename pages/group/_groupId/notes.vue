@@ -61,7 +61,7 @@
         },
 
         removeLine (lineId) {
-          if (!this.blockRemoval) this.lines.splice(lineId, 1)
+          this.lines.splice(lineId, 1)
         }
       },
       mounted () {
