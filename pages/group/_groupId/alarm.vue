@@ -1,12 +1,12 @@
 <template>
 
   <section class="alarms">
-    <div class="alarms-list">
+    <div v-if="!listItemSelected" class="alarms-list">
       <div class="create-alarm" @click="makeNewAlarm" :class="{selected: createAlarm}">
         <b-icon icon="plus" size="is-medium"></b-icon>
       </div>
       <div class="alarms-list-inner">
-        <div v-for="alarm in alarms" class="alarm-list-item" @click="selectedAlarm = alarm; createAlarm = false" :class="{selected: selectedAlarm === alarm}" >
+        <div v-for="alarm in alarms" class="alarm-list-item" @click="selectAlarm(alarm)" :class="{selected: selectedAlarm === alarm}" >
           <div class="content">
             {{ alarm.name }}
           </div>
@@ -15,9 +15,15 @@
     </div>
 
     <!-- ALARM DATA HERE -->
-    <section class="section alarms-detail">
+    <section v-else class="section alarms-detail">
       <div v-if="selectedAlarm" class="alarm">
-        <h1 class="title">{{this.selectedAlarm.name}}</h1>
+
+        <h1 class="title">
+          <button class="reminders-back-button" @click="toggleListItemSelected">
+            <b-icon class="icon" icon="arrow-left" type="is-dark" size="is-medium"></b-icon>
+          </button>
+          {{this.selectedAlarm.name}}
+        </h1>
         <b-field label="On this date">
           <b-datepicker
             placeholder="07/06/19"
@@ -34,11 +40,18 @@
         </b-field>
       </div>
 
-      <div v-else>
+      <div v-else class="reminder-new-page">
         <div>
-          <h4 class="title">New Group Reminder</h4>
+          <h4 class="title">
+            <button class="reminders-back-button" @click="toggleListItemSelected">
+              <b-icon class="icon" icon="arrow-left" type="is-dark" size="is-medium"></b-icon>
+            </button>
+            New Group Reminder
+          </h4>
         </div>
+
         <br />
+
         <div class="form">
           <b-field label="Name">
           <b-input v-model="newAlarm"></b-input>
@@ -65,6 +78,8 @@
             :hour-format="format">
           </b-clockpicker>
         </b-field>
+
+
         <br />
 
         <div>
@@ -104,6 +119,7 @@
       return {
         newAlarm: '',
         selectedAlarm: null,
+        listItemSelected: false,
         createAlarm: false,
         alarms: DUMMY_ALARMS_DATA,
         reminder: '',
@@ -128,12 +144,22 @@
       makeNewAlarm() {
         this.selectedAlarm = null;
         this.createAlarm = true;
+        this.listItemSelected = true;
         this.newAlarm = '';
       },
       addAlarm() {
         this.selectedAlarm = null;
         this.createAlarm = true;
-        DUMMY_ALARMS_DATA.push({name: this.newAlarm})
+        this.listItemSelected = false;
+        DUMMY_ALARMS_DATA.push({name: this.newAlarm});
+      },
+      selectAlarm(alarm) {
+        this.selectedAlarm = alarm;
+        this.createAlarm = false;
+        this.listItemSelected = true;
+      },
+      toggleListItemSelected() {
+        this.listItemSelected = !this.listItemSelected;
       },
       setDateTime() {
         const temp = new Date();
@@ -206,7 +232,7 @@
     display: flex;
   }
   .alarms-list {
-    width: 30%;
+    width: 100%;
     display: flex;
     flex-direction: column;
   }
@@ -236,11 +262,23 @@
     background-color: #ddd;
   }
 
-  .alarm-option.selected .alarm-bar {
+  .alarm-option.selected,
+  .alarm-bar {
     opacity: 0.25;
   }
-  .alarm-option.selected .alarm-option-name {
+  .alarm-option.selected,
+  .alarm-option-name {
     font-weight: 600;
+  }
+  .reminders-back-button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    align-items: center;
+  }
+  .reminder-new-page {
+    align-items: center;
   }
 </style>
 
