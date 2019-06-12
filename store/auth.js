@@ -28,7 +28,7 @@ export const actions = {
       try {
         const details = await this.$axios.$get('/user/me')
         commit('LOGIN', { details, token })
-        dispatch('group/fetchGroups', null, { root: true })
+        dispatch('groups/fetchGroups', null, { root: true })
         if (this.$router.currentRoute.name === 'index') {
           this.$router.push('/dashboard')
         }
@@ -64,10 +64,11 @@ export const actions = {
     if (tellServer) {
       this.$axios.get('/user/logout')
     }
-    commit('LOGOUT')
     if (this.$router.currentRoute.name !== 'index') {
       this.$router.push('/')
     }
+    // TODO: Logging out page (fixes the race condtion)
+    commit('LOGOUT')
   }
 }
 

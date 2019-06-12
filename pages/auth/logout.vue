@@ -28,7 +28,6 @@
       })
     },
     mounted() {
-      console.info('logging out')
       this.logout()
     }
   }

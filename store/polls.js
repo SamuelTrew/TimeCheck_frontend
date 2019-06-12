@@ -1,70 +1,9 @@
 import Vue from 'vue'
 
-const DUMMY_POLLS_DATA = [
-  {
-    id: 'a1b2',
-    question: 'What food should we get?',
-    options: [
-      {
-        name: 'Chinese',
-        order: 3,
-        votes: 2,
-      },
-      {
-        name: 'Dominos',
-        order: 1,
-        votes: 4
-      },
-      {
-        name: 'I don\'t care :D',
-        order: 4,
-        votes: 1
-      },
-      {
-        name: 'Tacos',
-        order: 2,
-        votes: 0
-      }
-    ],
-    multiple: true,
-    change: true
-  },
-  {
-    id: 'bcd3',
-    question: 'Who is the best?',
-    options: [
-      {
-        name: 'Matthew',
-        order: 1,
-        votes: 5
-      },
-      {
-        name: 'David',
-        order: 2,
-        votes: 6
-      },
-      {
-        name: 'Pull',
-        order: 3,
-        votes: 3
-      },
-      {
-        name: 'Radhika',
-        order: 4,
-        votes: 1
-      }
-    ],
-    change: false
-  }
-];
-const DUMMY_POLLS_DATA_MAP = {}
-DUMMY_POLLS_DATA.forEach(poll => {
-  DUMMY_POLLS_DATA_MAP[poll.id] = poll
-})
-
 export const state = () => {
   return {
-    polls: DUMMY_POLLS_DATA_MAP
+    polls: {},
+    groupId: null
   }
 }
 
@@ -77,34 +16,74 @@ export const getters = {
 }
 
 export const actions = {
-  createPoll({ commit, getters }, poll) {
-    const id = getters.list.length
-    commit('ADD_POLL', { id, ...poll })
+  async fetchPolls({ commit }, groupId) {
+    commit('SET_GROUP', { groupId })
+    try {
+      const pollsList = await this.$axios.$get(`/group/${groupId}/poll`)
+      const pollsMap = {}
+      pollsList.forEach(poll => {
+        pollsMap[poll.id] = poll
+      });
+      commit('SET_POLLS', { polls: pollsMap })
+    } catch (err) {
+      // TODO: Error logging
+      console.error(err)
+    }
   },
-  vote({ commit }, { poll, option }) {
+  // TODO: Allow deleting polls
+  async createPoll({ state, commit, getters }, { question, multiple, change, hidden, options }) {
+    console.info(question, multiple, change, hidden, options)
+    const poll = {
+      question,
+      multiple,
+      change,
+      hide_results: hidden
+    }
+    poll.options = options.filter(option => option.text).map(option => {
+      return { text: option.text, order: option.order }
+    })
+    console.info(poll)
+    try {
+      const newPoll = await this.$axios.$post(`/group/${state.groupId}/poll`, poll)
+      commit('ADD_POLL', { poll: newPoll })
+    } catch (err) {
+      // TODO: Error logging
+      console.error(err)
+    }
+  },
+  async vote({ state, commit }, { poll, option }) {
     if (option.selected) {
       // Un-vote
-      commit('SET_OPTION', { option, value: false })
-      // TODO: Tell backend
+      // commit('SET_OPTION', { option, value: false })
+      try {
+        const newPoll = await this.$axios.$post(`/group/${state.groupId}/poll/${poll.id}/unvote`, { option: option.id })
+        commit('ADD_POLL', { poll: newPoll })
+      } catch (err) {
+        // TODO: Error logging
+        console.error(err)
+      }
     } else {
       // Vote
-      commit('SET_OPTION', { option, value: true })
-      if (!poll.multiple) {
-        // Un-vote others
-        poll.options.forEach(opt => {
-          if (opt !== option) {
-            if (opt.selected) {
-              commit('SET_OPTION', { option: opt, value: false })
-            }
-          }
-        })
+      // commit('SET_OPTION', { option, value: true })
+      try {
+        const newPoll = await this.$axios.$post(`/group/${state.groupId}/poll/${poll.id}/vote`, { option: option.id })
+        commit('ADD_POLL', { poll: newPoll })
+      } catch (err) {
+        // TODO: Error logging
+        console.error(err)
       }
     }
   },
 }
 
 export const mutations = {
-  ADD_POLL(state, poll) {
+  SET_GROUP(state, { groupId }) {
+    state.groupId = groupId
+  },
+  SET_POLLS(state, { polls }) {
+    state.polls = polls
+  },
+  ADD_POLL(state, { poll }) {
     Vue.set(state.polls, poll.id, poll)
   },
   SET_OPTION(state, { option, value }) {

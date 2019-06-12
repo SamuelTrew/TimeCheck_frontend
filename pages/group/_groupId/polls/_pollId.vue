@@ -1,5 +1,5 @@
 <template>
-  <div class="section">
+  <div class="section" v-if="poll">
     <h4 class="title">{{ poll.question }}</h4>
     <p>
       <span v-if="poll.multiple">You can vote for <b>multiple</b> options in this poll</span>
@@ -9,9 +9,9 @@
       <span v-if="poll.change">You <b>can</b> change your vote at any time</span>
       <span v-else-if="poll.question">You <b>cannot</b> change your vote<span v-if="!haveVoted"> after choosing</span></span>
     </p>
-    <div v-for="option in poll.options" ref="pollOptions" @click="vote(poll, option)" class="poll-option box" :class="{'selected': option.selected}">
+    <div v-for="option in poll.options" @click="vote(poll, option)" class="poll-option box" :class="{'selected': option.selected}">
       <div class="poll-bar" :style="calcStyle(poll, option)"></div>
-      <p class="poll-option-name">{{ option.name }}</p>
+      <p class="poll-option-name">{{ option.text }}</p>
       <p class="poll-option-votes">{{ option.votes }} votes</p>
     </div>
     <p v-if="poll.question">Total of {{ totalVotes }} votes</p>
@@ -26,55 +26,13 @@
     data() {
       return {
         pollId: null,
-        poll: {
-          id: 'bcd3',
-          question: 'Who is the best?',
-          options: [
-            {
-              name: 'Matthew',
-              order: 1,
-              votes: 5,
-              selected: true
-            },
-            {
-              name: 'David',
-              order: 2,
-              votes: 6
-            },
-            {
-              name: 'Pull',
-              order: 3,
-              votes: 3
-            },
-            {
-              name: 'Radhika',
-              order: 4,
-              votes: 1
-            },
-            {
-              name: 'Radhika',
-              order: 4,
-              votes: 1
-            },
-            {
-              name: 'Radhika',
-              order: 4,
-              votes: 1
-            },
-            {
-              name: 'Radhika',
-              order: 4,
-              votes: 1
-            }
-          ]
-        }
       }
     },
     watch: {
       '$route.params.pollId': {
         async handler(pollId) {
           this.pollId = pollId
-          this.poll = await this.getPollById(pollId)
+          //this.poll = await this.getPollById(pollId)
         },
         deep: true,
         immediate: true
@@ -82,8 +40,17 @@
     },
     computed: {
       ...mapGetters({
-        getPollById: 'polls/getPollById'
+        polls: 'polls/map'
       }),
+      poll() {
+        if (this.pollId) {
+          const poll = this.polls[this.pollId]
+          if (poll) return poll
+          return null
+        } else {
+          return null
+        }
+      },
       totalVotes() {
         let total = 0;
         if (!this.poll.options) return;

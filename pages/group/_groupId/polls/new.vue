@@ -21,7 +21,7 @@
     </b-field>
 
     <b-field label="Hide Results">
-      <b-switch v-model="poll.hidden" disabled>
+      <b-switch v-model="poll.hidden">
         <span v-if="poll.hidden">Results are hidden until after vote cast</span>
         <span v-else>Can view results before voting</span>
       </b-switch>
@@ -39,11 +39,13 @@
       </b-field>
     </div>
 
-    <b-button type="is-primary" @click="createPoll">Create Poll</b-button>
+    <b-button type="is-primary" @click="createPoll" :loading="saving">Create Poll</b-button>
   </div>
 </template>
 
 <script>
+  // TODO: Ability to reorder options
+  // TODO: Rename / edit poll? Maybe?
   export default {
     name: 'NewPollPage',
     data() {
@@ -60,7 +62,8 @@
               order: 1,
             }
           ]
-        }
+        },
+        saving: false
       }
     },
     watch: {
@@ -73,14 +76,17 @@
     methods: {
       newOption(index) {
         if (index === this.poll.options.length - 1) {
-          this.poll.options.push({ text: '' })
+          this.poll.options.push({ text: '', order: this.poll.options.length + 1 })
         }
       },
       async createPoll() {
+        this.saving = true
         try {
-          this.$store.dispatch('polls/createPoll', this.poll)
+          await this.$store.dispatch('polls/createPoll', this.poll)
         } catch (e) {
           console.error("Poll creation error", e);
+        } finally {
+          this.saving = false
         }
       }
     }

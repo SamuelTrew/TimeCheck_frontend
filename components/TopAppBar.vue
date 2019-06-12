@@ -1,5 +1,5 @@
 <template>
-  <section id="topappbar" :style="colour">
+  <section id="topappbar" :style="color">
     <div class="hero-body">
       <div class="has-text-centered">
         <div class="top-bar-container">
@@ -36,14 +36,14 @@
       group: Object
     },
     computed: {
-      ...mapGetters({
-        getColourById: 'group/getColourById'
-      }),
-      colour() {
+      color() {
         if (this.group) {
-          return this.getColourById(this.group.id)
+          return this.group.colour
         } else {
-          return {'background-color': "#8e588b"}
+          return {
+            backgroundColor: "#8e588b",
+            color: "white"
+          }
         }
       }
     },

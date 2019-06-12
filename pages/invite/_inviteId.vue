@@ -48,7 +48,6 @@
           if (ready) {
             try {
               const group = await this.$axios.$get(`/invite/${this.inviteId}/group`)
-              console.info(group)
               this.group = group
             } catch (e) {
               // TODO: Error handling
@@ -67,8 +66,7 @@
       async join() {
         try {
           const data = await this.$axios.$get(`/invite/${this.inviteId}/accept`)
-          console.info(data)
-          await this.$store.dispatch('group/fetchGroups')
+          await this.$store.dispatch('groups/fetchGroups')
           this.$router.push(`/group/${this.group.id}`)
         } catch (e) {
           // TODO: Error handling

@@ -27,7 +27,6 @@
     },
     async mounted() {
       const data = await this.$axios.$get(`/group/${this.group.id}/generate_invite`)
-      console.info(data)
       this.code = data.id
     }
   }

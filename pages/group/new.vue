@@ -57,8 +57,7 @@
       async createGroup() {
         this.loading = true
         const group = await this.$axios.$post('/group', { name: this.name })
-        console.info(group)
-        await this.$store.dispatch('group/fetchGroups')
+        await this.$store.dispatch('groups/fetchGroups')
         this.loading = false
         this.$router.push(`/group/${group.id}/invite`)
       },

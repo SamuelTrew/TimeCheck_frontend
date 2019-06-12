@@ -17,7 +17,7 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { mapActions, mapGetters } from 'vuex'
 
   import Loading from '~/components/Loading'
   import Updates from "../../components/Updates";
@@ -33,31 +33,24 @@
         name: '',
       }
     },
-    computed: {
-      ...mapGetters({
-        ready: 'group/ready',
-        getGroupById: 'group/getGroupById'
+    methods: {
+      ...mapActions({
+        getGroupById: 'groups/getGroupById'
       })
     },
-    watch: {
-      ready: {
-        handler(ready) {
-          if (ready) {
-            const group = this.getGroupById(this.groupId)
-            if (group) {
-              this.group = group
-            } else {
-              // Could not find group
-              // TODO: Display error about group 404 not found
-              console.info('Going dashboard - group not found')
-              this.$router.push('/dashboard')
-            }
-          }
-        },
-        immediate: true
+    async mounted() {
+      const group = await this.getGroupById(this.groupId)
+      if (group) {
+        this.group = group
+        console.info('Group id:', this.groupId)
+        this.$store.dispatch('polls/fetchPolls', this.groupId)
+      } else {
+        // Could not find group
+        // TODO: Display error about group 404 not found
+        console.info('Going dashboard - group not found')
+        this.$router.push('/dashboard')
       }
     },
-    methods: {},
     asyncData ({ params }) {
       return { groupId: params.groupId }
     }

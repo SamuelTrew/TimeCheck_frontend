@@ -6,7 +6,7 @@
           <img src="~/assets/tc-thumb-white.svg" />
         </nuxt-link>
         <div class="sidebar-label" style="margin-bottom: 0.2rem">
-          Events
+          Groups
         </div>
         <div class="sidebar-divider"></div>
         <div class="sidebar-groups">
@@ -53,28 +53,16 @@
     },
     computed: {
       ...mapGetters({
-        groups: 'group/list',
+        groups: 'groups/list',
         user: 'auth/user',
         showSidebar: 'nav/showSidebar',
-        groupsReady: 'group/ready',
-        getGroupById: 'group/getGroupById'
       })
     },
     watch: {
-      groupsReady: {
-        handler(ready) {
-          if (ready) {
-            if (ready && this.groupId) {
-              this.fetchGroup()
-            }
-          }
-        },
-        immediate: true
-      },
       '$route.params.groupId': {
         handler(groupId) {
           this.groupId = groupId
-          if (groupId && this.groupsReady) {
+          if (groupId) {
             this.fetchGroup()
           } else {
             this.group = null
@@ -86,11 +74,11 @@
     },
     methods: {
       ...mapActions({
-        toggleSidebar: 'nav/toggleSidebar'
+        toggleSidebar: 'nav/toggleSidebar',
+        getGroupById: 'groups/getGroupById'
       }),
-      fetchGroup() {
-        console.info("Group ID: ", this.groupId)
-        const group = this.getGroupById(this.groupId)
+      async fetchGroup() {
+        const group = await this.getGroupById(this.groupId)
         if (group) {
           this.group = group
         } else {
