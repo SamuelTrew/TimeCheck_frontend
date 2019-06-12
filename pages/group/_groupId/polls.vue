@@ -43,6 +43,8 @@
   }
   .polls-list {
     width: 30%;
+    background-color: #fafafa;
+    border-right: 1px solid #dddddd;
     display: flex;
     flex-direction: column;
   }
@@ -72,7 +74,7 @@
   .create-poll.selected,
   .poll-list-item.selected {
     font-weight: 600;
-    background-color: #dddddd;
+    background-color: #e8e8e8;
   }
   .poll-option {
     cursor: pointer;
