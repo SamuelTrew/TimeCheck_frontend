@@ -6,7 +6,7 @@
         <b-icon icon="plus" size="is-medium"></b-icon>
       </div>
       <div class="alarms-list-inner">
-        <div v-for="alarm in alarms" class="alarm-list-item" @click="selectedAlarm = alarm; createAlarm = false" :class="{selected: selectedAlarm === alarm}" >
+        <div v-for="alarm in alarms" class="alarm-list-item" @click="selectedAlarm = alarm;  createAlarm = false" :class="{selected: selectedAlarm === alarm}" >
           <div class="content">
             {{ alarm.name }}
           </div>
@@ -36,7 +36,7 @@
 
       <div v-else>
         <div>
-          <h4 class="title">New Group Reminder</h4>
+        <h4 class="title">New Group Reminder</h4>
         </div>
         <br />
         <div class="form">
@@ -44,34 +44,31 @@
           <b-input v-model="newAlarm"></b-input>
           </b-field>
         </div>
-
         <br />
 
         <b-field label="Select date">
-          <b-datepicker
-            v-model="date"
-            inline
-          >
-          </b-datepicker>
-        </b-field>
-
+            <b-datepicker
+              v-model="date"
+              inline>
+            </b-datepicker>
+          </b-field>
         <br />
 
         <b-field label="Select Time">
-          <b-clockpicker
-            v-model="time"
-            inline
-            type="is-primary"
-            :hour-format="format">
-          </b-clockpicker>
+            <b-clockpicker
+              v-model="time"
+              inline
+              type="is-primary"
+              :hour-format="format">
+            </b-clockpicker>
         </b-field>
         <br />
 
         <div>
-          <b-button type="is-primary"
-                    :disabled="newAlarm.length === 0"
-                    @click="addAlarm">Create Reminder
-          </b-button>
+            <b-button type="is-primary"
+                      :disabled="newAlarm.length === 0"
+                      @click="addAlarm">Create Reminder
+            </b-button>
         </div>
       </div>
     </section>
