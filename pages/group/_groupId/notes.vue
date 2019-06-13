@@ -11,18 +11,20 @@
       <div v-for="(line, index) in lines" v-bind:key="index" class="row">
         <div class="column">
           <div class="card">
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <div class="delete-button">
-                    <b-button type="is-danger" size="is-small-medium" @click="removeLine(index)">X</b-button>
-                  </div>
-                  <p class="notes-header">@User</p>
-                  <p class="notes-sub-title">{{line.date.toLocaleString()}}</p>
-                </div>
+            <header class="card-header">
+              <p class="card-header-title">
+                @User
+              </p>
+              <div class="delete-button">
+                <b-button type="is-danger" size="is-small-medium" @click="removeLine(index)">X</b-button>
               </div>
+            </header>
+            <div class="card-content">
               <div class="content">
-                <b-input v-model="line.message" type="textarea"></b-input>
+                <div class="notes-sub-title">
+                {{line.date.toLocaleString()}}
+              </div>
+                <b-input v-model="line.message" type="textarea" rounded></b-input>
               </div>
             </div>
           </div>
@@ -50,6 +52,8 @@
       },
       methods: {
         addLine () {
+          let checkEmptyLines = this.lines.filter(line => line.message === null)
+          if (checkEmptyLines.length >= 1 && this.lines.length > 0) return
 
           this.lines.push({
             message: null,
@@ -91,12 +95,15 @@
   }
 
   .notes-sub-title {
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin-bottom: 0.5rem;
   }
 
   .delete-button {
     float: right;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
   }
 
 
