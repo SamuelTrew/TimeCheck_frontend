@@ -1,10 +1,11 @@
 <template>
-  <section>
+  <section class="docs">
+    <h2 class="docs-title">Docs</h2>
+
     <b-field>
       <b-upload v-model="dropFiles"
                 multiple
-                drag-drop
-      >
+                drag-drop>
         <section class="section">
           <div class="content has-text-centered">
             <p>
@@ -55,3 +56,17 @@
     }
   }
 </script>
+
+<style>
+  .docs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .docs-title {
+    font-size: 2rem;
+    text-align: center;
+    font-weight: 500;
+    padding: 1rem;
+  }
+</style>

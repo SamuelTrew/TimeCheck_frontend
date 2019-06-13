@@ -2,6 +2,7 @@
 
   <section class="alarms">
     <div v-if="!listItemSelected" class="alarms-list">
+      <h2 class="reminders-title">Reminders</h2>
       <div class="create-alarm" @click="makeNewAlarm" :class="{selected: createAlarm}">
         <b-icon icon="plus" size="is-medium"></b-icon>
       </div>
@@ -230,6 +231,12 @@
   .timer {
     font-size: 50px;
   }
+  .reminders-title {
+    font-size: 2rem;
+    text-align: center;
+    font-weight: 500;
+    padding: 1rem;
+  }
   .alarm {
     align-items: center;
   }
@@ -262,6 +269,7 @@
   }
   .create-alarm {
     text-align: center;
+    border-top: 1px solid #dddddd;
   }
   .create-alarm.selected,
   .alarm-list-item.selected {
