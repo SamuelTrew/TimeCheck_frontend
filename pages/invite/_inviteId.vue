@@ -10,15 +10,15 @@
       </div>
     </section>
 
-    <section v-if="group" class="section">
+    <section class="section" v-if="group">
       <div class="container">
         <div class="columns">
           <div class="column is-8 is-offset-2 form">
             <p>You have been invited to join "{{ group.name }}"</p>
             <p>Do you want to join this group?</p>
 
-            <button class="button" @click="cancel">Cancel</button>
-            <button class="button is-primary" @click="join">Join</button>
+            <button @click="cancel" class="button">Cancel</button>
+            <button @click="join" class="button is-primary">Join</button>
           </div>
         </div>
       </div>
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import {mapGetters} from 'vuex'
 
   export default {
     name: 'InviteByCodePage',
@@ -73,8 +73,8 @@
         }
       }
     },
-    asyncData ({ params }) {
-      return { inviteId: params.inviteId }
+    asyncData({params}) {
+      return {inviteId: params.inviteId}
     }
   }
 </script>

@@ -22,27 +22,27 @@ export const getters = {
 }
 
 export const actions = {
-  async fetchGroups({ commit }) {
+  async fetchGroups({commit}) {
     try {
       const groupsList = await this.$axios.$get('/group')
       const groupsMap = {}
       groupsList.forEach(group => {
         prepareGroup(group)
         groupsMap[group.id] = group
-      });
-      commit('SET_GROUPS', { groups: groupsMap })
+      })
+      commit('SET_GROUPS', {groups: groupsMap})
     } catch (err) {
       // TODO: Error logging
       console.error(err)
     }
   },
-  updateName({ commit }, { id, name }) {
-    commit('SET_NAME', { id, name })
+  updateName({commit}, {id, name}) {
+    commit('SET_NAME', {id, name})
   },
-  updateColour({ commit }, { id, colour }) {
-    commit('SET_COLOUR', { id, colour })
+  updateColour({commit}, {id, colour}) {
+    commit('SET_COLOUR', {id, colour})
   },
-  async getGroupById({ state, commit }, id) {
+  async getGroupById({state, commit}, id) {
     const stateGroup = state.groups[id]
     if (stateGroup) {
       // Found a group with that id in the state list/map, so just return that
@@ -53,7 +53,7 @@ export const actions = {
         const backendGroup = await this.$axios.$get(`/group/${id}`)
         // Group found, adding to state then returning
         prepareGroup(backendGroup)
-        commit('ADD_GROUP', { group: backendGroup })
+        commit('ADD_GROUP', {group: backendGroup})
         return backendGroup
       } catch (err) {
         // TODO: Error handling
@@ -66,17 +66,17 @@ export const actions = {
 }
 
 export const mutations = {
-  SET_GROUPS(state, { groups }) {
+  SET_GROUPS(state, {groups}) {
     state.groups = groups
     state.ready = true
   },
-  ADD_GROUP(state, { group }) {
+  ADD_GROUP(state, {group}) {
     state.groups[group.id] = group
   },
-  SET_NAME(state, { id, name }) {
+  SET_NAME(state, {id, name}) {
     state.groups[id].name = name
   },
-  SET_COLOUR(state, { id, colour }) {
+  SET_COLOUR(state, {id, colour}) {
     state.groups[id].colour = colour
   }
 }

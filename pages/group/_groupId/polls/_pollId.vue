@@ -7,9 +7,11 @@
     </p>
     <p>
       <span v-if="poll.change">You <b>can</b> change your vote at any time</span>
-      <span v-else-if="poll.question">You <b>cannot</b> change your vote<span v-if="!haveVoted"> after choosing</span></span>
+      <span v-else-if="poll.question">You <b>cannot</b> change your vote<span
+        v-if="!haveVoted"> after choosing</span></span>
     </p>
-    <div v-for="option in poll.options" @click="vote(poll, option)" class="poll-option box" :class="{'selected': option.selected}">
+    <div v-for="option in poll.options" @click="vote(poll, option)" class="poll-option box"
+         :class="{'selected': option.selected}">
       <div class="poll-bar" :style="calcStyle(poll, option)"></div>
       <p class="poll-option-name">{{ option.text }}</p>
       <p class="poll-option-votes">{{ option.votes }} votes</p>
@@ -19,13 +21,12 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
+  import {mapGetters} from 'vuex';
 
   export default {
     name: 'PollDetailPage',
     data() {
-      return {
-      }
+      return {}
     },
     computed: {
       ...mapGetters({
@@ -65,7 +66,7 @@
     methods: {
       vote(poll, option) {
         if (poll.change || !this.haveVoted) {
-          this.$store.dispatch('polls/vote', { poll, option })
+          this.$store.dispatch('polls/vote', {poll, option})
         }
       },
       calcStyle(poll, option) {

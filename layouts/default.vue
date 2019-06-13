@@ -1,29 +1,29 @@
 <template>
   <div v-if="user.ready">
     <div id="main">
-      <Sidebar v-if="user.loggedIn" />
-      <nuxt id="page" />
+      <Sidebar v-if="user.loggedIn"/>
+      <nuxt id="page"/>
     </div>
   </div>
 
-  <div v-else class="section">
+  <div class="section" v-else>
     <div class="container has-text-centered">
-        <h3 class="title">Loading TimeCheck</h3>
-        <p class="content">This should only take a moment</p>
-        <Loading />
+      <h3 class="title">Loading TimeCheck</h3>
+      <p class="content">This should only take a moment</p>
+      <Loading/>
     </div>
   </div>
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import {mapGetters} from 'vuex'
 
   import Sidebar from '~/components/Sidebar'
   import Loading from '~/components/Loading'
 
   export default {
     name: 'DefaultLayout',
-    components: { Loading, Sidebar },
+    components: {Loading, Sidebar},
     computed: {
       ...mapGetters({
         user: 'auth/user'

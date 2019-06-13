@@ -1,32 +1,32 @@
 <template>
-  <div v-if="group" class="group-page">
-    <TopAppBar :title="group.name" :group="group" />
+  <div class="group-page" v-if="group">
+    <TopAppBar :group="group" :title="group.name"/>
 
     <div class="group-content">
       <nuxt-child :group="group"/>
     </div>
   </div>
 
-  <div v-else class="section">
+  <div class="section" v-else>
     <div class="container has-text-centered">
       <h3 class="title">Loading group</h3>
       <p class="content">This should only take a moment</p>
-      <Loading />
+      <Loading/>
     </div>
   </div>
 </template>
 
 <script>
-  import { mapActions, mapGetters } from 'vuex'
+  import {mapActions} from 'vuex'
 
   import Loading from '~/components/Loading'
-  import Updates from "../../components/Updates";
-  import GroupFeatures from "../../components/GroupFeatures";
-  import TopAppBar from "../../components/TopAppBar";
+  import Updates from "../../components/Updates"
+  import GroupFeatures from "../../components/GroupFeatures"
+  import TopAppBar from "../../components/TopAppBar"
 
   export default {
     name: 'GroupViewPage',
-    components: { TopAppBar, GroupFeatures, Updates, Loading },
+    components: {TopAppBar, GroupFeatures, Updates, Loading},
     data() {
       return {
         group: null,
@@ -51,8 +51,8 @@
         this.$router.push('/dashboard')
       }
     },
-    asyncData ({ params }) {
-      return { groupId: params.groupId }
+    asyncData({params}) {
+      return {groupId: params.groupId}
     }
   }
 </script>
@@ -62,6 +62,7 @@
     display: flex;
     flex-direction: column;
   }
+
   .group-content {
     flex: 1 1 0;
     display: flex;

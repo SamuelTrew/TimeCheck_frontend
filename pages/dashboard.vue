@@ -7,14 +7,14 @@
         <GroupFeatures />
       </div-->
       <div class="column">
-        <Updates />
+        <Updates/>
       </div>
     </section>
   </section>
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import {mapGetters} from 'vuex'
   import GroupFeatures from '../components/GroupFeatures.vue'
   import Updates from "../components/Updates";
   import TopAppBar from "../components/TopAppBar";

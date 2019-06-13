@@ -10,12 +10,12 @@
           </p>
           <p> Dates when people are busy </p>
           <v-date-picker
-            is-expanded
             :available-dates='{end: new Date(1, 1, 1)}'
-            mode='multiple'
             :value='sharedDates'
             color="blue"
-            is-inline></v-date-picker>
+            is-expanded
+            is-inline
+            mode='multiple'></v-date-picker>
         </div>
 
         <div class="calendar-container">
@@ -24,14 +24,14 @@
           </p>
           <p> Select dates when you are busy </p>
           <v-date-picker
-            is-expanded
-            is-dark
             :available-dates='availableDates'
-            mode='multiple'
-            v-model='pickedDates'
             :value="null"
             color="red"
-            is-inline></v-date-picker>
+            is-dark
+            is-expanded
+            is-inline
+            mode='multiple'
+            v-model='pickedDates'></v-date-picker>
         </div>
       </div>
     </section>
@@ -53,9 +53,10 @@
 
 <script>
   import TopAppBar from "../../../components/TopAppBar";
+
   export default {
     name: 'GroupCalendarPage',
-    components: { TopAppBar },
+    components: {TopAppBar},
     computed: {
       sharedDates() {
         return this.groupDates.concat(this.pickedDates);
@@ -99,6 +100,7 @@
     text-align: center;
     font-weight: 500;
   }
+
   .calendar-sub-title {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;

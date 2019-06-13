@@ -1,9 +1,9 @@
 <template>
   <div>
-    <Updates :group="group" />
+    <Updates :group="group"/>
     <section class="section">
       <h3 class="title">Members</h3>
-      <p v-for="member in group.members" :key="member.id">{{ member.name }}</p>
+      <p :key="member.id" v-for="member in group.members">{{ member.name }}</p>
     </section>
   </div>
 </template>
@@ -19,7 +19,7 @@
         required: true
       }
     },
-    components: { Updates }
+    components: {Updates}
   }
 </script>
 

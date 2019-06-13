@@ -1,12 +1,15 @@
 <template>
   <div class="polls">
-    <div v-if="!listItemSelected" class="polls-list">
+    <div class="polls-list" v-if="!listItemSelected">
       <h2 class="polls-title">Polls</h2>
-      <nuxt-link class="create-poll" :to="`/group/${groupId}/polls/new`" active-class="selected" @click.native="toggleListItemSelected">
+      <nuxt-link :to="`/group/${groupId}/polls/new`" @click.native="toggleListItemSelected" active-class="selected"
+                 class="create-poll">
         <b-icon icon="plus" size="is-medium"></b-icon>
       </nuxt-link>
       <div class="polls-list-inner">
-        <nuxt-link v-for="poll in polls" :key="poll.id" class="poll-list-item" :to="`/group/${groupId}/polls/${poll.id}`" active-class="selected" @click.native="toggleListItemSelected">
+        <nuxt-link :key="poll.id" :to="`/group/${groupId}/polls/${poll.id}`" @click.native="toggleListItemSelected"
+                   active-class="selected" class="poll-list-item"
+                   v-for="poll in polls">
           <div class="content">
             {{ poll.question }}
           </div>
@@ -14,17 +17,17 @@
       </div>
     </div>
 
-    <div v-else class="polls-detail">
-      <button class="polls-back-button" @click="toggleListItemSelected">
-        <b-icon class="icon" icon="arrow-left" type="is-dark" size="is-medium"></b-icon>
+    <div class="polls-detail" v-else>
+      <button @click="toggleListItemSelected" class="polls-back-button">
+        <b-icon class="icon" icon="arrow-left" size="is-medium" type="is-dark"></b-icon>
       </button>
-      <nuxt-child />
+      <nuxt-child/>
     </div>
   </div>
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import {mapGetters} from 'vuex'
 
   export default {
     name: 'GroupPollsPage',
@@ -40,11 +43,11 @@
     },
     methods: {
       toggleListItemSelected() {
-        this.listItemSelected = !this.listItemSelected;
+        this.listItemSelected = !this.listItemSelected
       },
     },
-    asyncData ({ params }) {
-      return { groupId: params.groupId }
+    asyncData({params}) {
+      return {groupId: params.groupId}
     }
   }
 </script>
@@ -55,12 +58,14 @@
     height: 100%;
     display: flex;
   }
+
   .polls-title {
     font-size: 2rem;
     text-align: center;
     font-weight: 500;
     padding: 1rem;
   }
+
   .polls-list {
     width: 100%;
     background-color: #fafafa;
@@ -68,18 +73,22 @@
     display: flex;
     flex-direction: column;
   }
+
   .polls-list-inner {
     overflow-x: hidden;
     overflow-y: auto;
   }
+
   .polls-list-inner::-webkit-scrollbar {
     display: none;
   }
+
   .polls-detail {
     flex: 1 1 0;
     overflow-x: hidden;
     overflow-y: auto;
   }
+
   .create-poll,
   .poll-list-item {
     padding: 1rem;
@@ -88,18 +97,22 @@
     display: block;
     color: inherit;
   }
+
   .create-poll {
     border-top: 1px solid #dddddd;;
     text-align: center;
   }
+
   .create-poll.selected,
   .poll-list-item.selected {
     font-weight: 600;
     background-color: #e8e8e8;
   }
+
   .poll-option.selected .poll-bar {
     opacity: 0.25;
   }
+
   .polls-back-button {
     background-color: transparent;
     border: none;

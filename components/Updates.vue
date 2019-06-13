@@ -1,7 +1,7 @@
 <template>
   <section class="section updates">
-    <h3 v-if="group" class="title">Group Activity Feed</h3>
-    <h3 v-else class="title">Overall Activity Feed</h3>
+    <h3 class="title" v-if="group">Group Activity Feed</h3>
+    <h3 class="title" v-else>Overall Activity Feed</h3>
     <div class="columns is-multiline">
       <div class="column is-6">
         <div class="card">
@@ -9,7 +9,9 @@
             <div class="media">
               <div class="media-left">
                 <figure class="image is-48x48">
-                  <img class="is-rounded" src="https://spectator.imgix.net/content/uploads/2018/06/l.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550" alt="Placeholder image">
+                  <img alt="Placeholder image"
+                       class="is-rounded"
+                       src="https://spectator.imgix.net/content/uploads/2018/06/l.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550">
                 </figure>
               </div>
               <div class="media-content">
@@ -26,15 +28,15 @@
               <div>
                 Let your group know your status by checking in below!
               </div>
-              <br />
+              <br/>
               <div>
                 <a class="button is-success is-rounded">Arrived :)</a>
               </div>
-              <br />
+              <br/>
               <div>
                 <a class="button is-warning is-rounded">On my way!</a>
               </div>
-              <br />
+              <br/>
               <div>
                 <a class="button is-danger is-rounded">Gonna be late :(</a>
               </div>
@@ -49,7 +51,9 @@
             <div class="media">
               <div class="media-left">
                 <figure class="image is-48x48">
-                  <img class="is-rounded" src="https://spectator.imgix.net/content/uploads/2018/06/l.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550" alt="Placeholder image">
+                  <img alt="Placeholder image"
+                       class="is-rounded"
+                       src="https://spectator.imgix.net/content/uploads/2018/06/l.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550">
                 </figure>
               </div>
               <div class="media-content">
@@ -100,7 +104,9 @@
             <div class="media">
               <div class="media-left">
                 <figure class="image is-48x48">
-                  <img class="is-rounded" src="https://spectator.imgix.net/content/uploads/2018/06/l.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550" alt="Placeholder image">
+                  <img alt="Placeholder image"
+                       class="is-rounded"
+                       src="https://spectator.imgix.net/content/uploads/2018/06/l.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550">
                 </figure>
               </div>
               <div class="media-content">

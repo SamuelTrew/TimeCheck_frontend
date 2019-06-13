@@ -1,13 +1,13 @@
 <template>
   <div class="home">
     <!-- add vue particle code if you have time by stripping the original stuff -->
-    <nuxt-link v-if="user.loggedIn" to="/dashboard" class="button is-large is-light">Dashboard</nuxt-link>
-    <button v-else @click="login" class="button is-large is-light">Login</button>
+    <nuxt-link class="button is-large is-light" to="/dashboard" v-if="user.loggedIn">Dashboard</nuxt-link>
+    <button @click="login" class="button is-large is-light" v-else>Login</button>
   </div>
 </template>
 
 <script>
-  import { mapActions, mapGetters } from 'vuex'
+  import {mapActions, mapGetters} from 'vuex'
 
   export default {
     name: 'IndexPage',
@@ -35,9 +35,9 @@
 
 <style>
   .home {
-    background-image: -webkit-linear-gradient(309deg,#ee4266,#540d6e);
-    background-image: -o-linear-gradient(309deg,#ee4266,#540d6e);
-    background-image: linear-gradient(141deg,#ee4266,#540d6e);
+    background-image: -webkit-linear-gradient(309deg, #ee4266, #540d6e);
+    background-image: -o-linear-gradient(309deg, #ee4266, #540d6e);
+    background-image: linear-gradient(141deg, #ee4266, #540d6e);
     background-position: center center;
     background-size: cover;
     background-repeat: repeat;

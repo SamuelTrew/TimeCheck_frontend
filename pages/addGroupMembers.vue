@@ -9,23 +9,24 @@
         </div>
         <nuxt-link to="/newGroup">
           <div class="backArrow">
-            <b-icon href="newGroup" icon="arrow-left" type="is-light" size="is-medium"></b-icon>
+            <b-icon href="newGroup" icon="arrow-left" size="is-medium" type="is-light"></b-icon>
           </div>
         </nuxt-link>
       </div>
     </section>
     <section class="container is-fluid">
-    <AddEmailContacts />
+      <AddEmailContacts/>
     </section>
   </section>
 </template>
 
 <script>
-    import AddEmailContacts from "../components/AddEmailContacts";
-    export default {
-        name: "addGroupMembers",
-      components: { AddEmailContacts }
-    }
+  import AddEmailContacts from "../components/AddEmailContacts"
+
+  export default {
+    name: "addGroupMembers",
+    components: {AddEmailContacts}
+  }
 </script>
 
 <style scoped>

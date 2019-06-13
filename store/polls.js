@@ -11,27 +11,27 @@ export const getters = {
   map: state => state.polls,
   list: state => Object.values(state.polls),
   getPollById: state => id => {
-    return { ...state.polls[id] }
+    return {...state.polls[id]}
   },
 }
 
 export const actions = {
-  async fetchPolls({ commit }, groupId) {
-    commit('SET_GROUP', { groupId })
+  async fetchPolls({commit}, groupId) {
+    commit('SET_GROUP', {groupId})
     try {
       const pollsList = await this.$axios.$get(`/group/${groupId}/poll`)
       const pollsMap = {}
       pollsList.forEach(poll => {
         pollsMap[poll.id] = poll
-      });
-      commit('SET_POLLS', { polls: pollsMap })
+      })
+      commit('SET_POLLS', {polls: pollsMap})
     } catch (err) {
       // TODO: Error logging
       console.error(err)
     }
   },
   // TODO: Allow deleting polls
-  async createPoll({ state, commit, getters }, { question, multiple, change, hidden, options }) {
+  async createPoll({state, commit, getters}, {question, multiple, change, hidden, options}) {
     console.info(question, multiple, change, hidden, options)
     const poll = {
       question,
@@ -40,24 +40,24 @@ export const actions = {
       hide_results: hidden
     }
     poll.options = options.filter(option => option.text).map(option => {
-      return { text: option.text, order: option.order }
+      return {text: option.text, order: option.order}
     })
     console.info(poll)
     try {
       const newPoll = await this.$axios.$post(`/group/${state.groupId}/poll`, poll)
-      commit('ADD_POLL', { poll: newPoll })
+      commit('ADD_POLL', {poll: newPoll})
     } catch (err) {
       // TODO: Error logging
       console.error(err)
     }
   },
-  async vote({ state, commit }, { poll, option }) {
+  async vote({state, commit}, {poll, option}) {
     if (option.selected) {
       // Un-vote
       // commit('SET_OPTION', { option, value: false })
       try {
-        const newPoll = await this.$axios.$post(`/group/${state.groupId}/poll/${poll.id}/unvote`, { option: option.id })
-        commit('ADD_POLL', { poll: newPoll })
+        const newPoll = await this.$axios.$post(`/group/${state.groupId}/poll/${poll.id}/unvote`, {option: option.id})
+        commit('ADD_POLL', {poll: newPoll})
       } catch (err) {
         // TODO: Error logging
         console.error(err)
@@ -66,8 +66,8 @@ export const actions = {
       // Vote
       // commit('SET_OPTION', { option, value: true })
       try {
-        const newPoll = await this.$axios.$post(`/group/${state.groupId}/poll/${poll.id}/vote`, { option: option.id })
-        commit('ADD_POLL', { poll: newPoll })
+        const newPoll = await this.$axios.$post(`/group/${state.groupId}/poll/${poll.id}/vote`, {option: option.id})
+        commit('ADD_POLL', {poll: newPoll})
       } catch (err) {
         // TODO: Error logging
         console.error(err)
@@ -77,16 +77,16 @@ export const actions = {
 }
 
 export const mutations = {
-  SET_GROUP(state, { groupId }) {
+  SET_GROUP(state, {groupId}) {
     state.groupId = groupId
   },
-  SET_POLLS(state, { polls }) {
+  SET_POLLS(state, {polls}) {
     state.polls = polls
   },
-  ADD_POLL(state, { poll }) {
+  ADD_POLL(state, {poll}) {
     Vue.set(state.polls, poll.id, poll)
   },
-  SET_OPTION(state, { option, value }) {
+  SET_OPTION(state, {option, value}) {
     Vue.set(option, 'selected', value)
     if (value) {
       option.votes += 1

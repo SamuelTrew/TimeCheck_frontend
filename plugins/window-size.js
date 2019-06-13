@@ -1,4 +1,4 @@
-import Vue from 'vue';
-import VueWindowSize from 'vue-window-size';
+import Vue from 'vue'
+import VueWindowSize from 'vue-window-size'
 
-Vue.use(VueWindowSize);
+Vue.use(VueWindowSize)

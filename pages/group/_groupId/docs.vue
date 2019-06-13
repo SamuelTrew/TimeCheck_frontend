@@ -3,9 +3,9 @@
     <h2 class="docs-title">Docs</h2>
 
     <b-field>
-      <b-upload v-model="dropFiles"
+      <b-upload drag-drop
                 multiple
-                drag-drop>
+                v-model="dropFiles">
         <section class="section">
           <div class="content has-text-centered">
             <p>
@@ -21,18 +21,18 @@
     </b-field>
 
     <div class="tags">
-            <span v-for="(file, index) in dropFiles"
-                  :key="index"
-                  class="tag is-primary" >
+            <span :key="index"
+                  class="tag is-primary"
+                  v-for="(file, index) in dropFiles">
                 {{file.name}}
-                <button class="delete is-small"
-                        type="button"
-                        @click="deleteDropFile(index)">
+                <button @click="deleteDropFile(index)"
+                        class="delete is-small"
+                        type="button">
                 </button>
             </span>
     </div>
 
-    <br />
+    <br/>
 
   </section>
 </template>
@@ -63,6 +63,7 @@
     flex-direction: column;
     align-items: center;
   }
+
   .docs-title {
     font-size: 2rem;
     text-align: center;

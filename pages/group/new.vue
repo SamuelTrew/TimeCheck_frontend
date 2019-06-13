@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TopAppBar title="New Group" :has-back="true" parent="/dashboard" style="color: white"/>
+    <TopAppBar :has-back="true" parent="/dashboard" style="color: white" title="New Group"/>
 
     <section class="section">
       <div class="container">
@@ -11,7 +11,7 @@
             </b-field>
 
             <b-field label="Profile image">
-              <b-upload disabled v-model="file" drag-drop>
+              <b-upload disabled drag-drop v-model="file">
                 <section class="section">
                   <div class="content has-text-centered">
                     <p>
@@ -29,10 +29,11 @@
             <div>You will be able to invite members in the next step</div>
 
             <b-button
-              class="button is-primary"
               :disabled="name.length === 0"
               :loading="loading"
-              @click="createGroup">Create group</b-button>
+              @click="createGroup"
+              class="button is-primary">Create group
+            </b-button>
           </div>
         </div>
       </div>
@@ -42,10 +43,11 @@
 
 
 <script>
-  import TopAppBar from "../../components/TopAppBar";
+  import TopAppBar from "../../components/TopAppBar"
+
   export default {
     name: 'NewGroupPage',
-    components: { TopAppBar },
+    components: {TopAppBar},
     data() {
       return {
         name: '',
@@ -56,29 +58,29 @@
     methods: {
       async createGroup() {
         this.loading = true
-        const group = await this.$axios.$post('/group', { name: this.name })
+        const group = await this.$axios.$post('/group', {name: this.name})
         await this.$store.dispatch('groups/fetchGroups')
         this.loading = false
         this.$router.push(`/group/${group.id}/invite`)
       },
       onFileChange(e) {
-        let files = e.target.files || e.dataTransfer.files;
+        let files = e.target.files || e.dataTransfer.files
         if (!files.length)
-          return;
-        this.createImage(files[0]);
+          return
+        this.createImage(files[0])
       },
       createImage(file) {
-        let image = new Image();
-        let reader = new FileReader();
-        let vm = this;
+        let image = new Image()
+        let reader = new FileReader()
+        let vm = this
 
         reader.onload = (e) => {
-          vm.image = e.target.result;
-        };
-        reader.readAsDataURL(file);
+          vm.image = e.target.result
+        }
+        reader.readAsDataURL(file)
       },
       removeImage: function (e) {
-        this.image = '';
+        this.image = ''
       }
     }
   }

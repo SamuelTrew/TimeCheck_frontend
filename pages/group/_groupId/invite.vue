@@ -4,7 +4,7 @@
       <h3 class="title">Invite to group</h3>
     </section>
 
-    <section v-if="code" class="section">
+    <section class="section" v-if="code">
       <h4 class="title is-4">Send this link to your friends:</h4>
       <p>https://dev.timecheck.app/invite/{{ code }}</p>
     </section>

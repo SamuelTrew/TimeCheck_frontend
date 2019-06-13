@@ -1,19 +1,19 @@
 <template>
-  <section id="topappbar" :style="color">
+  <section :style="color" id="topappbar">
     <div class="hero-body">
       <div class="has-text-centered">
         <div class="top-bar-container">
           <div class="menu-icon">
-            <button v-if=hasBack class="menu">
+            <button class="menu" v-if=hasBack>
               <nuxt-link :to=parent>
                 <div class="icon">
-                  <b-icon icon="arrow-left" type="is-light" size="is-medium" style="margin-left: 1rem"></b-icon>
+                  <b-icon icon="arrow-left" size="is-medium" style="margin-left: 1rem" type="is-light"></b-icon>
                 </div>
               </nuxt-link>
             </button>
 
-            <button v-else class="menu" @click="toggleSidebar">
-              <b-icon class="icon" icon="menu" type="is-light" size="is-medium"></b-icon>
+            <button @click="toggleSidebar" class="menu" v-else>
+              <b-icon class="icon" icon="menu" size="is-medium" type="is-light"></b-icon>
             </button>
           </div>
 
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-  import { mapActions, mapGetters } from 'vuex'
+  import {mapActions} from 'vuex'
 
   export default {
     name: 'TopAppBar',
@@ -57,22 +57,26 @@
 
 <style scoped>
   #topappbar {
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     z-index: 1000;
   }
+
   .title {
     font-size: 2rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
   .hero-body {
     padding: 1rem;
   }
+
   .top-bar-container {
     display: flex;
     align-items: center;
   }
+
   .menu {
     display: flex;
     background-color: transparent;
@@ -81,13 +85,16 @@
     cursor: pointer;
     align-items: center;
   }
+
   .icon {
     z-index: 2;
     margin-right: 1rem;
   }
+
   .group-title {
     color: inherit;
   }
+
   @media screen and (min-width: 768px) {
     .menu-icon {
       display: none;

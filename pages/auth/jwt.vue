@@ -4,12 +4,12 @@
       <template v-if="loading">
         <h3 class="title">Logging In</h3>
         <p class="content">This should only take a moment</p>
-        <Loading />
+        <Loading/>
       </template>
       <template v-else>
         <h3 class="title">Error</h3>
         <p class="content">
-          Could not log in :(<br /><br />
+          Could not log in :(<br/><br/>
           Please try again and, if the problem persists, contact support: <a href="mailto:support@timecheck.app">support@timecheck.app</a>.
         </p>
       </template>
@@ -18,16 +18,14 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex'
+  import {mapActions} from 'vuex'
 
   import Loading from '~/components/Loading.vue'
 
   export default {
     name: 'AuthJWTPage',
     layout: 'blank',
-    components: {
-      Loading
-    },
+    components: {Loading},
     methods: {
       ...mapActions({
         setUser: 'user/setUser'
@@ -47,8 +45,8 @@
       try {
         const response = await this.$axios.post(
           'user/login',
-          { jwt: token },
-          { withCredentials: false }
+          {jwt: token},
+          {withCredentials: false}
         )
         // TODO: Make this more elegant?
         // TODO: Error if cannot set window.opener data or close window

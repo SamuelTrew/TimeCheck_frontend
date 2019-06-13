@@ -16,7 +16,7 @@
     </b-field>
 
     <b-field label="Change Vote">
-      <b-switch v-model="poll.change" :disabled="poll.multiple">
+      <b-switch :disabled="poll.multiple" v-model="poll.change">
         <span v-if="poll.change">Can change choice after voting</span>
         <span v-else>Cannot change choice after voting</span>
       </b-switch>
@@ -34,14 +34,14 @@
       <h5 class="title is-4">Options</h5>
       <p>Extra text boxes will automatically appear as you type</p>
 
-      <br />
+      <br/>
 
-      <b-field class="newpoll-option" :key="index" v-for="(option, index) in poll.options">
-        <b-input v-model="poll.options[index].text" @input="newOption(index)"></b-input>
+      <b-field :key="index" class="newpoll-option" v-for="(option, index) in poll.options">
+        <b-input @input="newOption(index)" v-model="poll.options[index].text"></b-input>
       </b-field>
     </div>
 
-    <b-button type="is-primary" @click="createPoll" :loading="saving">Create Poll</b-button>
+    <b-button :loading="saving" @click="createPoll" type="is-primary">Create Poll</b-button>
   </div>
 </template>
 
@@ -78,7 +78,7 @@
     methods: {
       newOption(index) {
         if (index === this.poll.options.length - 1) {
-          this.poll.options.push({ text: '', order: this.poll.options.length + 1 })
+          this.poll.options.push({text: '', order: this.poll.options.length + 1})
         }
       },
       async createPoll() {

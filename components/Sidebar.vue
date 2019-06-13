@@ -2,35 +2,36 @@
   <transition name="slide">
     <div id="sidebar" v-show="showSidebar || windowWidth >= 768">
       <div class="column left-column">
-        <nuxt-link to="/dashboard" class="sidebar-logo">
-          <img src="~/assets/tc-thumb-white.svg" />
+        <nuxt-link class="sidebar-logo" to="/dashboard">
+          <img src="~/assets/tc-thumb-white.svg"/>
         </nuxt-link>
         <div class="sidebar-label" style="margin-bottom: 0.2rem">
           Groups
         </div>
         <div class="sidebar-divider"></div>
         <div class="sidebar-groups">
-          <nuxt-link v-for="group in groups" :to="`/group/${group.id}`" class="sidebar-group" :key="group.id" >
-            <div v-if="group.thumb" class="group-thumb group-thumb-img" :style="{ backgroundImage: `url('${group.thumb}')` }"></div>
-            <div v-else class="group-thumb group-thumb-text">{{ group.name.charAt(0).toUpperCase() }}</div>
+          <nuxt-link :key="group.id" :to="`/group/${group.id}`" class="sidebar-group" v-for="group in groups">
+            <div :style="{ backgroundImage: `url('${group.thumb}')` }" class="group-thumb group-thumb-img"
+                 v-if="group.thumb"></div>
+            <div class="group-thumb group-thumb-text" v-else>{{ group.name.charAt(0).toUpperCase() }}</div>
           </nuxt-link>
         </div>
         <div class="sidebar-divider"></div>
-        <nuxt-link to="/group/new" class="sidebar-item" v-on:click.native="toggleSidebar">
-          <b-icon icon="plus" type="is-light" size="is-small-medium"></b-icon>
+        <nuxt-link class="sidebar-item" to="/group/new" v-on:click.native="toggleSidebar">
+          <b-icon icon="plus" size="is-small-medium" type="is-light"></b-icon>
         </nuxt-link>
         <div class="sidebar-label">
           Add
         </div>
-        <nuxt-link to="/auth/logout" class="sidebar-item">
-          <b-icon icon="logout" type="is-light" size="is-small-medium"></b-icon>
+        <nuxt-link class="sidebar-item" to="/auth/logout">
+          <b-icon icon="logout" size="is-small-medium" type="is-light"></b-icon>
         </nuxt-link>
         <div class="sidebar-label" style="padding-bottom: 0.5rem">
           Logout
         </div>
       </div>
-      <GroupFeatures v-if="this.group" class="column right-column" :group="group" />
-      <div class="column hide-touch-area" @click="toggleSidebar">
+      <GroupFeatures :group="group" class="column right-column" v-if="this.group"/>
+      <div @click="toggleSidebar" class="column hide-touch-area">
         <div style="width: 100%"></div>
       </div>
     </div>
@@ -38,12 +39,12 @@
 </template>
 
 <script>
-  import { mapActions, mapGetters } from 'vuex'
-  import GroupFeatures from "./GroupFeatures";
+  import {mapActions, mapGetters} from 'vuex'
+  import GroupFeatures from "./GroupFeatures"
 
   export default {
     name: 'Sidebar',
-    components: { GroupFeatures },
+    components: {GroupFeatures},
     data() {
       return {
         // TODO get group from _id
@@ -89,8 +90,8 @@
         }
       }
     },
-    asyncData ({ params }) {
-      return { groupId: params.groupId }
+    asyncData({params}) {
+      return {groupId: params.groupId}
     }
   }
 </script>
@@ -101,15 +102,18 @@
     display: flex;
     z-index: 1000;
     background-color: #3c3744;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
+
   .slide-leave-active,
   .slide-enter-active {
     transition: 0.1s;
   }
+
   .slide-enter {
     transform: translateX(-100%);
   }
+
   .slide-leave-to {
     transform: translateX(-100%);
   }
@@ -119,12 +123,14 @@
     display: flex;
     flex-direction: column;
   }
+
   .left-column {
     padding-top: 1rem;
     align-items: center;
     background-color: #3c3744;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
+
   .right-column {
     padding-top: 1rem;
     background-color: #474250;
@@ -135,12 +141,15 @@
       z-index: 1000;
       /*display: none;*/
     }
+
     #sidebar.sidebar-visible {
       /*display: flex;*/
     }
+
     .left-column {
       z-index: 1003;
     }
+
     .right-column {
       z-index: 1002;
     }
@@ -182,6 +191,7 @@
   .sidebar-logo {
     margin-bottom: 0.5rem;
   }
+
   .sidebar-item {
     margin-top: 1rem;
   }
@@ -202,6 +212,7 @@
     overflow-y: auto;
     overflow-x: hidden;
   }
+
   .sidebar-groups::-webkit-scrollbar {
     display: none;
     width: 0 !important

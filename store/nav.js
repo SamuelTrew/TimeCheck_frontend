@@ -1,5 +1,5 @@
 // States
-export const state = () =>({
+export const state = () => ({
   showSidebar: false
 })
 
@@ -10,7 +10,7 @@ export const getters = {
 
 // actions
 export const actions = {
-  toggleSidebar({ commit }) {
+  toggleSidebar({commit}) {
     commit('TOGGLE_SIDEBAR')
   }
 }

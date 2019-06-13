@@ -19,6 +19,7 @@
     -webkit-animation: load-anim 1.2s infinite ease-in-out;
     animation: load-anim 1.2s infinite ease-in-out;
   }
+
   @-webkit-keyframes load-anim {
     0% {
       -webkit-transform: scale(0);
@@ -28,6 +29,7 @@
       opacity: 0;
     }
   }
+
   @keyframes load-anim {
     0% {
       -webkit-transform: scale(0);

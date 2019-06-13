@@ -20,25 +20,25 @@ export const getters = {
 }
 
 export const actions = {
-  async init({ commit, dispatch }) {
+  async init({commit, dispatch}) {
     const token = localStorage.getItem('user:token')
     console.info("Token: ", token)
     if (token) {
       this.$axios.setToken(token, 'Token')
       try {
         const details = await this.$axios.$get('/user/me')
-        commit('LOGIN', { details, token })
-        dispatch('groups/fetchGroups', null, { root: true })
+        commit('LOGIN', {details, token})
+        dispatch('groups/fetchGroups', null, {root: true})
         if (this.$router.currentRoute.name === 'index') {
           this.$router.push('/dashboard')
         }
       } catch (err) {
         // TODO: Error logging
         console.error(err)
-        dispatch('logout', { tellServer: false })
+        dispatch('logout', {tellServer: false})
       }
     } else {
-      dispatch('logout', { tellServer: false })
+      dispatch('logout', {tellServer: false})
     }
   },
   login() {
@@ -49,9 +49,9 @@ export const actions = {
       'height=600,width=518'
     )
   },
-  setUser({ commit, dispatch }, { details, token }) {
-    commit('LOGIN', { details, token })
-    dispatch('groups/fetchGroups', null, { root: true })
+  setUser({commit, dispatch}, {details, token}) {
+    commit('LOGIN', {details, token})
+    dispatch('groups/fetchGroups', null, {root: true})
     this.$router.push('/dashboard')
     // TODO: For use in showing unconfirmed user details temporarily
     // localStorage.setItem('user:details', JSON.stringify(details))
@@ -59,7 +59,7 @@ export const actions = {
       this.$router.push('/dashboard')
     }
   },
-  logout({ commit }, { tellServer = true } = {}) {
+  logout({commit}, {tellServer = true} = {}) {
     // TODO: Change redirect to only if required (i.e. auth required page)
     // if (rootState.route.name === 'account')
     if (tellServer) {
@@ -74,7 +74,7 @@ export const actions = {
 }
 
 export const mutations = {
-  LOGIN(state, { details, token }) {
+  LOGIN(state, {details, token}) {
     this.$axios.setToken(token, 'Token')
     localStorage.setItem('user:token', token)
     state.details = details
