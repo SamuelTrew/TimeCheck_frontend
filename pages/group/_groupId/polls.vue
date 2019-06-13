@@ -1,6 +1,7 @@
 <template>
   <div class="polls">
     <div v-if="!listItemSelected" class="polls-list">
+      <h2 class="polls-title">Polls</h2>
       <nuxt-link class="create-poll" :to="`/group/${groupId}/polls/new`" active-class="selected" @click.native="toggleListItemSelected">
         <b-icon icon="plus" size="is-medium"></b-icon>
       </nuxt-link>
@@ -42,9 +43,6 @@
         this.listItemSelected = !this.listItemSelected;
       },
     },
-    toggleListItemSelected() {
-      this.listItemSelected = !this.listItemSelected;
-    },
     asyncData ({ params }) {
       return { groupId: params.groupId }
     }
@@ -56,6 +54,12 @@
     width: 100%;
     height: 100%;
     display: flex;
+  }
+  .polls-title {
+    font-size: 2rem;
+    text-align: center;
+    font-weight: 500;
+    padding: 1rem;
   }
   .polls-list {
     width: 100%;
@@ -85,6 +89,7 @@
     color: inherit;
   }
   .create-poll {
+    border-top: 1px solid #dddddd;;
     text-align: center;
   }
   .create-poll.selected,
