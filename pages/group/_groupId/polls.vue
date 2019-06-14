@@ -14,6 +14,11 @@
               {{ poll.question }}
             </div>
           </nuxt-link>
+
+          <br />
+          <br />
+
+          <next group="group" next="notes"/>
         </div>
       </div>
 
@@ -36,6 +41,11 @@
               {{ poll.question }}
             </div>
           </nuxt-link>
+
+          <br />
+          <br />
+
+          <next :group="`/group/${group.id}`" next="notes"/>
         </div>
       </div>
 
@@ -51,15 +61,23 @@
 
 <script>
   import {mapGetters} from 'vuex'
+  import Next from "../../../components/next";
 
   export default {
     name: 'GroupPollsPage',
+    components: {Next},
     computed: {
       ...mapGetters({
         polls: 'polls/list'
       }),
       pollDetail() {
         return this.$route.params.pollId
+      }
+    },
+    props: {
+      group: {
+        type: Object,
+        required: true
       }
     },
     data() {

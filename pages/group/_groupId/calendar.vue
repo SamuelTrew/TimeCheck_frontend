@@ -30,6 +30,7 @@
             is-inline
             mode='multiple'></v-date-picker>
         </div>
+
       </div>
     </section>
 
@@ -44,11 +45,29 @@
         </div>
       </div>
     </section>
+
+    <br />
+    <br />
+
+    <section>
+      <nuxt-link :to="`/group/${group.id}/polls`">
+        <b-button type="is-primary">
+          Next
+        </b-button>
+      </nuxt-link>
+
+      <nuxt-link :to="`/group/${group.id}`">
+        <b-button type="is-info">
+          Skip
+        </b-button>
+      </nuxt-link>
+    </section>
   </section>
 </template>
 
 <script>
   import TopAppBar from "../../../components/TopAppBar";
+  import {mapActions} from 'vuex';
 
   export default {
     name: 'GroupCalendarPage',
@@ -57,6 +76,17 @@
       sharedDates() {
         return this.groupDates.concat(this.pickedDates);
       }
+    },
+    props: {
+      group: {
+        type: Object,
+        required: true
+      }
+    },
+    methods: {
+      ...mapActions({
+        toggleSidebar: 'nav/toggleSidebar'
+      })
     },
     data() {
       return {
