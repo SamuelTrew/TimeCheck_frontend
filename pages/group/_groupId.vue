@@ -42,7 +42,7 @@
       const group = await this.getGroupById(this.groupId)
       if (group) {
         this.group = group
-        console.info('Group id:', this.groupId)
+        this.$store.dispatch('activity/fetchActivity', this.groupId)
         this.$store.dispatch('polls/fetchPolls', this.groupId)
         this.$store.dispatch('notes/fetchNotes', this.groupId)
       } else {
