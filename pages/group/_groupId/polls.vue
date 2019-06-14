@@ -1,46 +1,85 @@
 <template>
   <div class="polls">
-    <div class="polls-list" v-if="!listItemSelected">
-      <h2 class="polls-title">Polls</h2>
-      <nuxt-link :to="`/group/${groupId}/polls/new`" @click.native="toggleListItemSelected" active-class="selected"
-                 class="create-poll">
-        <b-icon icon="plus" size="is-medium"></b-icon>
-      </nuxt-link>
-      <div class="polls-list-inner">
-        <nuxt-link :key="poll.id" :to="`/group/${groupId}/polls/${poll.id}`" @click.native="toggleListItemSelected"
-                   active-class="selected" class="poll-list-item"
-                   v-for="poll in polls">
-          <div class="content">
-            {{ poll.question }}
-          </div>
+    <!-- TODO: I mean, seriously -->
+    <template v-if="windowWidth >= 769">
+      <div class="polls-list">
+        <nuxt-link :to="`/group/${groupId}/polls/new`" @click.native="toggleListItemSelected" active-class="selected"
+                   class="create-poll">
+          <b-icon icon="plus" size="is-medium"></b-icon>
         </nuxt-link>
-
-        <br />
-        <br />
-
-        <div>
-          <nuxt-link :to="`/group/${group.id}/notes`">
-            <b-button type="is-primary">
-              Next
-            </b-button>
+        <div class="polls-list-inner">
+          <nuxt-link :key="poll.id" :to="`/group/${groupId}/polls/${poll.id}`" @click.native="toggleListItemSelected"
+                     active-class="selected" class="poll-list-item" v-for="poll in polls">
+            <div class="content">
+              {{ poll.question }}
+            </div>
           </nuxt-link>
 
-          <nuxt-link :to="`/group/${group.id}`">
-            <b-button type="is-info">
-              Skip
-            </b-button>
-          </nuxt-link>
+          <br />
+          <br />
+
+          <section>
+            <nuxt-link :to="`/group/${group.id}/notes`">
+              <b-button type="is-primary">
+                Next
+              </b-button>
+            </nuxt-link>
+
+            <nuxt-link :to="`/group/${group.id}`">
+              <b-button type="is-info">
+                Skip
+              </b-button>
+            </nuxt-link>
+          </section>
         </div>
       </div>
-    </div>
 
-    <div class="polls-detail" v-else>
-      <button @click="toggleListItemSelected" class="polls-back-button">
-        <b-icon class="icon" icon="arrow-left" size="is-medium" type="is-dark"></b-icon>
-      </button>
-      <nuxt-child/>
-    </div>
+      <div class="polls-detail section">
+        <nuxt-child/>
+      </div>
+    </template>
 
+    <template v-else>
+      <div class="polls-list" v-if="!listItemSelected">
+        <h2 class="polls-title">Polls</h2>
+        <nuxt-link :to="`/group/${groupId}/polls/new`" @click.native="toggleListItemSelected" active-class="selected"
+                   class="create-poll">
+          <b-icon icon="plus" size="is-medium"></b-icon>
+        </nuxt-link>
+        <div class="polls-list-inner">
+          <nuxt-link :key="poll.id" :to="`/group/${groupId}/polls/${poll.id}`" @click.native="toggleListItemSelected"
+                     active-class="selected" class="poll-list-item" v-for="poll in polls">
+            <div class="content">
+              {{ poll.question }}
+            </div>
+          </nuxt-link>
+
+          <br />
+          <br />
+
+          <section>
+            <nuxt-link :to="`/group/${group.id}/notes`">
+              <b-button type="is-primary">
+                Next
+              </b-button>
+            </nuxt-link>
+
+            <nuxt-link :to="`/group/${group.id}`">
+              <b-button type="is-info">
+                Skip
+              </b-button>
+            </nuxt-link>
+          </section>
+        </div>
+      </div>
+
+      <div class="polls-detail" v-else>
+        <button @click="toggleListItemSelected" class="polls-back-button">
+          <b-icon class="icon" icon="arrow-left" size="is-medium" type="is-dark"></b-icon>
+        </button>
+        <nuxt-child/>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -52,7 +91,10 @@
     computed: {
       ...mapGetters({
         polls: 'polls/list'
-      })
+      }),
+      pollDetail() {
+        return this.$route.params.pollId
+      }
     },
     props: {
       group: {
@@ -135,7 +177,6 @@
 
   .poll-option {
     cursor: pointer;
-    margin: 1.5rem 0;
     padding: 0.5rem 1rem;
     background-color: #fafafa;
     position: relative;
@@ -177,5 +218,11 @@
     cursor: pointer;
     align-items: center;
     padding: 1rem;
+  }
+
+  @media screen and (min-width: 769px) {
+    .polls-list {
+      width: 30%;
+    }
   }
 </style>

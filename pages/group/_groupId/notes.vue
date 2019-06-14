@@ -4,26 +4,31 @@
       <div class="notes-title">Group Notes</div>
       <div class="notes-page-container">
         <div>
-          <b-button @click="openModal" type="is-primary">New Note</b-button>
+          <b-button @click="openNewModal" type="is-primary">New Note</b-button>
         </div>
         <br/>
         <div class="columns is-multiline">
           <div class="row" v-bind:key="note.id" v-for="note in notes">
             <div class="column">
               <div class="card">
-                <header class="card-header">
+                <div class="card-header">
                   <p class="card-header-title">
                     @{{note.creator.name}}
                   </p>
                   <div class="delete-button">
-                    <b-button @click="deleteNote(note)" size="is-small-medium" type="is-danger">X</b-button>
+                    <b-button @click="openEditModal(note)" size="is-small-medium" type="is-primary">
+                      <b-icon icon="pencil"></b-icon>
+                    </b-button>
+                    <b-button @click="deleteNote(note)" size="is-small-medium" type="is-danger">
+                      <b-icon icon="delete"></b-icon>
+                    </b-button>
                   </div>
-                </header>
+                </div>
                 <div class="card-content">
                   <div class="notes-sub-title">
-                    {{note.title}}
+                    <b>{{note.title}}</b>
                   </div>
-                  <b-input rounded type="textarea" v-model="note.text"></b-input>
+                  <p>{{note.text}}</p>
                 </div>
               </div>
             </div>
@@ -50,7 +55,7 @@
     </section>
 
     <!-- TODO: Fix background issue -->
-    <b-modal :active.sync="modalActive" has-modal-card>
+    <b-modal :active.sync="newModalActive" has-modal-card>
       <div class="modal-card" id="newNote">
         <div class="modal-card-head">
           <p class="modal-card-title">New Note</p>
@@ -74,8 +79,38 @@
         </div>
 
         <div class="modal-card-foot">
-          <b-button @click="modalActive = false" class="button" type="button">Close</b-button>
-          <b-button :disabled="newNoteSaveDisabled" :loading="saving" @click="createNote" class="button is-primary">Save</b-button>
+          <b-button @click="newModalActive = false" class="button" type="button">Close</b-button>
+          <b-button :disabled="newNoteSaveDisabled" :loading="newSaving" @click="createNote" class="button is-primary">Save</b-button>
+        </div>
+      </div>
+    </b-modal>
+
+    <b-modal :active.sync="editModalActive" has-modal-card>
+      <div class="modal-card" id="editNote">
+        <div class="modal-card-head">
+          <p class="modal-card-title">Edit Note</p>
+        </div>
+
+        <div class="modal-card-body">
+          <b-field label="Title">
+            <b-input
+              required
+              v-model="editNote.title">
+            </b-input>
+          </b-field>
+
+          <b-field label="Note">
+            <b-input
+              required
+              type="textarea"
+              v-model="editNote.text">
+            </b-input>
+          </b-field>
+        </div>
+
+        <div class="modal-card-foot">
+          <b-button @click="editModalActive = false" class="button" type="button">Close</b-button>
+          <b-button :disabled="editNoteSaveDisabled" :loading="editSaving" @click="updateNote" class="button is-primary">Update</b-button>
         </div>
       </div>
     </b-modal>
@@ -105,12 +140,18 @@
       return {
         lines: [],
         blockRemoval: true,
-        modalActive: false,
+        newModalActive: false,
         newNote: {
           title: '',
           text: ''
         },
-        saving: false
+        newSaving: false,
+        editModalActive: false,
+        editNote: {
+          title: '',
+          text: ''
+        },
+        editSaving: false
       }
     },
     watch: {
@@ -134,26 +175,47 @@
       newNoteSaveDisabled() {
         return !this.newNote.title || !this.newNote.text
       },
+      editNoteSaveDisabled() {
+        return !this.editNote.title || !this.editNote.text
+      },
     },
     methods: {
-      openModal() {
+      openNewModal() {
         this.newNote = {
           title: '',
           text: ''
         }
-        this.saving = false
-        this.modalActive = true
+        this.newSaving = false
+        this.newModalActive = true
+      },
+
+      openEditModal(note) {
+        this.editNote = {...note}
+        this.editSaving = false
+        this.editModalActive = true
       },
 
       async createNote() {
-        this.saving = true
+        this.newSaving = true
         try {
           await this.$store.dispatch('notes/createNote', this.newNote)
         } catch (e) {
           console.error("Note creation error", e);
         } finally {
-          this.modalActive = false
-          this.saving = false
+          this.newModalActive = false
+          this.newSaving = false
+        }
+      },
+
+      async updateNote() {
+        this.editSaving = true
+        try {
+          await this.$store.dispatch('notes/updateNote', this.editNote)
+        } catch (e) {
+          console.error("Note edit error", e);
+        } finally {
+          this.editModalActive = false
+          this.editSaving = false
         }
       },
 
@@ -228,18 +290,26 @@
     font-weight: 600;
   }
 
-  .modal .animation-content #newNote {
+  .modal .animation-content #newNote,
+  .modal .animation-content #editNote {
     margin: 0 auto;
   }
 
-  #newNote {
+  #newNote,
+  #editNote {
     max-width: 500px;
     width: 90%;
   }
 
   @media screen and (min-width: 769px) {
-    #newNote {
+    #newNote,
+    #editNote {
       width: 500px;
+    }
+
+    .notes .card {
+      max-width: 300px;
+      width: 300px;
     }
   }
 </style>
