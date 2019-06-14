@@ -267,17 +267,20 @@
     font-weight: 600;
   }
 
-  .modal .animation-content #newNote {
+  .modal .animation-content #newNote,
+  .modal .animation-content #editNote {
     margin: 0 auto;
   }
 
-  #newNote {
+  #newNote,
+  #editNote {
     max-width: 500px;
     width: 90%;
   }
 
   @media screen and (min-width: 769px) {
-    #newNote {
+    #newNote,
+    #editNote {
       width: 500px;
     }
   }
