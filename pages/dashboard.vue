@@ -30,7 +30,9 @@
         user: 'auth/user'
       }),
       getUserName() {
-        return this.user.details.name.split(" ")[0]
+        // TODO: This shouldn't be necessary... (should not be in dashboard if no user details)
+        if (this.user.details) return this.user.details.name.split(" ")[0]
+        return "Unknown User"
       }
     },
   }
