@@ -37,7 +37,16 @@ export const actions = {
       console.error(err)
     }
   },
-  async deleteNote({state, commit, getters}, note) {
+  async updateNote({state, commit}, {id, title, text}) {
+    try {
+      const newNote = await this.$axios.$put(`/group/${state.groupId}/note/${id}`, {title, text})
+      commit('ADD_NOTE', {note: newNote})
+    } catch(err) {
+      // TODO: Error logging
+      console.error(err)
+    }
+  },
+  async deleteNote({state, commit}, note) {
     try {
       await this.$axios.$delete(`/group/${state.groupId}/note/${note.id}`)
       commit('DELETE_NOTE', {note})
