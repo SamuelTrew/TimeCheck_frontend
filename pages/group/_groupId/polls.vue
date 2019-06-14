@@ -14,6 +14,23 @@
             {{ poll.question }}
           </div>
         </nuxt-link>
+
+        <br />
+        <br />
+
+        <div>
+          <nuxt-link :to="`/group/${group.id}/notes`">
+            <b-button type="is-primary">
+              Next
+            </b-button>
+          </nuxt-link>
+
+          <nuxt-link :to="`/group/${group.id}`">
+            <b-button type="is-info">
+              Skip
+            </b-button>
+          </nuxt-link>
+        </div>
       </div>
     </div>
 
@@ -23,6 +40,7 @@
       </button>
       <nuxt-child/>
     </div>
+
   </div>
 </template>
 
@@ -35,6 +53,12 @@
       ...mapGetters({
         polls: 'polls/list'
       })
+    },
+    props: {
+      group: {
+        type: Object,
+        required: true
+      }
     },
     data() {
       return {

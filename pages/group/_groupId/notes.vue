@@ -32,6 +32,23 @@
       </div>
     </section>
 
+    <br />
+    <br />
+
+    <section>
+      <nuxt-link :to="`/group/${group.id}/notes`">
+        <b-button type="is-primary">
+          Next
+        </b-button>
+      </nuxt-link>
+
+      <nuxt-link :to="`/group/${group.id}`">
+        <b-button type="is-info">
+          Skip
+        </b-button>
+      </nuxt-link>
+    </section>
+
     <!-- TODO: Fix background issue -->
     <b-modal :active.sync="modalActive" has-modal-card>
       <div class="modal-card" id="newNote">
@@ -77,6 +94,12 @@
       TopAppBar,
       Updates,
       GroupFeatures,
+    },
+    props: {
+      group: {
+        type: Object,
+        required: true
+      }
     },
     data() {
       return {
