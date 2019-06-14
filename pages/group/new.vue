@@ -32,7 +32,7 @@
               :disabled="name.length === 0"
               :loading="loading"
               @click="createGroup"
-              class="button is-primary">Create group
+              type="is-primary">Create group
             </b-button>
           </div>
         </div>

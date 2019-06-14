@@ -100,7 +100,7 @@
 
   #sidebar {
     display: flex;
-    z-index: 1000;
+    z-index: 1;
     background-color: #3c3744;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
@@ -138,7 +138,7 @@
 
   @media only screen and (max-width: 767px) {
     #sidebar {
-      z-index: 1000;
+      z-index: 10;
       /*display: none;*/
     }
 
@@ -147,11 +147,11 @@
     }
 
     .left-column {
-      z-index: 1003;
+      z-index: 13;
     }
 
     .right-column {
-      z-index: 1002;
+      z-index: 12;
     }
   }
 
@@ -162,7 +162,7 @@
     position: absolute;
     width: 100%;
     background: transparent;
-    z-index: 1001;
+    z-index: 11;
   }
 
   @media only screen and (min-width: 768px) {

@@ -58,7 +58,7 @@
 <style scoped>
   #topappbar {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    z-index: 1000;
+    z-index: 10;
   }
 
   .title {

@@ -44,6 +44,7 @@
         this.group = group
         console.info('Group id:', this.groupId)
         this.$store.dispatch('polls/fetchPolls', this.groupId)
+        this.$store.dispatch('notes/fetchNotes', this.groupId)
       } else {
         // Could not find group
         // TODO: Display error about group 404 not found

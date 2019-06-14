@@ -17,8 +17,8 @@
             <p>You have been invited to join "{{ group.name }}"</p>
             <p>Do you want to join this group?</p>
 
-            <button @click="cancel" class="button">Cancel</button>
-            <button @click="join" class="button is-primary">Join</button>
+            <b-button @click="cancel">Cancel</b-button>
+            <b-button @click="join" type="is-primary">Join</b-button>
           </div>
         </div>
       </div>

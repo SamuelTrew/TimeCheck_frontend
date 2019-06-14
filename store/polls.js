@@ -10,9 +10,6 @@ export const state = () => {
 export const getters = {
   map: state => state.polls,
   list: state => Object.values(state.polls),
-  getPollById: state => id => {
-    return {...state.polls[id]}
-  },
 }
 
 export const actions = {
@@ -31,8 +28,7 @@ export const actions = {
     }
   },
   // TODO: Allow deleting polls
-  async createPoll({state, commit, getters}, {question, multiple, change, hidden, options}) {
-    console.info(question, multiple, change, hidden, options)
+  async createPoll({state, commit}, {question, multiple, change, hidden, options}) {
     const poll = {
       question,
       multiple,
@@ -42,7 +38,6 @@ export const actions = {
     poll.options = options.filter(option => option.text).map(option => {
       return {text: option.text, order: option.order}
     })
-    console.info(poll)
     try {
       const newPoll = await this.$axios.$post(`/group/${state.groupId}/poll`, poll)
       commit('ADD_POLL', {poll: newPoll})
@@ -73,7 +68,7 @@ export const actions = {
         console.error(err)
       }
     }
-  },
+  }
 }
 
 export const mutations = {
@@ -86,12 +81,12 @@ export const mutations = {
   ADD_POLL(state, {poll}) {
     Vue.set(state.polls, poll.id, poll)
   },
-  SET_OPTION(state, {option, value}) {
-    Vue.set(option, 'selected', value)
-    if (value) {
-      option.votes += 1
-    } else {
-      option.votes -= 1
-    }
-  }
+  // SET_OPTION(state, {option, value}) {
+  //   Vue.set(option, 'selected', value)
+  //   if (value) {
+  //     option.votes += 1
+  //   } else {
+  //     option.votes -= 1
+  //   }
+  // }
 }
