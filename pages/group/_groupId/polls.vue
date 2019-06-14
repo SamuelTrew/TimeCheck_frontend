@@ -18,19 +18,7 @@
           <br />
           <br />
 
-          <section>
-            <nuxt-link :to="`/group/${group.id}/notes`">
-              <b-button type="is-primary">
-                Next
-              </b-button>
-            </nuxt-link>
-
-            <nuxt-link :to="`/group/${group.id}`">
-              <b-button type="is-info">
-                Skip
-              </b-button>
-            </nuxt-link>
-          </section>
+          <next group="group" next="notes"/>
         </div>
       </div>
 
@@ -57,19 +45,7 @@
           <br />
           <br />
 
-          <section>
-            <nuxt-link :to="`/group/${group.id}/notes`">
-              <b-button type="is-primary">
-                Next
-              </b-button>
-            </nuxt-link>
-
-            <nuxt-link :to="`/group/${group.id}`">
-              <b-button type="is-info">
-                Skip
-              </b-button>
-            </nuxt-link>
-          </section>
+          <next :group="`/group/${group.id}`" next="notes"/>
         </div>
       </div>
 
@@ -85,9 +61,11 @@
 
 <script>
   import {mapGetters} from 'vuex'
+  import Next from "../../../components/next";
 
   export default {
     name: 'GroupPollsPage',
+    components: {Next},
     computed: {
       ...mapGetters({
         polls: 'polls/list'
