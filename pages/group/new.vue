@@ -14,7 +14,7 @@
               <b-input v-model="description"></b-input>
             </b-field>
 
-            <div>You will be able to invite members in the next step</div>
+            <!--<div>You will be able to invite members in the next step</div>-->
 
             <b-button :disabled="name.length === 0"
                       :loading="loading"
@@ -50,7 +50,7 @@
         const group = await this.$axios.$post('/group', {name: this.name})
         await this.$store.dispatch('groups/fetchGroups')
         this.loading = false
-        this.$router.push(`/group/${group.id}/invite`)
+        this.$router.push(`/group/${group.id}/calendar`)
       },
       onFileChange(e) {
         let files = e.target.files || e.dataTransfer.files
