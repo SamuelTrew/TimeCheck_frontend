@@ -17,23 +17,6 @@
       <p class="poll-option-votes">{{ option.votes }} votes</p>
     </div>
     <p v-if="poll.question">Total of {{ totalVotes }} votes</p>
-
-    <br />
-    <br />
-
-    <section>
-      <nuxt-link :to="`/group/${group.id}/flow/notes`">
-        <b-button type="is-primary">
-          Next
-        </b-button>
-      </nuxt-link>
-
-      <nuxt-link :to="`/group/${group.id}`">
-        <b-button type="is-info">
-          Skip
-        </b-button>
-      </nuxt-link>
-    </section>
   </div>
 </template>
 

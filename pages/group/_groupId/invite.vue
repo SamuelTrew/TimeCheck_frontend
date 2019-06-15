@@ -9,14 +9,32 @@
       <p>https://dev.timecheck.app/invite/{{ code }}</p>
     </section>
 
-  <section>
-    <a :href="'https://www.facebook.com/sharer/sharer.php?u=https%3A//dev.timecheck.app/invite/' + code">
-      Share on Facebook</a>
-  </section>
+    <section>
+      <a :href="'https://www.facebook.com/sharer/sharer.php?u=https%3A//dev.timecheck.app/invite/' + code">
+        Share on Facebook</a>
+    </section>
+
     <section>
       <a :href="'https://wa.me/whatsappphonenumber/?text=https://dev.timecheck.app/invite/' + code">
         Share via WhatsApp
       </a>
+    </section>
+
+    <br />
+    <br />
+
+    <section>
+      <nuxt-link :to="`/group/${group.id}/flow/calendar`">
+        <b-button type="is-primary">
+          Next
+        </b-button>
+      </nuxt-link>
+
+      <nuxt-link :to="`/group/${group.id}`">
+        <b-button type="is-info">
+          Skip
+        </b-button>
+      </nuxt-link>
     </section>
   </div>
 </template>
