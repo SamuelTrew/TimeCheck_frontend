@@ -50,7 +50,7 @@
     <br />
 
     <section>
-      <nuxt-link :to="`/group/${group.id}/polls`">
+      <nuxt-link :to="`/group/${group.id}/flow/polls`">
         <b-button type="is-primary">
           Next
         </b-button>
@@ -66,7 +66,7 @@
 </template>
 
 <script>
-  import TopAppBar from "../../../components/TopAppBar";
+  import TopAppBar from "../../../../components/TopAppBar";
   import {mapActions} from 'vuex';
 
   export default {
@@ -156,16 +156,13 @@
   }
 
   .calendar-settings {
-    margin-left: 2rem;
+    margin: auto;
+    max-width: 768px;
   }
 
   .calendar-range-picker {
     max-width: 300px;
   }
 
-  .tutorial-next {
-    float: right;
-    margin: 2rem;
-  }
 </style>
 
