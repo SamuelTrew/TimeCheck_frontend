@@ -46,22 +46,16 @@
       </div>
     </section>
 
-    <br />
-    <br />
-
-    <next :group="group" next="polls/new" style="float: right; margin-right: 2rem"/>
-
   </section>
 </template>
 
 <script>
   import TopAppBar from "../../../components/TopAppBar";
-  import Next from "../../../components/next";
   import {mapActions} from 'vuex';
 
   export default {
     name: 'GroupCalendarPage',
-    components: {TopAppBar, Next},
+    components: {TopAppBar},
     computed: {
       sharedDates() {
         return this.groupDates.concat(this.pickedDates);
