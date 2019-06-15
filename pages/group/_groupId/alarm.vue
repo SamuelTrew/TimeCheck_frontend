@@ -78,7 +78,6 @@
 
           <b-field label="Select Time">
             <b-clockpicker
-              :hour-format="format"
               inline
               type="is-primary"
               v-model="time">
@@ -96,12 +95,6 @@
         </div>
       </div>
     </section>
-
-    <!--<section>-->
-    <!--<div class="timer">-->
-    <!--{{ `${this.displayTime.first}  ${this.displayTime.next}` }}-->
-    <!--</div>-->
-    <!--</section>-->
   </section>
 </template>
 
@@ -132,22 +125,28 @@
         reminder: '',
         time: new Date(),
         date: new Date(),
-        countdown: {
-          seconds: 0,
-          minutes: 0,
-          hours: 0,
-          days: 0
-        },
-        diff: 0,
-        displayTime: {
-          first: ``,
-          next: ``,
-        },
-        intervalSetter: null,
-        isAmPm: false,
+        today: new Date(),
       }
     },
     methods: {
+      notifyMe() {
+        console.log(this.today.getDay())
+        console.log(this.date.getDay())
+        if (this.today.getDay() === this.date.getDay()) {
+          if (Notification.permission !== "granted")
+            Notification.requestPermission();
+          else {
+            var notification = new Notification('Notification title', {
+              icon: 'http://cdn.sstatic.net/stackexchange/img/logos/so/so-icon.png',
+              body: "Hey there! You've been notified!",
+            })
+            notification.onclick = function () {
+              window.open("http://stackoverflow.com/a/13328397/1269037");
+            }
+          }
+        }
+      },
+
       makeNewAlarm() {
         this.selectedAlarm = null;
         this.createAlarm = true;
@@ -159,6 +158,7 @@
         this.createAlarm = true;
         this.listItemSelected = false;
         DUMMY_ALARMS_DATA.push({name: this.newAlarm});
+        this.notifyMe()
       },
       selectAlarm(alarm) {
         this.selectedAlarm = alarm;
@@ -168,63 +168,8 @@
       toggleListItemSelected() {
         this.listItemSelected = !this.listItemSelected;
       },
-      setDateTime() {
-        const temp = new Date();
-        const alarmTime = this.getDateTime(this.time, this.date);
-        let diff = alarmTime.getTime() - temp.getTime();
-        if (diff < 0) {
-          return;
-        }
-        this.diff = diff = Math.floor(diff / 1000);
 
-        this.decrement();
-        this.intervalSetter = setInterval(this.decrement, 1000);
-      },
-      getDateTime(time, date) {
-        return new Date(date.getFullYear(), date.getMonth(), date.getDate(),
-          time.getHours(), time.getMinutes(), time.getSeconds());
-      },
-      decrement() {
-        if (this.diff < 0) {
-          this.clear();
-          return;
-        }
-        this.countdown.seconds = this.diff % 60;
-        this.countdown.minutes = Math.floor(this.diff / 60) % 60;
-        this.countdown.hours = Math.floor(this.diff / 3600) % 24;
-        this.countdown.days = Math.floor(this.diff / 86400);
-        this.diff--;
-
-        if (this.diff > 86400) {
-          this.displayTime.first = `${this.countdown.days} days`;
-          this.displayTime.next = `${this.countdown.hours} hours`;
-        } else if (this.diff > 3600) {
-          this.displayTime.first = `${this.countdown.hours} hours`;
-          this.displayTime.next = `${this.countdown.minutes} minutes`;
-        } else {
-          this.displayTime.first = `${this.countdown.minutes} minutes`;
-          this.displayTime.next = `${this.countdown.seconds} seconds`;
-        }
-      },
-      clear() {
-        clearInterval(this.intervalSetter);
-        this.countdown = {
-          seconds: 0,
-          minutes: 0,
-          hours: 0,
-          days: 0
-        };
-        this.displayTime = {
-          first: ``,
-          next: ``
-        }
-      },
-    },
-    computed: {
-      format() {
-        return this.isAmPm ? '12' : '24'
-      }
-    },
+    }
   }
 </script>
 
