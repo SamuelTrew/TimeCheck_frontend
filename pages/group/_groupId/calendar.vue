@@ -49,7 +49,7 @@
     <br />
     <br />
 
-    <next :group="group" next="polls/new" style="float: right"/>
+    <next :group="group" next="polls/new" style="float: right; margin-right: 2rem"/>
 
   </section>
 </template>

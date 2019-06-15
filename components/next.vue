@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="next">
     <nuxt-link :to="`/group/${group.id}`">
       <b-button type="is-info" outlined>
         Skip
