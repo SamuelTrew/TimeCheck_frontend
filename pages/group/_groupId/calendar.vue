@@ -95,21 +95,11 @@
       return {
         startDate: new Date(),
         endDate: new Date(),
-        availableDates: null,
+        availableDates: { start: new Date(2019, 5, 17), end: new Date(2019, 5, 21) },
         pickedDates: [],
-        pickedDatesDummy: [
-          new Date('6/10/2019'),
-          new Date('6/11/2019'),
-          new Date('6/12/2019'),
-          new Date('6/13/2019'),
-          new Date('6/14/2019'),
-        ],
-        groupDates: [],
-        groupDatesDummy: [
-          new Date('6/6/2019'),
-          new Date('6/7/2019'),
-          new Date('6/13/2019'),
-          new Date('6/14/2019'),
+        groupDates: [
+          new Date('6/20/2019'),
+          new Date('6/21/2019'),
         ],
       }
     }
