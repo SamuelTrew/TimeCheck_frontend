@@ -30,7 +30,6 @@
             is-inline
             mode='multiple'></v-date-picker>
         </div>
-
       </div>
     </section>
 
@@ -44,25 +43,23 @@
             v-model='availableDates'></v-date-picker>
         </div>
       </div>
+      <br />
+      <div class="calendar-sub-title">Free Dates</div>
+      Select the date of the event from the list of free dates:
+      <br />
+      <div class="select">
+        <select>
+          <option>Select Date</option>
+          <option v-for="date in this.freedates">
+          {{date.toDateString()}}
+          </option>
+        </select>
+      </div>
+      <br />
+      <div>
+        <b-button type="is-primary">Select Date</b-button>
+      </div>
 
-      <br/>
-      <b-field label="Select start time">
-        <b-timepicker
-          rounded
-          placeholder="Start time"
-          icon="clock"
-          :hour-format="format">
-        </b-timepicker>
-      </b-field>
-
-      <b-field label="Select end time">
-        <b-timepicker
-          rounded
-          placeholder="End time"
-          icon="clock"
-          :hour-format="format">
-        </b-timepicker>
-      </b-field>
     </section>
 
   </section>
@@ -83,7 +80,7 @@
         let result = [];
         let cur = this.availableDates.start;
         do {
-          if (!this.sharedDates().contains(cur)) {
+          if (!this.sharedDates.includes(cur)) {
             result.push(cur)
           }
         } while (cur !== this.availableDates.end)
@@ -111,6 +108,10 @@
           new Date('6/20/2019'),
           new Date('6/21/2019'),
         ],
+        freedates: [
+        new Date('6/20/2019'),
+        new Date('6/21/2019'),
+      ],
       }
     }
   }
