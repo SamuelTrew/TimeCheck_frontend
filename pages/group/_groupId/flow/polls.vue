@@ -3,12 +3,12 @@
     <!-- TODO: I mean, seriously -->
     <template v-if="windowWidth >= 769">
       <div class="polls-list">
-        <nuxt-link :to="`/group/${groupId}/polls/new`" @click.native="toggleListItemSelected" active-class="selected"
+        <nuxt-link :to="`/group/${groupId}/flow/polls/new`" @click.native="toggleListItemSelected" active-class="selected"
                    class="create-poll">
           <b-icon icon="plus" size="is-medium"></b-icon>
         </nuxt-link>
         <div class="polls-list-inner">
-          <nuxt-link :key="poll.id" :to="`/group/${groupId}/polls/${poll.id}`" @click.native="toggleListItemSelected"
+          <nuxt-link :key="poll.id" :to="`/group/${groupId}/flow/polls/${poll.id}`" @click.native="toggleListItemSelected"
                      active-class="selected" class="poll-list-item" v-for="poll in polls">
             <div class="content">
               {{ poll.question }}
@@ -18,7 +18,7 @@
           <br />
           <br />
 
-          <next group="group" next="notes"/>
+          <next :group="group" next="flow/notes" style="float: right; margin-right: 2rem"/>
         </div>
       </div>
 
@@ -30,12 +30,12 @@
     <template v-else>
       <div class="polls-list" v-if="!listItemSelected">
         <h2 class="polls-title">Polls</h2>
-        <nuxt-link :to="`/group/${groupId}/polls/new`" @click.native="toggleListItemSelected" active-class="selected"
+        <nuxt-link :to="`/group/${groupId}/flow/polls/new`" @click.native="toggleListItemSelected" active-class="selected"
                    class="create-poll">
           <b-icon icon="plus" size="is-medium"></b-icon>
         </nuxt-link>
         <div class="polls-list-inner">
-          <nuxt-link :key="poll.id" :to="`/group/${groupId}/polls/${poll.id}`" @click.native="toggleListItemSelected"
+          <nuxt-link :key="poll.id" :to="`/group/${groupId}/flow/polls/${poll.id}`" @click.native="toggleListItemSelected"
                      active-class="selected" class="poll-list-item" v-for="poll in polls">
             <div class="content">
               {{ poll.question }}
@@ -73,9 +73,13 @@
 
 <script>
   import {mapGetters} from 'vuex'
+  import Next from "../../../../components/next";
 
   export default {
     name: 'GroupPollsPage',
+    components: {
+      Next,
+    },
     computed: {
       ...mapGetters({
         polls: 'polls/list'
