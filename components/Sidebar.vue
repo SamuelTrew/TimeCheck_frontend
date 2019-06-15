@@ -20,9 +20,8 @@
         <nuxt-link class="sidebar-item" to="/group/new" v-on:click.native="toggleSidebar">
           <b-icon icon="plus" size="is-small-medium" type="is-light"></b-icon>
         </nuxt-link>
-        <div class="sidebar-label">
-          Add
-        </div>
+        <div class="sidebar-label">New</div>
+        <div class="sidebar-label">Group</div>
         <nuxt-link class="sidebar-item" to="/auth/logout">
           <b-icon icon="logout" size="is-small-medium" type="is-light"></b-icon>
         </nuxt-link>
@@ -253,6 +252,7 @@
 
   .sidebar-label {
     color: white;
+    font-size: 0.8rem;
   }
 
 </style>
