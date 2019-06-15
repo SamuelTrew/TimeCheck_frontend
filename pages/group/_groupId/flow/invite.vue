@@ -21,12 +21,22 @@
         Share via WhatsApp
       </a>
     </section>
+
+    <br />
+    <br />
+
+    <next :group="group" next="flow/calendar" style="float: right; margin-right: 2rem"/>
   </div>
 </template>
 
 <script>
+  import Next from "../../../../components/next";
+
   export default {
     name: 'GroupInvitePage',
+    components: {
+      Next,
+    },
     props: {
       group: {
         type: Object,

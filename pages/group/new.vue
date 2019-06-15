@@ -50,7 +50,7 @@
         const group = await this.$axios.$post('/group', {name: this.name})
         await this.$store.dispatch('groups/fetchGroups')
         this.loading = false
-        this.$router.push(`/group/${group.id}/calendar`)
+        this.$router.push(`/group/${group.id}/flow/invite`)
       },
       onFileChange(e) {
         let files = e.target.files || e.dataTransfer.files
