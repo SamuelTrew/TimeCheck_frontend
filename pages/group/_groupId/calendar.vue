@@ -61,6 +61,8 @@
         <b-button type="is-primary">Select Date</b-button>
       </div>
 
+      <next :group="group" next="polls" style="float: right; margin-right: 2rem"/>
+
     </section>
 
   </section>
@@ -68,11 +70,12 @@
 
 <script>
   import TopAppBar from "../../../components/TopAppBar";
+  import Next from "../../../components/next";
   import {mapActions} from 'vuex';
 
   export default {
     name: 'GroupCalendarPage',
-    components: {TopAppBar},
+    components: {TopAppBar, Next},
     computed: {
       sharedDates() {
         return this.groupDates.concat(this.pickedDates);

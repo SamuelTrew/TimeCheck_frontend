@@ -1,7 +1,7 @@
 <template>
   <section class="next">
     <nuxt-link :to="`/group/${group.id}`">
-      <b-button type="is-info" outlined>
+      <b-button type="is-info" outlined @click="endTutorial">
         Skip
       </b-button>
     </nuxt-link>
@@ -27,6 +27,15 @@
         required: true,
       }
     },
+    methods: {
+      async endTutorial() {
+        try {
+          await this.$store.dispatch('tutorial/setTutorial', false)
+        } catch (e) {
+          console.error("Tutorial ending error", e);
+        }
+      }
+    }
   }
 </script>
 

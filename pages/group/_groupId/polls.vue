@@ -15,6 +15,13 @@
             </div>
           </nuxt-link>
 
+          <br />
+          <br />
+          <div :v-if="tutorial">
+            <next :group="group" next="notes" style="float: right; margin-right: 2rem"/>
+          </div>
+
+
         </div>
       </div>
 
@@ -37,13 +44,16 @@
               {{ poll.question }}
             </div>
           </nuxt-link>
+        </div>
 
-          <br />
-          <br />
-
-          <next :group="this.group" next="notes"/>
+        <br />
+        <br />
+        <div :v-if="tutorial">
+          <next :group="group" next="notes" style="float: right; margin-right: 2rem"/>
         </div>
       </div>
+
+
 
       <div class="polls-detail" v-else>
         <button @click="toggleListItemSelected" class="polls-back-button">
@@ -64,7 +74,8 @@
     components: {Next},
     computed: {
       ...mapGetters({
-        polls: 'polls/list'
+        polls: 'polls/list',
+        tutorial: 'tutorial/tutorial'
       }),
       pollDetail() {
         return this.$route.params.pollId

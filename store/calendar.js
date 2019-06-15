@@ -5,7 +5,7 @@ export const state = () => {
     calendars: {},
     groupDates: [],
     personalDates: [],
-    availableDates: null,
+    availableDates: { start: new Date(2019, 5, 17), end: new Date(2019, 5, 21) },
     groupId: null
   }
 }
@@ -26,6 +26,9 @@ export const actions = {
       // TODO: Error logging
       console.error(err)
     }
+  },
+  setAvailableDate({commit}, {availableDates}) {
+    commit('SET_AVAILABLE_DATE', {availableDates})
   }
 }
 
@@ -35,5 +38,8 @@ export const mutations = {
   },
   SET_CALENDAR(state, {calendar}) {
     state.calendar = calendar
+  },
+  SET_AVAILABLE_DATE(state, {availableDate}) {
+    state.availableDates = availableDate
   }
 }
