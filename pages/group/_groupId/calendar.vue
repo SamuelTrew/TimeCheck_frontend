@@ -11,6 +11,7 @@
           <v-date-picker
             mode='range'
             v-model='availableDates'></v-date-picker>
+          <b-button @click="setAvailableDates">Set</b-button>
         </div>
       </div>
       </section>
@@ -68,12 +69,15 @@
 
 <script>
   import TopAppBar from "../../../components/TopAppBar";
-  import {mapActions} from 'vuex';
+  import {mapActions, mapGetters} from 'vuex';
 
   export default {
     name: 'GroupCalendarPage',
     components: {TopAppBar},
     computed: {
+      ...mapGetters({
+        availableDates: 'calendar/availableDates',
+      }),
       sharedDates() {
         return this.groupDates.concat(this.pickedDates);
       },
@@ -98,6 +102,13 @@
       ...mapActions({
         toggleSidebar: 'nav/toggleSidebar'
       }),
+      async setAvailableDates() {
+        try {
+          await this.$store.dispatch('calendar/setAvailableDate', this.availableDates)
+        } catch (e) {
+          console.error("Calendar available date error", e);
+        }
+      }
     },
     data() {
       return {
@@ -110,9 +121,9 @@
           new Date('6/21/2019'),
         ],
         freedates: [
-        new Date('6/20/2019'),
-        new Date('6/21/2019'),
-      ],
+          new Date('6/20/2019'),
+          new Date('6/21/2019'),
+        ],
       }
     }
   }
