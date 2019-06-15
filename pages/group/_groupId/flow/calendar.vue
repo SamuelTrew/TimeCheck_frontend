@@ -45,11 +45,28 @@
         </div>
       </div>
     </section>
+
+    <br />
+    <br />
+
+    <section>
+      <nuxt-link :to="`/group/${group.id}/flow/polls`">
+        <b-button type="is-primary">
+          Next
+        </b-button>
+      </nuxt-link>
+
+      <nuxt-link :to="`/group/${group.id}`">
+        <b-button type="is-info">
+          Skip
+        </b-button>
+      </nuxt-link>
+    </section>
   </section>
 </template>
 
 <script>
-  import TopAppBar from "../../../components/TopAppBar";
+  import TopAppBar from "../../../../components/TopAppBar";
   import {mapActions} from 'vuex';
 
   export default {

@@ -37,6 +37,17 @@
       </div>
     </section>
 
+    <br />
+    <br />
+
+    <section>
+      <nuxt-link :to="`/group/${group.id}`">
+        <b-button type="is-primary">
+          End
+        </b-button>
+      </nuxt-link>
+    </section>
+
     <!-- TODO: Fix background issue -->
     <b-modal :active.sync="newModalActive" has-modal-card>
       <div class="modal-card" id="newNote">
@@ -102,9 +113,9 @@
 
 <script>
   import {mapGetters} from 'vuex'
-  import GroupFeatures from '../../../components/GroupFeatures.vue'
-  import Updates from "../../../components/Updates";
-  import TopAppBar from "../../../components/TopAppBar";
+  import GroupFeatures from '../../../../components/GroupFeatures.vue'
+  import Updates from "../../../../components/Updates";
+  import TopAppBar from "../../../../components/TopAppBar";
 
   export default {
     name: "notes",

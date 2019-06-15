@@ -26,15 +26,14 @@
       Notes
     </nuxt-link>
 
+    <nuxt-link :to="`/group/${group.id}/invite`" class="group-feature invite" v-on:click.native="toggleSidebar">
+      <b-icon class="group-feature-icon" icon="account-multiple-plus" size="is-small-medium" type="is-light"></b-icon>
+      Invite
+    </nuxt-link>
 
     <nuxt-link :to="`/group/${group.id}/settings`" class="group-feature settings" v-on:click.native="toggleSidebar">
       <b-icon class="group-feature-icon" icon="settings" size="is-small-medium" type="is-light"></b-icon>
       Settings
-    </nuxt-link>
-
-    <nuxt-link :to="`/group/${group.id}/invite`" class="group-feature invite" v-on:click.native="toggleSidebar">
-      <b-icon class="group-feature-icon" icon="account-multiple-plus" size="is-small-medium" type="is-light"></b-icon>
-      Invite
     </nuxt-link>
   </section>
 </template>
@@ -82,11 +81,11 @@
     color: #ffffff;
   }
 
-  .settings {
+  .invite {
     margin-top: auto;
   }
 
-  .invite {
+  .settings {
     margin-bottom: 0rem;
   }
 </style>
