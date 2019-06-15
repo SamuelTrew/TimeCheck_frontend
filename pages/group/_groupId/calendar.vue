@@ -49,29 +49,19 @@
     <br />
     <br />
 
-    <section>
-      <nuxt-link :to="`/group/${group.id}/polls`">
-        <b-button type="is-primary">
-          Next
-        </b-button>
-      </nuxt-link>
+    <next :group="group" next="polls/new" style="float: right"/>
 
-      <nuxt-link :to="`/group/${group.id}`">
-        <b-button type="is-info">
-          Skip
-        </b-button>
-      </nuxt-link>
-    </section>
   </section>
 </template>
 
 <script>
   import TopAppBar from "../../../components/TopAppBar";
+  import Next from "../../../components/next";
   import {mapActions} from 'vuex';
 
   export default {
     name: 'GroupCalendarPage',
-    components: {TopAppBar},
+    components: {TopAppBar, Next},
     computed: {
       sharedDates() {
         return this.groupDates.concat(this.pickedDates);
