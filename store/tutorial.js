@@ -2,7 +2,7 @@ import Vue from 'vue'
 
 export const state = () => {
   return {
-    tutorial: false,
+    tutorial: true,
     groupId: null
   }
 }
@@ -32,6 +32,6 @@ export const mutations = {
     state.groupId = groupId
   },
   SET_TUTORIAL(state, {tutorial}) {
-    state.tutorial = tutorial
+    state.tutorial = tutorial || true
   },
 }

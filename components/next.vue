@@ -1,7 +1,7 @@
 <template>
   <section class="next">
-    <nuxt-link :to="`/group/${group.id}`">
-      <b-button type="is-info" outlined @click="endTutorial">
+    <nuxt-link :to="`/group/${group.id}`" @click.native="endTutorial">
+      <b-button type="is-info" outlined>
         Skip
       </b-button>
     </nuxt-link>
