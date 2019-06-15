@@ -78,6 +78,16 @@
     computed: {
       sharedDates() {
         return this.groupDates.concat(this.pickedDates);
+      },
+      generateFreeDates() {
+        let result = [];
+        let cur = this.availableDates.start;
+        do {
+          if (!this.sharedDates().contains(cur)) {
+            result.push(cur)
+          }
+        } while (cur !== this.availableDates.end)
+        return result
       }
     },
     props: {
@@ -89,7 +99,7 @@
     methods: {
       ...mapActions({
         toggleSidebar: 'nav/toggleSidebar'
-      })
+      }),
     },
     data() {
       return {
