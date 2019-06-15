@@ -8,6 +8,21 @@
       <b-input v-model="poll.question"></b-input>
     </b-field>
 
+    <div class="control">
+      <label class="radio">
+        <input type="radio" name="rsvp" v-model="poll.type" value="0">
+        Time Poll
+      </label>
+      <label class="radio">
+        <input type="radio" name="rsvp" v-model="poll.type" value="1">
+        Location Poll
+      </label>
+      <label class="radio">
+        <input type="radio" name="rsvp" v-model="poll.type" value="2">
+        Other Poll
+      </label>
+    </div>
+
     <b-field label="Multiple Votes">
       <b-switch v-model="poll.multiple">
         <span v-if="poll.multiple">Can vote for multiple options</span>
@@ -28,7 +43,6 @@
         <span v-else>Can view results before voting</span>
       </b-switch>
     </b-field>
-
 
     <div>
       <h5 class="title is-4">Options</h5>
@@ -60,6 +74,7 @@
       return {
         poll: {
           question: '',
+          type: null,
           multiple: false,
           change: true,
           hidden: false,
