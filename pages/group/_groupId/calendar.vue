@@ -3,6 +3,17 @@
     <section class="calendar-displays">
       <div class="calendar-title">Calendars</div>
 
+      <section class="calendar-settings">
+      <div>
+        <div class="calendar-sub-title">Available dates range</div>
+        Set the potential dates people can pick from:
+        <div class="calendar-range-picker">
+          <v-date-picker
+            mode='range'
+            v-model='availableDates'></v-date-picker>
+        </div>
+      </div>
+      </section>
       <div class="calendar-page-container">
         <div class="calendar-container">
           <p class="calendar-sub-title">
@@ -34,16 +45,6 @@
     </section>
 
     <section class="calendar-settings">
-      <div>
-        <div class="calendar-sub-title">Available dates range</div>
-        Set the potential dates people can pick from:
-        <div class="calendar-range-picker">
-          <v-date-picker
-            mode='range'
-            v-model='availableDates'></v-date-picker>
-        </div>
-      </div>
-      <br />
       <div class="calendar-sub-title">Free Dates</div>
       Select the date of the event from the list of free dates:
       <br />
