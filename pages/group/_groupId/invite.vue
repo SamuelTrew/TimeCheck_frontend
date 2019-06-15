@@ -8,6 +8,16 @@
       <h4 class="title is-4">Send this link to your friends:</h4>
       <p>https://dev.timecheck.app/invite/{{ code }}</p>
     </section>
+
+  <section>
+    <a :href="'https://www.facebook.com/sharer/sharer.php?u=https%3A//dev.timecheck.app/invite/' + code">
+      Share on Facebook</a>
+  </section>
+    <section>
+      <a :href="'https://wa.me/whatsappphonenumber/?text=https://dev.timecheck.app/invite/' + code">
+        Share via WhatsApp
+      </a>
+    </section>
   </div>
 </template>
 
@@ -22,7 +32,7 @@
     },
     data() {
       return {
-        code: null
+        code: null,
       }
     },
     async mounted() {
