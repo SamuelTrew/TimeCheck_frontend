@@ -42,14 +42,20 @@
     </div>
 
     <b-button :loading="saving" @click="createPoll" type="is-primary">Create Poll</b-button>
+
+    <next :group="group" next="invite" style="float: right"/>
+
   </div>
 </template>
 
 <script>
   // TODO: Ability to reorder options
   // TODO: Rename / edit poll? Maybe?
+  import Next from "../../../../components/next";
+
   export default {
     name: 'NewPollPage',
+    components: {Next},
     data() {
       return {
         poll: {
@@ -66,6 +72,12 @@
           ]
         },
         saving: false
+      }
+    },
+    props: {
+      group: {
+        type: Object,
+        required: true
       }
     },
     watch: {

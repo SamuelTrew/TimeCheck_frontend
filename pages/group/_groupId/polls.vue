@@ -14,11 +14,12 @@
               {{ poll.question }}
             </div>
           </nuxt-link>
+
         </div>
       </div>
 
       <div class="polls-detail section">
-        <nuxt-child/>
+        <nuxt-child :group="group"/>
       </div>
     </template>
 
@@ -56,9 +57,11 @@
 
 <script>
   import {mapGetters} from 'vuex'
+  import Next from "../../../components/next";
 
   export default {
     name: 'GroupPollsPage',
+    components: {Next},
     computed: {
       ...mapGetters({
         polls: 'polls/list'

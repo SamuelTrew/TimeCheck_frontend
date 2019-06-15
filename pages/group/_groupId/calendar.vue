@@ -44,7 +44,27 @@
             v-model='availableDates'></v-date-picker>
         </div>
       </div>
+
+      <br/>
+      <b-field label="Select start time">
+        <b-timepicker
+          rounded
+          placeholder="Start time"
+          icon="clock"
+          :hour-format="format">
+        </b-timepicker>
+      </b-field>
+
+      <b-field label="Select end time">
+        <b-timepicker
+          rounded
+          placeholder="End time"
+          icon="clock"
+          :hour-format="format">
+        </b-timepicker>
+      </b-field>
     </section>
+
   </section>
 </template>
 
@@ -139,13 +159,7 @@
   }
 
   .calendar-settings {
-    margin: auto;
-    max-width: 768px;
+    margin: 1rem;
   }
-
-  .calendar-range-picker {
-    max-width: 300px;
-  }
-
 </style>
 
