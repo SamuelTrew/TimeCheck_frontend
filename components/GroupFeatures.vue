@@ -20,11 +20,6 @@
       Reminders
     </nuxt-link>
 
-    <nuxt-link :to="`/group/${group.id}/docs`" class="group-feature" v-on:click.native="toggleSidebar">
-      <b-icon class="group-feature-icon" icon="folder-outline" size="is-small-medium" type="is-light"></b-icon>
-      Docs
-    </nuxt-link>
-
     <nuxt-link :to="`/group/${group.id}/notes`" class="group-feature" v-on:click.native="toggleSidebar">
       <b-icon class="group-feature-icon" icon="file-document" size="is-small-medium" type="is-light"></b-icon>
       Notes
