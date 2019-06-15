@@ -49,7 +49,7 @@
         <button @click="toggleListItemSelected" class="polls-back-button">
           <b-icon class="icon" icon="arrow-left" size="is-medium" type="is-dark"></b-icon>
         </button>
-        <nuxt-child/>
+        <nuxt-child :group="this.group"/>
       </div>
     </template>
   </div>
