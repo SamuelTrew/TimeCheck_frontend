@@ -12,7 +12,7 @@
       </section>
       <br />
       <section>
-        <a :href="'https://wa.me/?text=https://dev.timecheck.app/invite/' + code">
+        <a :href="'https://wa.me/?text=Come join my group on Meetuppi! https://dev.timecheck.app/invite/' + code">
           <b-icon icon="whatsapp" size="is-medium"></b-icon>
           Share via WhatsApp
         </a>

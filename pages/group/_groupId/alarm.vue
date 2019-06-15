@@ -89,7 +89,8 @@
           <div>
             <b-button :disabled="newAlarm.length === 0"
                       @click="addAlarm"
-                      type="is-primary">Create Reminder
+                      type="is-primary">
+              Create Reminder
             </b-button>
           </div>
         </div>
@@ -130,8 +131,6 @@
     },
     methods: {
       notifyMe() {
-        console.log(this.today.getDay())
-        console.log(this.date.getDay())
         if (this.today.getDay() === this.date.getDay()) {
           if (Notification.permission !== "granted")
             Notification.requestPermission();

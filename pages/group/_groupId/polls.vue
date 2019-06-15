@@ -41,7 +41,7 @@
           <br />
           <br />
 
-          <next :group="`/group/${group.id}`" next="notes"/>
+          <next :group="this.group" next="notes"/>
         </div>
       </div>
 
