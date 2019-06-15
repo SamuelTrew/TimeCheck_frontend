@@ -46,19 +46,16 @@
       </div>
     </section>
 
-    <br />
-    <br />
-
-    <section>
-      <nuxt-link :to="`/group/${group.id}/polls`">
-        <b-button type="is-primary">
-          Next
+    <section class="tutorial-next">
+      <nuxt-link :to="`/group/${group.id}`">
+        <b-button type="is-info" outlined>
+          Skip
         </b-button>
       </nuxt-link>
 
-      <nuxt-link :to="`/group/${group.id}`">
-        <b-button type="is-info">
-          Skip
+      <nuxt-link :to="`/group/${group.id}/polls/new`">
+        <b-button type="is-primary">
+          Next
         </b-button>
       </nuxt-link>
     </section>
@@ -156,13 +153,16 @@
   }
 
   .calendar-settings {
-    margin: auto;
-    max-width: 768px;
+    margin-left: 2rem;
   }
 
   .calendar-range-picker {
     max-width: 300px;
   }
 
+  .tutorial-next {
+    float: right;
+    margin: 2rem;
+  }
 </style>
 

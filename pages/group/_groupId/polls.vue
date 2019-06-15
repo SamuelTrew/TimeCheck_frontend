@@ -15,15 +15,11 @@
             </div>
           </nuxt-link>
 
-          <br />
-          <br />
-
-          <next group="group" next="notes"/>
         </div>
       </div>
 
       <div class="polls-detail section">
-        <nuxt-child/>
+        <nuxt-child :group="group"/>
       </div>
     </template>
 

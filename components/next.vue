@@ -1,14 +1,14 @@
 <template>
   <section>
-    <nuxt-link :to="`/group/${group.id}/${next}`">
-      <b-button type="is-primary">
-        Next
+    <nuxt-link :to="`/group/${group.id}`">
+      <b-button type="is-info" outlined>
+        Skip
       </b-button>
     </nuxt-link>
 
-    <nuxt-link :to="`/group/${group.id}`">
-      <b-button type="is-info">
-        Skip
+    <nuxt-link :to="`/group/${group.id}/${next}`">
+      <b-button type="is-primary">
+        Next
       </b-button>
     </nuxt-link>
   </section>
