@@ -10,29 +10,17 @@
               <b-input v-model="name"></b-input>
             </b-field>
 
-            <b-field label="Profile image">
-              <b-upload disabled drag-drop v-model="file">
-                <section class="section">
-                  <div class="content has-text-centered">
-                    <p>
-                      <b-icon
-                        icon="upload"
-                        size="is-large">
-                      </b-icon>
-                    </p>
-                    <p>Drop your files here or click to upload</p>
-                  </div>
-                </section>
-              </b-upload>
+            <b-field label="Description (optional)">
+              <b-input v-model="description"></b-input>
             </b-field>
 
             <div>You will be able to invite members in the next step</div>
 
-            <b-button
-              :disabled="name.length === 0"
-              :loading="loading"
-              @click="createGroup"
-              type="is-primary">Create group
+            <b-button :disabled="name.length === 0"
+                      :loading="loading"
+                      @click="createGroup"
+                      type="is-primary">
+              Next
             </b-button>
           </div>
         </div>
@@ -51,6 +39,7 @@
     data() {
       return {
         name: '',
+        description: '',
         file: null,
         loading: false
       }
