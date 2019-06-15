@@ -5,11 +5,6 @@
       Dates
     </nuxt-link>
 
-    <nuxt-link :to="`/group/${group.id}/times`" class="group-feature bottom-items" v-on:click.native="toggleSidebar">
-      <b-icon class="group-feature-icon" icon="clock" size="is-small-medium" type="is-light"></b-icon>
-      Times
-    </nuxt-link>
-
     <nuxt-link :to="`/group/${group.id}/polls`" class="group-feature" v-on:click.native="toggleSidebar">
       <b-icon class="group-feature-icon" icon="poll" size="is-small-medium" type="is-light"></b-icon>
       Polls
