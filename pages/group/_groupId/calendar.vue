@@ -18,7 +18,7 @@
       <section class="calendar-settings">
       <div>
         <div class="calendar-sub-title">Available dates range</div>
-        Set the potential dates people can pick from:
+        Set dates people can pick from:
         <div class="calendar-range-picker">
           <v-date-picker
             mode='range'
@@ -48,7 +48,7 @@
 
         <div class="calendar-container">
           <p class="calendar-sub-title">
-            Dates when people are busy
+            When people are busy:
           </p>
           <v-date-picker
             :available-dates='{end: new Date(1, 1, 1)}'
@@ -74,7 +74,7 @@
         </select>
       </div>
       <div>
-        <b-button type="is-primary" :disabled="!selectedDate">Pick Date</b-button>
+        <b-button type="is-primary" :disabled="!selectedDate" @click="pickDate">Pick Date</b-button>
       </div>
     </section>
 
@@ -111,17 +111,25 @@
       }),
       async setAvailableDates() {
         try {
+          this.$snackbar.open({
+            message: `Date range from ${this.formatDate(this.availableDates.start)}
+                        to ${this.formatDate(this.availableDates.end)}.`
+          });
           await this.$store.dispatch('calendar/setAvailableDate', this.availableDates)
         } catch (e) {
           console.error("Calendar available date error", e);
         }
       },
+      async pickDate() {
+        this.$snackbar.open({
+          message: `Event date set to ${this.formatDate(this.selectedDate)}`
+        });
+      },
       getAllDatesInBetween(start, end) {
         let dates = [];
         let startDate = moment(start);
         let endDate = moment(end).add(1, 'day');
-        let format = 'D/M/YYYY';
-        while(startDate.format(format) !== endDate.format(format)) {
+        while(this.formatDate(startDate) !== this.formatDate(endDate)) {
           dates.push(startDate.toDate());
           startDate = startDate.add(1, 'days');
         }
@@ -131,8 +139,7 @@
         let dates = [];
         let startDate = moment(availableDates.start);
         let endDate = moment(availableDates.end).add(1, 'day');
-        let format = 'D/M/YYYY';
-        while(startDate.format(format) !== endDate.format(format)) {
+        while(this.formatDate(startDate) !== this.formatDate(endDate)) {
           if (this.dateIsFree(startDate)) {
             dates.push(startDate.toDate());
           }
@@ -142,20 +149,23 @@
       },
       dateIsFree(date) {
         let free = true;
-        let format = 'D/M/YYYY';
         let dateWrapper = moment(date);
         this.sharedDates.forEach(d => {
           let dWrapper = moment(d);
-          if (dateWrapper.format(format) === dWrapper.format(format)) {
+          if (this.formatDate(dateWrapper) === this.formatDate(dWrapper)) {
             free = false
           }
         });
         return free
+      },
+      formatDate(date) {
+        return moment(date).format(this.dateFormat)
       }
     },
     data() {
       return {
         moment: moment,
+        dateFormat: 'D/M/YYYY',
         selectedDate: '',
         availableDates: { start: new Date(2019, 5, 17), end: new Date(2019, 5, 21) },
         pickedDates: [],
@@ -194,6 +204,9 @@
     align-items: center;
     flex-direction: column;
     margin-bottom: 1rem;
+  }
+  .calendar-range-picker {
+    max-width: 250px;
   }
 
   /* Desktop */
