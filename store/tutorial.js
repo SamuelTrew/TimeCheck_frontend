@@ -25,6 +25,8 @@ export const actions = {
     console.log('HERE IS THE ' + tutorial);
     commit('SET_TUTORIAL', {tutorial: tutorial})
     console.log('HERE IS THE after ' + state.tutorial);
+
+    // await this.$axios.$post(`/group/${state.groupId}/tutorial`, tutorial)
   },
 }
 

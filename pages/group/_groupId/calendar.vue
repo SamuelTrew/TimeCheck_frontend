@@ -62,7 +62,11 @@
         <b-button type="is-primary">Select Date</b-button>
       </div>
 
-      <next :group="group" next="polls" style="float: right; margin-right: 2rem"/>
+      <br />
+      <br />
+      <div v-if="tutorial">
+        <next :group="group" next="polls" style="float: right; margin-right: 2rem"/>
+      </div>
 
     </section>
 
@@ -80,6 +84,7 @@
     computed: {
       ...mapGetters({
         availableDates: 'calendar/availableDates',
+        tutorial: 'tutorial/tutorial'
       }),
       sharedDates() {
         return this.groupDates.concat(this.pickedDates);
