@@ -10,11 +10,6 @@
       Polls
     </nuxt-link>
 
-    <nuxt-link :to="`/group/${group.id}/alarm`" class="group-feature bottom-items" v-on:click.native="toggleSidebar">
-      <b-icon class="group-feature-icon" icon="alarm" size="is-small-medium" type="is-light"></b-icon>
-      Reminders
-    </nuxt-link>
-
     <nuxt-link :to="`/group/${group.id}/notes`" class="group-feature" v-on:click.native="toggleSidebar">
       <b-icon class="group-feature-icon" icon="file-document" size="is-small-medium" type="is-light"></b-icon>
       Notes
