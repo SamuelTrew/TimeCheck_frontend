@@ -1,6 +1,6 @@
 <template>
   <section class="next">
-    <nuxt-link :to="`/group/${group.id}`" @click.native="endTutorial">
+    <nuxt-link :to="`/group/${group.id}`" @click.native="setTutorial(false)">
       <b-button type="is-info" outlined>
         Skip
       </b-button>
@@ -28,11 +28,12 @@
       }
     },
     methods: {
-      async endTutorial() {
+      async setTutorial(tutorial) {
         try {
-          await this.$store.dispatch('tutorial/setTutorial', false)
+          console.log('WHAT EVEN IS ' + tutorial)
+          await this.$store.dispatch('tutorial/setTutorial', tutorial)
         } catch (e) {
-          console.error("Tutorial ending error", e);
+          console.error("Tutorial setting error", e);
         }
       }
     }

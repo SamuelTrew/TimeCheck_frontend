@@ -1,5 +1,3 @@
-import Vue from 'vue'
-
 export const state = () => {
   return {
     tutorial: true,
@@ -8,7 +6,7 @@ export const state = () => {
 }
 
 export const getters = {
-  tutorial: state => state.polls,
+  tutorial: state => state.tutorial,
 }
 
 export const actions = {
@@ -22,8 +20,11 @@ export const actions = {
       console.error(err)
     }
   },
-  async setTutorial({commit}, tutorial) {
+  async setTutorial({state, commit}, tutorial) {
+    console.log('HERE IS THE Before ' + state.tutorial);
+    console.log('HERE IS THE ' + tutorial);
     commit('SET_TUTORIAL', {tutorial: tutorial})
+    console.log('HERE IS THE after ' + state.tutorial);
   },
 }
 
@@ -32,6 +33,10 @@ export const mutations = {
     state.groupId = groupId
   },
   SET_TUTORIAL(state, {tutorial}) {
-    state.tutorial = tutorial || true
+    if (tutorial === undefined) {
+      state.tutorial = true
+    } else {
+      state.tutorial = tutorial
+    }
   },
 }
