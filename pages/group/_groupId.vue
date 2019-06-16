@@ -45,7 +45,7 @@
         this.$store.dispatch('activity/fetchActivity', this.groupId)
         this.$store.dispatch('polls/fetchPolls', this.groupId)
         this.$store.dispatch('notes/fetchNotes', this.groupId)
-        this.$store.dispatch('tutorial/fetchTutorialData', this.groupId)
+        //this.$store.dispatch('tutorial/fetchTutorialData', this.groupId)
       } else {
         // Could not find group
         // TODO: Display error about group 404 not found
