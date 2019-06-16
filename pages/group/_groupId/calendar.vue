@@ -3,6 +3,15 @@
     <section class="calendar-displays">
       <div class="calendar-title">Calendars</div>
 
+      <div v-if="tutorial">
+        <b-message type="is-info">
+          Here is where you and your friends or colleagues can:
+          <li>Select the range of available dates</li>
+          <li>Choose which dates you are busy</li>
+          <li>View when everyone in your group is busy</li>
+        </b-message>
+      </div>
+
       <section class="calendar-settings">
       <div>
         <div class="calendar-sub-title">Available dates range</div>

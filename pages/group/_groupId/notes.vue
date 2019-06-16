@@ -2,6 +2,14 @@
   <section class="notes">
     <section class="notes-displays">
       <div class="notes-title">Group Notes</div>
+      <div v-if="tutorial">
+        <b-message type="is-info">
+          Here is where you and your friends or colleagues can:
+          <li>View the group's notes</li>
+          <li>Create and delete notes</li>
+          <li>Edit notes</li>
+        </b-message>
+      </div>
       <div class="notes-page-container">
         <div>
           <b-button @click="openNewModal" type="is-primary">New Note</b-button>

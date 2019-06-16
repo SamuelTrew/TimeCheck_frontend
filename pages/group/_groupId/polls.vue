@@ -18,6 +18,14 @@
           <br />
           <br />
           <div v-if="tutorial">
+            <b-message type="is-info">
+              Here is where you and your friends or colleagues can:
+              <li>View polls</li>
+              <li>Create polls</li>
+              <li>Vote in polls</li>
+            </b-message>
+          </div>
+          <div v-if="tutorial">
             <next :group="group" next="notes" :end="false" style="float: right; margin-right: 2rem"/>
           </div>
 
@@ -49,10 +57,17 @@
         <br />
         <br />
         <div v-if="tutorial">
+          <b-message type="is-info">
+            Here is where you and your friends or colleagues can:
+            <li>View polls</li>
+            <li>Create polls</li>
+            <li>Vote in polls</li>
+          </b-message>
+        </div>
+        <div v-if="tutorial">
           <next :group="group" next="notes" :end="false" style="float: right; margin-right: 2rem"/>
         </div>
       </div>
-
 
 
       <div class="polls-detail" v-else>

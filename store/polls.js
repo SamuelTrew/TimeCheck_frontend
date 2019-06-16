@@ -23,7 +23,7 @@ export const actions = {
       })
       commit('SET_POLLS', {polls: pollsMap})
     } catch (err) {
-      // TODO: Error logging
+      // TODO: Error
       console.error(err)
     }
   },
