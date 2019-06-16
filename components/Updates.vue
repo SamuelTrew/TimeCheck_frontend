@@ -4,13 +4,13 @@
       <h3 class="title" v-if="group">Group Activity Feed</h3>
 
       <div class="columns is-multiline">
-        <div class="column is-6" v-for="item in activity" :key="item.id">
+        <div class="column is-4" v-for="item in activity" :key="item.id">
           <!-- TODO: Refactor dashboard. Like, a lot. -->
           <!-- TODO: Separate these out into separate components -->
 
           <!-- POLL -->
           <div class="card" v-if="item.type === 'poll'">
-            <nuxt-link :to="`${group.id}/polls`">
+            <nuxt-link :to="`${group.id}/polls/${item.id}`">
               <div class="card-header" :style="{backgroundColor: 'DarkSalmon'}">
                 <p class="card-header-title">
                   {{item.data.question}}
@@ -20,7 +20,6 @@
                 <div v-for="option in item.data.options" class="poll-option box">
                   <div class="poll-bar" :style="calcStyle(item.data, option)"></div>
                   <p class="poll-option-name">{{ option.text }}</p>
-                  <p class="poll-option-votes">{{ option.votes }} votes</p>
                 </div>
               </div>
             </nuxt-link>
