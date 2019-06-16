@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <!-- add vue particle code if you have time by stripping the original stuff -->
+    <h3 class="title">Welcome</h3>
     <nuxt-link class="button is-large is-light" to="/dashboard" v-if="user.loggedIn">Dashboard</nuxt-link>
     <button @click="login" class="button is-large is-light" v-else>Login</button>
   </div>

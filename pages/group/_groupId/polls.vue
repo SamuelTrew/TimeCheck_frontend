@@ -63,8 +63,7 @@
             <li>Create polls</li>
             <li>Vote in polls</li>
           </b-message>
-        </div>
-        <div v-if="tutorial">
+
           <next :group="group" next="notes" :end="false" style="float: right; margin-right: 2rem"/>
         </div>
       </div>

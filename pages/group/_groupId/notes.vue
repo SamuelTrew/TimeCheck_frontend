@@ -9,6 +9,10 @@
           <li>Create and delete notes</li>
           <li>Edit notes</li>
         </b-message>
+        <next :group="group" next="polls" :end="true" style="float: left; margin-right: 2rem"/>
+        <br />
+        <br />
+        <br />
       </div>
       <div class="notes-page-container">
         <div>
@@ -42,13 +46,6 @@
             </div>
           </div>
         </div>
-
-        <br />
-        <br />
-        <div v-if="tutorial">
-          <next :group="group" next="polls" :end="true" style="float: right; margin-right: 2rem"/>
-        </div>
-
       </div>
     </section>
 

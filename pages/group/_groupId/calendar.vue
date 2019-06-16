@@ -10,6 +10,8 @@
           <li>Choose which dates you are busy</li>
           <li>View when everyone in your group is busy</li>
         </b-message>
+        <next :group="group" next="polls" :end="false" style="float: left; margin-right: 2rem"/>
+        <br />
       </div>
 
       <section class="calendar-settings">
@@ -70,13 +72,6 @@
       <div>
         <b-button type="is-primary">Select Date</b-button>
       </div>
-
-      <br />
-      <br />
-      <div v-if="tutorial">
-        <next :group="group" next="polls" :end="false" style="float: right; margin-right: 2rem"/>
-      </div>
-
     </section>
 
   </section>

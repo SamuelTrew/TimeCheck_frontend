@@ -57,8 +57,6 @@
 
     <b-button :loading="saving" @click="createPoll" type="is-primary">Create Poll</b-button>
 
-    <next :group="group" next="invite" style="float: right"/>
-
   </div>
 </template>
 

@@ -18,10 +18,19 @@
         </a>
       </section>
     </div>
+
+    <br />
+    <br />
+    <div v-if="tutorial">
+      <next :group="group" next="calendar" :end="false" style="float: left; margin-right: 2rem"/>
+    </div>
   </section>
 </template>
 
 <script>
+  import Next from '../../../components/next';
+  import {mapGetters} from 'vuex';
+
   export default {
     name: 'GroupInvitePage',
     props: {
@@ -29,6 +38,14 @@
         type: Object,
         required: true
       }
+    },
+    components: {
+      Next
+    },
+    computed: {
+      ...mapGetters({
+        tutorial: 'tutorial/tutorial'
+      })
     },
     data() {
       return {
