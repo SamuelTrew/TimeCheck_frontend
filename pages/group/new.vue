@@ -14,7 +14,7 @@
               <b-input v-model="description"></b-input>
             </b-field>
 
-            <!--<div>You will be able to invite members in the next step</div>-->
+            <div>You will be able to invite members in the next step</div>
 
             <b-button :disabled="name.length === 0"
                       :loading="loading"
