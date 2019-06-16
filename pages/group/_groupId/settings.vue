@@ -118,7 +118,7 @@
               console.info('Going dashboard - group deletion')
               this.$router.push('/dashboard')
               this.$snackbar.open({
-                message: 'Group deleted'
+                message: `Group \"${this.group.name}\" deleted.`
               })
             } catch (e) {
               // TODO: Handle error on delete (can't delete - group may not exist)
@@ -134,7 +134,7 @@
           console.info('Going dashboard - left group')
           this.$router.push('/dashboard')
           this.$snackbar.open({
-            message: 'Group left'
+            message: `Left group \"${this.group.name}\".`
           })
         } catch (e) {
           // TODO: Handle error on leave (can't leave - group may not exist)
@@ -145,6 +145,9 @@
         try {
           const group = await this.$axios.$patch(`/group/${this.group.id}`, {name: this.name})
           this.$store.dispatch('groups/updateName', {id: this.group.id, name: this.name})
+          this.$snackbar.open({
+            message: `Group name changed to \"${this.name}\".`
+          })
         } catch (e) {
           // TODO: Handle error on update (can't update - group may not exist)
           console.error("Update name error", e)

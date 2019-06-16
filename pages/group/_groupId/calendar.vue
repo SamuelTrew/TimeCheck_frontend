@@ -122,7 +122,7 @@
       },
       async pickDate() {
         this.$snackbar.open({
-          message: `Event date set to ${this.formatDate(this.selectedDate)}`
+          message: `Event date set to ${this.formatDate(this.selectedDate)}.`
         });
       },
       getAllDatesInBetween(start, end) {
