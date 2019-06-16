@@ -66,6 +66,7 @@
         try {
           const data = await this.$axios.$get(`/invite/${this.inviteId}/accept`)
           await this.$store.dispatch('groups/fetchGroups')
+          await this.$store.dispatch('tutorial/setTutorial', true)
           this.$router.push(`/group/${this.group.id}/calendar`)
         } catch (e) {
           // TODO: Error handling
