@@ -122,7 +122,6 @@
         let endDate = moment(end).add(1, 'day');
         let format = 'D/M/YYYY';
         while(startDate.format(format) !== endDate.format(format)) {
-          console.log(startDate.toDate());
           dates.push(startDate.toDate());
           startDate = startDate.add(1, 'days');
         }
@@ -147,8 +146,6 @@
         let dateWrapper = moment(date);
         this.sharedDates.forEach(d => {
           let dWrapper = moment(d);
-          console.log(dateWrapper.format(format));
-          console.log(dWrapper.format(format))
           if (dateWrapper.format(format) === dWrapper.format(format)) {
             free = false
           }
