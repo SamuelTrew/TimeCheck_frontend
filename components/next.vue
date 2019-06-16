@@ -42,7 +42,6 @@
     methods: {
       async setTutorial(tutorial) {
         try {
-          console.log('WHAT EVEN IS ' + tutorial)
           await this.$store.dispatch('tutorial/setTutorial', tutorial)
         } catch (e) {
           console.error("Tutorial setting error", e);

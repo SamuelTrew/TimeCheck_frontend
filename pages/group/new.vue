@@ -49,6 +49,7 @@
         this.loading = true
         const group = await this.$axios.$post('/group', {name: this.name})
         await this.$store.dispatch('groups/fetchGroups')
+        await this.$store.dispatch('tutorial/setTutorial', true)
         this.loading = false
         this.$router.push(`/group/${group.id}/invite`)
       },
