@@ -258,6 +258,10 @@
 <style lang="scss">
   .notes {
     padding: 1rem;
+
+    .card-content {
+      word-break: break-word;
+    }
   }
 
   .notes-page-container {
