@@ -4,36 +4,46 @@
       <h3 class="title" v-if="group">Group Activity Feed</h3>
 
       <div class="columns is-multiline">
-        <div class="column is-6" v-for="item in activity" :key="item.id">
+        <div class="column is-4" v-for="item in activity" :key="item.id">
           <!-- TODO: Refactor dashboard. Like, a lot. -->
           <!-- TODO: Separate these out into separate components -->
+
+          <!-- POLL -->
           <div class="card" v-if="item.type === 'poll'">
-            <div class="card-header">
-              <p class="card-header-title">
-                {{item.data.question}}
-              </p>
-            </div>
-            <div class="card-content">
-              <div v-for="option in item.data.options" class="poll-option box">
-                <div class="poll-bar" :style="calcStyle(item.data, option)"></div>
-                <p class="poll-option-name">{{ option.text }}</p>
-                <p class="poll-option-votes">{{ option.votes }} votes</p>
+            <nuxt-link :to="`${group.id}/polls/${item.id}`">
+              <div class="card-header" :style="{backgroundColor: 'DarkSalmon'}">
+                <p class="card-header-title">
+                  {{item.data.question}}
+                </p>
               </div>
-            </div>
+              <div class="card-content">
+                <div v-for="option in item.data.options" class="poll-option box">
+                  <div class="poll-bar" :style="calcStyle(item.data, option)"></div>
+                  <p class="poll-option-name">{{ option.text }}</p>
+                </div>
+              </div>
+            </nuxt-link>
           </div>
 
+
+          <!-- NOTES -->
           <div class="card" v-else-if="item.type === 'note'">
-            <div class="card-header">
-              <p class="card-header-title">
-                {{item.data.title}}
-              </p>
-            </div>
-            <div class="card-content">
-              <div class="content">
-                {{item.data.text}}
+            <nuxt-link :to="`${group.id}/notes`">
+              <div class="card-header" :style="{backgroundColor: 'MediumTurquoise'}">
+                <p class="card-header-title">
+                  {{item.data.title}}
+                </p>
               </div>
-            </div>
+              <div class="card-content">
+                <div class="content">
+                  {{item.data.text}}
+                </div>
+              </div>
+            </nuxt-link>
           </div>
+
+          <!-- CALENDAR -->
+
         </div>
       </div>
     </template>
