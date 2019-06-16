@@ -198,7 +198,7 @@
             <h1 class="title is-1">Get started for free</h1>
             <button
               class="button is-primary is-large"
-              @click="login">Create an account</button>
+              @click="login">Login</button>
           </template>
         </div>
       </div>
