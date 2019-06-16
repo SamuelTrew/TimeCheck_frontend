@@ -61,11 +61,27 @@
         the group and all associated data
       </b-message>
       <b-button @click="deleteGroup" type="is-danger">Delete</b-button>
+
+      <br/>
+      <br/>
+      <br/>
+
+      <!-- Starting the tutorial mode again -->
+      <h4 class="title is-4">Start Tutorial</h4>
+      <b-message type="is-info">
+        Here we will begin taking you through the group features so that you can understand and use them in the manner
+        intended
+      </b-message>
+      <nuxt-link :to="`calendar`" @click.native="startTutorial">
+        <b-button type="is-primary">Start</b-button>
+      </nuxt-link>
     </div>
   </section>
 </template>
 
 <script>
+  import {mapGetters} from 'vuex'
+
   export default {
     name: 'GroupSettingsPage',
     props: {
@@ -81,6 +97,11 @@
           backgroundColor: ''
         },
       }
+    },
+    computed: {
+      ...mapGetters({
+        tutorial: 'tutorial/tutorial'
+      }),
     },
     methods: {
       deleteGroup() {
@@ -136,6 +157,13 @@
           console.error("Update colour error", e)
         }
       },
+      async startTutorial() {
+        try {
+          this.$store.dispatch('tutorial/setTutorial', {tutorial: true})
+        } catch (e) {
+          console.error("Tutorial Starting Error", e)
+        }
+      }
     }
   }
 </script>
