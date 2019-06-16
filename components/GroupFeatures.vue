@@ -2,7 +2,7 @@
   <section class="features">
     <nuxt-link :to="`/group/${group.id}/calendar`" class="group-feature" v-on:click.native="toggleSidebar">
       <b-icon class="group-feature-icon" icon="calendar" size="is-small-medium" type="is-light"></b-icon>
-      Dates
+      Calendars
     </nuxt-link>
 
     <nuxt-link :to="`/group/${group.id}/polls`" class="group-feature" v-on:click.native="toggleSidebar">

@@ -20,6 +20,7 @@
     "@xkeshi/image-compressor": "^0.5.3",
     "cropperjs": "^1.5.1",
     "cross-env": "^5.2.0",
+    "moment": "^2.24.0",
     "nuxt": "^2.8.0",
     "nuxt-buefy": "^0.3.7",
     "v-calendar": "^1.0.0-beta.14",

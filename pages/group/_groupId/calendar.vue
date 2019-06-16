@@ -22,7 +22,9 @@
           <v-date-picker
             mode='range'
             v-model='availableDates'></v-date-picker>
-          <b-button @click="setAvailableDates">Set</b-button>
+          <b-button @click="setAvailableDates">
+            Set
+          </b-button>
         </div>
       </div>
       </section>
@@ -63,7 +65,7 @@
       <div class="select">
         <select>
           <option>Select Date</option>
-          <option v-for="date in this.freedates">
+          <option v-for="date in this.getFreeDates(this.availableDates)">
           {{date.toDateString()}}
           </option>
         </select>
@@ -82,27 +84,18 @@
   import Next from "../../../components/next";
   import {mapActions, mapGetters} from 'vuex';
 
+  let moment = require('moment');
+
   export default {
     name: 'GroupCalendarPage',
     components: {TopAppBar, Next},
     computed: {
       ...mapGetters({
-        availableDates: 'calendar/availableDates',
         tutorial: 'tutorial/tutorial'
       }),
       sharedDates() {
         return this.groupDates.concat(this.pickedDates);
       },
-      generateFreeDates() {
-        let result = [];
-        let cur = this.availableDates.start;
-        do {
-          if (!this.sharedDates.includes(cur)) {
-            result.push(cur)
-          }
-        } while (cur !== this.availableDates.end)
-        return result
-      }
     },
     props: {
       group: {
@@ -120,19 +113,55 @@
         } catch (e) {
           console.error("Calendar available date error", e);
         }
+      },
+      getAllDatesInBetween(start, end) {
+        let dates = [];
+        let startDate = moment(start);
+        let endDate = moment(end).add(1, 'day');
+        let format = 'D/M/YYYY';
+        while(startDate.format(format) !== endDate.format(format)) {
+          console.log(startDate.toDate());
+          dates.push(startDate.toDate());
+          startDate = startDate.add(1, 'days');
+        }
+        return dates;
+      },
+      getFreeDates(availableDates) {
+        let dates = [];
+        let startDate = moment(availableDates.start);
+        let endDate = moment(availableDates.end).add(1, 'day');
+        let format = 'D/M/YYYY';
+        while(startDate.format(format) !== endDate.format(format)) {
+          if (this.dateIsFree(startDate)) {
+            dates.push(startDate.toDate());
+          }
+          startDate = startDate.add(1, 'days');
+        }
+        return dates;
+      },
+      dateIsFree(date) {
+        let free = true;
+        let format = 'D/M/YYYY';
+        let dateWrapper = moment(date);
+        this.sharedDates.forEach(d => {
+          let dWrapper = moment(d);
+          console.log(dateWrapper.format(format));
+          console.log(dWrapper.format(format))
+          if (dateWrapper.format(format) === dWrapper.format(format)) {
+            free = false
+          }
+        });
+        return free
       }
     },
     data() {
       return {
+        moment: moment,
         startDate: new Date(),
         endDate: new Date(),
         availableDates: { start: new Date(2019, 5, 17), end: new Date(2019, 5, 21) },
         pickedDates: [],
         groupDates: [
-          new Date('6/20/2019'),
-          new Date('6/21/2019'),
-        ],
-        freedates: [
           new Date('6/20/2019'),
           new Date('6/21/2019'),
         ],
