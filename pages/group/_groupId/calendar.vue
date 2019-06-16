@@ -25,14 +25,16 @@
             v-model='availableDates'></v-date-picker>
           <br/>
           <br/>
-          <b-button type="is-primary" @click="setAvailableDates">Set</b-button>
+          <b-button type="is-primary" @click="setAvailableDates" :disabled="!availableDates">
+            Set Available Dates
+          </b-button>
         </div>
       </div>
       </section>
       <div class="calendar-page-container">
         <div class="calendar-container">
           <p class="calendar-sub-title">
-            Select dates when you are busy:
+            When are you busy?
           </p>
           <v-date-picker
             :available-dates='availableDates'
@@ -64,17 +66,15 @@
       Select the date of the event from the list of free dates:
       <br />
       <div class="select">
-        <select>
-          <option>Select Date</option>
+        <select v-model="selectedDate">
+          <option disabled value="">Select Date</option>
           <option v-for="date in this.getFreeDates(this.availableDates)">
           {{date.toDateString()}}
           </option>
         </select>
       </div>
-      <br/>
-      <br/>
       <div>
-        <b-button type="is-primary">Select Date</b-button>
+        <b-button type="is-primary" :disabled="!selectedDate">Pick Date</b-button>
       </div>
     </section>
 
@@ -156,8 +156,7 @@
     data() {
       return {
         moment: moment,
-        startDate: new Date(),
-        endDate: new Date(),
+        selectedDate: '',
         availableDates: { start: new Date(2019, 5, 17), end: new Date(2019, 5, 21) },
         pickedDates: [],
         groupDates: [
@@ -213,6 +212,10 @@
 
   .calendar-settings {
     margin: 1rem;
+  }
+
+  .select {
+    margin-bottom: 1rem;
   }
 </style>
 
