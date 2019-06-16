@@ -1,8 +1,6 @@
 <template>
   <section class="calendar">
     <section class="calendar-displays">
-      <div class="calendar-title">Calendars</div>
-
       <div v-if="tutorial">
         <b-message type="is-info">
           Here is where you and your friends or colleagues can:
@@ -11,8 +9,11 @@
           <li>View when everyone in your group is busy</li>
         </b-message>
         <next :group="group" next="polls" :end="false" style="float: left; margin-right: 2rem"/>
-        <br />
+        <br/>
+        <br/>
       </div>
+
+      <div class="calendar-title">Calendars</div>
 
       <section class="calendar-settings">
       <div>
@@ -22,9 +23,9 @@
           <v-date-picker
             mode='range'
             v-model='availableDates'></v-date-picker>
-          <b-button @click="setAvailableDates">
-            Set
-          </b-button>
+          <br/>
+          <br/>
+          <b-button type="is-primary" @click="setAvailableDates">Set</b-button>
         </div>
       </div>
       </section>
@@ -70,7 +71,8 @@
           </option>
         </select>
       </div>
-      <br />
+      <br/>
+      <br/>
       <div>
         <b-button type="is-primary">Select Date</b-button>
       </div>
