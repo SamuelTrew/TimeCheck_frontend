@@ -1,5 +1,5 @@
 <template>
-  <section class="next">
+  <section class="next" v-if="!end">
     <nuxt-link :to="`/group/${group.id}`" @click.native="setTutorial(false)">
       <b-button type="is-info" outlined>
         Skip
@@ -9,6 +9,14 @@
     <nuxt-link :to="`/group/${group.id}/${next}`">
       <b-button type="is-primary">
         Next
+      </b-button>
+    </nuxt-link>
+  </section>
+
+  <section class="next" v-else>
+    <nuxt-link :to="`/group/${group.id}`" @click.native="setTutorial(false)">
+      <b-button type="is-info" outlined>
+        End
       </b-button>
     </nuxt-link>
   </section>
@@ -25,6 +33,10 @@
       next: {
         type: String,
         required: true,
+      },
+      end: {
+        type: Boolean,
+        required: true
       }
     },
     methods: {

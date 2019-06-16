@@ -34,6 +34,13 @@
             </div>
           </div>
         </div>
+
+        <br />
+        <br />
+        <div v-if="tutorial">
+          <next :group="group" next="polls" :end="true" style="float: right; margin-right: 2rem"/>
+        </div>
+
       </div>
     </section>
 
@@ -105,6 +112,7 @@
   import GroupFeatures from '../../../components/GroupFeatures.vue'
   import Updates from "../../../components/Updates";
   import TopAppBar from "../../../components/TopAppBar";
+  import Next from "../../../components/next";
 
   export default {
     name: "notes",
@@ -112,6 +120,7 @@
       TopAppBar,
       Updates,
       GroupFeatures,
+      Next
     },
     props: {
       group: {
@@ -145,7 +154,8 @@
     computed: {
       ...mapGetters({
         user: 'auth/user',
-        notes: 'notes/list'
+        notes: 'notes/list',
+        tutorial: 'tutorial/tutorial'
       }),
       getUserName() {
         // TODO: This shouldn't be necessary... (should not be in notes if no user details)

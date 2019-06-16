@@ -65,7 +65,7 @@
       <br />
       <br />
       <div v-if="tutorial">
-        <next :group="group" next="polls" style="float: right; margin-right: 2rem"/>
+        <next :group="group" next="polls" :end="false" style="float: right; margin-right: 2rem"/>
       </div>
 
     </section>
