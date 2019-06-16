@@ -17,7 +17,7 @@
 
           <br />
           <br />
-          <div :v-if="tutorial">
+          <div v-if="tutorial">
             <next :group="group" next="notes" style="float: right; margin-right: 2rem"/>
           </div>
 
@@ -48,7 +48,7 @@
 
         <br />
         <br />
-        <div :v-if="tutorial">
+        <div v-if="tutorial">
           <next :group="group" next="notes" style="float: right; margin-right: 2rem"/>
         </div>
       </div>
