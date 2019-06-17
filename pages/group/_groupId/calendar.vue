@@ -3,14 +3,13 @@
     <section class="calendar-displays">
       <div v-if="tutorial">
         <b-message type="is-info">
-          Here is where you and your friends or colleagues can:
+          <p><b>Tutorial</b></p>
+          <p>Here is where you and your friends or colleagues can:</p>
           <li>Select the range of available dates</li>
           <li>Choose which dates you are busy</li>
           <li>View when everyone in your group is busy</li>
+          <next :group="group" next="polls" :end="false" style="float: right"/>
         </b-message>
-        <next :group="group" next="polls" :end="false" style="float: left; margin-right: 2rem"/>
-        <br/>
-        <br/>
       </div>
 
       <div class="calendar-title">Calendars</div>

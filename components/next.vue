@@ -1,23 +1,11 @@
 <template>
-  <section class="next" v-if="!end">
-    <nuxt-link :to="`/group/${group.id}/${next}`">
-      <b-button type="is-primary">
-        Next
-      </b-button>
+  <section class="next">
+    <nuxt-link v-if="!end" class="button is-primary" :to="`/group/${group.id}/${next}`">
+      Next
     </nuxt-link>
 
-    <nuxt-link :to="`/group/${group.id}`" @click.native="setTutorial(false)">
-      <b-button type="is-info" outlined>
-        End Tutorial
-      </b-button>
-    </nuxt-link>
-  </section>
-
-  <section class="next" v-else>
-    <nuxt-link :to="`/group/${group.id}`" @click.native="setTutorial(false)">
-      <b-button type="is-info" outlined>
-        End Tutorial
-      </b-button>
+    <nuxt-link class="button is-info is-outlined" :to="`/group/${group.id}`" @click.native="setTutorial(false)">
+      End Tutorial
     </nuxt-link>
   </section>
 </template>
@@ -52,5 +40,8 @@
 </script>
 
 <style>
+  .next {
+    margin-top: 1rem;
+  }
 
 </style>
