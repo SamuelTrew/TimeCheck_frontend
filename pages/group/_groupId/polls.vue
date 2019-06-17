@@ -1,19 +1,59 @@
 <template>
-  <div class="polls">
-    <!-- TODO: I mean, seriously -->
-    <template v-if="windowWidth >= 769">
-      <div class="polls-list">
-        <nuxt-link :to="`/group/${groupId}/polls/new`" @click.native="toggleListItemSelected" active-class="selected"
-                   class="create-poll">
-          <b-icon icon="plus" size="is-medium"></b-icon>
-        </nuxt-link>
-        <div class="polls-list-inner">
-          <nuxt-link :key="poll.id" :to="`/group/${groupId}/polls/${poll.id}`" @click.native="toggleListItemSelected"
-                     active-class="selected" class="poll-list-item" v-for="poll in polls">
-            <div class="content">
-              {{ poll.question }}
-            </div>
+  <div>
+    <div v-if="tutorial">
+      <b-message type="is-info" style="margin-top: 1rem; margin-left: 1rem; margin-right: 1rem">
+        <p><b>Tutorial</b></p>
+        Here is where you and your friends or colleagues can:
+        <li>View polls</li>
+        <li>Create polls</li>
+        <li>Vote in polls</li>
+        <next :group="group" next="notes" :end="false" style="float: right"/>
+      </b-message>
+    </div>
+    <h2 class="polls-title">Polls</h2>
+    <div class="polls">
+      <!-- TODO: I mean, seriously -->
+
+      <template v-if="windowWidth >= 769">
+        <div class="polls-list">
+          <nuxt-link :to="`/group/${groupId}/polls/new`" @click.native="toggleListItemSelected" active-class="selected"
+                     class="create-poll">
+            <b-icon icon="plus" size="is-medium"></b-icon>
           </nuxt-link>
+          <div class="polls-list-inner">
+            <nuxt-link :key="poll.id" :to="`/group/${groupId}/polls/${poll.id}`" @click.native="toggleListItemSelected"
+                       active-class="selected" class="poll-list-item" v-for="poll in polls">
+              <div class="content">
+                {{ poll.question }}
+              </div>
+            </nuxt-link>
+
+            <br />
+            <br />
+
+
+          </div>
+        </div>
+
+        <div class="polls-detail section">
+          <nuxt-child :group="group"/>
+        </div>
+      </template>
+
+      <template v-else>
+        <div class="polls-list" v-if="!listItemSelected">
+          <nuxt-link :to="`/group/${groupId}/polls/new`" @click.native="toggleListItemSelected" active-class="selected"
+                     class="create-poll">
+            <b-icon icon="plus" size="is-medium"></b-icon>
+          </nuxt-link>
+          <div class="polls-list-inner">
+            <nuxt-link :key="poll.id" :to="`/group/${groupId}/polls/${poll.id}`" @click.native="toggleListItemSelected"
+                       active-class="selected" class="poll-list-item" v-for="poll in polls">
+              <div class="content">
+                {{ poll.question }}
+              </div>
+            </nuxt-link>
+          </div>
 
           <br />
           <br />
@@ -24,58 +64,19 @@
               <li>Create polls</li>
               <li>Vote in polls</li>
             </b-message>
+            <next :group="group" next="notes" :end="false" style="float: right"/>
           </div>
-          <div v-if="tutorial">
-            <next :group="group" next="notes" :end="false" style="float: right; margin-right: 2rem"/>
-          </div>
-
-
-        </div>
-      </div>
-
-      <div class="polls-detail section">
-        <nuxt-child :group="group"/>
-      </div>
-    </template>
-
-    <template v-else>
-      <div class="polls-list" v-if="!listItemSelected">
-        <h2 class="polls-title">Polls</h2>
-        <nuxt-link :to="`/group/${groupId}/polls/new`" @click.native="toggleListItemSelected" active-class="selected"
-                   class="create-poll">
-          <b-icon icon="plus" size="is-medium"></b-icon>
-        </nuxt-link>
-        <div class="polls-list-inner">
-          <nuxt-link :key="poll.id" :to="`/group/${groupId}/polls/${poll.id}`" @click.native="toggleListItemSelected"
-                     active-class="selected" class="poll-list-item" v-for="poll in polls">
-            <div class="content">
-              {{ poll.question }}
-            </div>
-          </nuxt-link>
         </div>
 
-        <br />
-        <br />
-        <div v-if="tutorial">
-          <b-message type="is-info">
-            Here is where you and your friends or colleagues can:
-            <li>View polls</li>
-            <li>Create polls</li>
-            <li>Vote in polls</li>
-          </b-message>
 
-          <next :group="group" next="notes" :end="false" style="float: right; margin-right: 2rem"/>
+        <div class="polls-detail" v-else>
+          <button @click="toggleListItemSelected" class="polls-back-button">
+            <b-icon class="icon" icon="arrow-left" size="is-medium" type="is-dark"></b-icon>
+          </button>
+          <nuxt-child :group="this.group"/>
         </div>
-      </div>
-
-
-      <div class="polls-detail" v-else>
-        <button @click="toggleListItemSelected" class="polls-back-button">
-          <b-icon class="icon" icon="arrow-left" size="is-medium" type="is-dark"></b-icon>
-        </button>
-        <nuxt-child :group="this.group"/>
-      </div>
-    </template>
+      </template>
+    </div>
   </div>
 </template>
 
