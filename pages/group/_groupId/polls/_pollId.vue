@@ -17,6 +17,10 @@
       <p class="poll-option-votes">{{ option.votes }} votes</p>
     </div>
     <p v-if="poll.question">Total of {{ totalVotes }} votes</p>
+
+    <b-button @click="deletePoll" type="is-danger">
+      Delete Poll
+    </b-button>
   </div>
 </template>
 
@@ -76,7 +80,26 @@
         });
         let percentage = option.votes / total * 100;
         return {width: `${percentage}%`}
-      }
+      },
+      async deletePoll() {
+        this.$dialog.confirm({
+          title: 'Deleting group',
+          message: `Are you sure you want to <b>delete</b> the poll "${this.poll.question}"? This action cannot be undone.`,
+          confirmText: 'Delete Poll',
+          type: 'is-danger',
+          hasIcon: true,
+          onConfirm: async () => {
+            try {
+              await this.$store.dispatch('polls/deletePoll', this.poll)
+              this.$snackbar.open({
+                message: `Poll \"${this.poll.question}\" deleted.`
+              })
+            } catch (e) {
+              console.error("Poll creation error", e);
+            }
+          }
+        })
+      },
     }
   }
 </script>
