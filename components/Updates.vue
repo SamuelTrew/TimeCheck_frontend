@@ -9,7 +9,7 @@
 
             <!-- POLL -->
             <div class="card" v-if="item.type === 'poll'">
-              <nuxt-link :to="`${item.group}/polls/${item.id}`">
+              <nuxt-link :to="`/group/${item.group}/polls/${item.id}`">
                 <div class="card-header" :style="{backgroundColor: '#E91E63'}">
                   <p class="card-header-title">
                     {{item.data.question}}
@@ -26,7 +26,7 @@
 
             <!-- NOTES -->
             <div class="card" v-else-if="item.type === 'note'">
-              <nuxt-link :to="`${item.group}/notes`">
+              <nuxt-link :to="`/group/${item.group}/notes`">
                 <div class="card-header" :style="{backgroundColor: '#009688'}">
                   <p class="card-header-title">
                     {{item.data.title}}
@@ -45,7 +45,7 @@
 
             <!-- CALENDAR -->
             <div class="card" v-else-if="item.type === 'calendar'">
-              <nuxt-link :to="`${item.group}/calendar`">
+              <nuxt-link :to="`/group/${item.group}/calendar`">
                 <div class="card-header" :style="{backgroundColor: '#3F51B5'}">
                   <p class="card-header-title">
 
@@ -75,7 +75,7 @@
 
             <!-- POLL -->
             <div class="card" v-if="item.type === 'poll'">
-              <nuxt-link :to="`${item.group}/polls/${item.id}`">
+              <nuxt-link :to="`/group/${item.group}/polls/${item.id}`">
                 <div class="card-header" :style="{backgroundColor: '#E91E63'}">
                   <p class="card-header-title">
                     {{item.data.question}}
@@ -92,7 +92,7 @@
 
             <!-- NOTES -->
             <div class="card" v-else-if="item.type === 'note'">
-              <nuxt-link :to="`${item.group}/notes`">
+              <nuxt-link :to="`/group/${item.group}/notes`">
                 <div class="card-header" :style="{backgroundColor: '#009688'}">
                   <p class="card-header-title">
                     {{item.data.title}}
@@ -111,7 +111,7 @@
 
             <!-- CALENDAR -->
             <div class="card" v-else-if="item.type === 'calendar'">
-              <nuxt-link :to="`${item.group}/calendar`">
+              <nuxt-link :to="`/group/${item.group}/calendar`">
                 <div class="card-header" :style="{backgroundColor: '#3F51B5'}">
                   <p class="card-header-title">
                     {{item.data.title}}
