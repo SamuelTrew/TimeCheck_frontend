@@ -60,7 +60,7 @@
         <b>Warning!</b> This action cannot be undone - only proceed if you are sure that you want to permanently delete
         the group and all associated data
       </b-message>
-      <b-button @click="deleteGroup" type="is-danger">Delete</b-button>
+      <b-button @click="deleteGroup" type="is-danger" disabled>Delete</b-button>
 
       <br/>
       <br/>

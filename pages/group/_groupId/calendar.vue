@@ -8,7 +8,7 @@
           <li>Select the range of available dates</li>
           <li>Choose which dates you are busy</li>
           <li>View when everyone in your group is busy</li>
-          <next :group="group" next="polls" :end="false" style="float: right"/>
+          <next :group="group" next="polls/new" :end="false" style="float: right"/>
         </b-message>
       </div>
 
