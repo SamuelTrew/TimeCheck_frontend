@@ -1,17 +1,17 @@
 <template>
   <section class="features">
     <nuxt-link :to="`/group/${group.id}/calendar`" class="group-feature" v-on:click.native="toggleSidebar">
-      <b-icon class="group-feature-icon" icon="calendar" size="is-small-medium" type="is-light"></b-icon>
+      <b-icon class="group-feature-icon" icon="calendar" size="is-small-medium" type="is-warning"></b-icon>
       Calendars
     </nuxt-link>
 
     <nuxt-link :to="`/group/${group.id}/polls`" class="group-feature" v-on:click.native="toggleSidebar">
-      <b-icon class="group-feature-icon" icon="poll" size="is-small-medium" type="is-light"></b-icon>
+      <b-icon class="group-feature-icon" icon="poll" size="is-small-medium" type="is-info"></b-icon>
       Polls
     </nuxt-link>
 
     <nuxt-link :to="`/group/${group.id}/notes`" class="group-feature" v-on:click.native="toggleSidebar">
-      <b-icon class="group-feature-icon" icon="file-document" size="is-small-medium" type="is-light"></b-icon>
+      <b-icon class="group-feature-icon" icon="file-document" size="is-small-medium" type="is-danger"></b-icon>
       Notes
     </nuxt-link>
 
