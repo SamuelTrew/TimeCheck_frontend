@@ -33,7 +33,7 @@
                   <p class="card-header-title">
                     {{item.data.title}}
                   </p>
-                  <p>
+                  <p class="card-header-creator">
                     {{'@' + item.creator.name}}
                   </p>
                 </div>
@@ -204,6 +204,10 @@
   .card-header,
   .card-content {
     color: initial;
+  }
+  .card-header-creator {
+    font-weight: bold;
+    margin: auto 1rem auto auto;
   }
 
   .activity-item {
