@@ -197,6 +197,10 @@
 </script>
 
 <style>
+  .updates .card:hover {
+    background-color: whitesmoke;
+  }
+
   .card-header,
   .card-content {
     color: initial;
