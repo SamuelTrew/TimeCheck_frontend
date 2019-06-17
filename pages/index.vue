@@ -3,7 +3,8 @@
     <section class="hero hero-image image-meeting is-large">
       <div class="hero-body">
         <div class="container has-text-centered">
-          <h2 class="title is-0">Groups. Events. Organised.</h2>
+          <img src="../assets/meetuppi_logo_white.png" alt="Meetuppi logo" width="600">
+          <h2 class="title is-1">Groups. Events. Organised.</h2>
         </div>
       </div>
     </section>
