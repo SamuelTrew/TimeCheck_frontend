@@ -40,8 +40,9 @@
 </script>
 
 <style>
-  .next {
-    margin-top: 1rem;
+  @media only screen and (max-width: 768px) {
+    .next {
+      margin-top: 1rem;
+    }
   }
-
 </style>

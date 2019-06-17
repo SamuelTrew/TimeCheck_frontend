@@ -54,18 +54,6 @@
               </div>
             </nuxt-link>
           </div>
-
-          <br />
-          <br />
-          <div v-if="tutorial">
-            <b-message type="is-info">
-              Here is where you and your friends or colleagues can:
-              <li>View polls</li>
-              <li>Create polls</li>
-              <li>Vote in polls</li>
-            </b-message>
-            <next :group="group" next="notes" :end="false" style="float: right"/>
-          </div>
         </div>
 
 
@@ -134,8 +122,6 @@
 
   .polls-list {
     width: 100%;
-    background-color: #fafafa;
-    border-right: 1px solid #dddddd;
     display: flex;
     flex-direction: column;
   }
@@ -178,7 +164,6 @@
   .poll-option {
     cursor: pointer;
     padding: 0.5rem 1rem;
-    background-color: #fafafa;
     position: relative;
     overflow: hidden;
   }
