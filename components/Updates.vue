@@ -4,8 +4,8 @@
       <h3 class="title" v-if="group">Group Activity Feed</h3>
 
       <no-ssr>
-        <div v-masonry transition-duration="0s" item-selector=".item" class="masonry-container">
-          <div v-masonry-tile class="item activity-item" :key="item.id" v-for="item in activity">
+        <div class="masonry-container" item-selector=".item" transition-duration="0s" v-masonry>
+          <div :key="item.id" class="item activity-item" v-for="item in activity" v-masonry-tile>
 
             <!-- POLL -->
             <div class="card" v-if="item.type === 'poll'">
@@ -17,8 +17,8 @@
                   </p>
                 </div>
                 <div class="card-content">
-                  <div v-for="option in item.data.options" class="poll-option box">
-                    <div class="poll-bar" :style="calcStyle(item.data, option)"></div>
+                  <div class="poll-option box" v-for="option in item.data.options">
+                    <div :style="calcStyle(item.data, option)" class="poll-bar"></div>
                     <p class="poll-option-name">{{ option.text }}</p>
                   </div>
                 </div>
@@ -70,8 +70,8 @@
     <template v-else>
       <h3 class="title">Overall Activity Feed</h3>
       <no-ssr>
-        <div v-masonry transition-duration="0s" item-selector=".item" class="masonry-container">
-          <div v-masonry-tile class="item activity-item" :key="item.id" v-for="item in allActivity">
+        <div class="masonry-container" item-selector=".item" transition-duration="0s" v-masonry>
+          <div :key="item.id" class="item activity-item" v-for="item in allActivity" v-masonry-tile>
 
             <!-- POLL -->
             <div class="card" v-if="item.type === 'poll'">
@@ -83,8 +83,8 @@
                   </p>
                 </div>
                 <div class="card-content">
-                  <div v-for="option in item.data.options" class="poll-option box">
-                    <div class="poll-bar" :style="calcStyle(item.data, option)"></div>
+                  <div class="poll-option box" v-for="option in item.data.options">
+                    <div :style="calcStyle(item.data, option)" class="poll-bar"></div>
                     <p class="poll-option-name">{{ option.text }}</p>
                   </div>
                 </div>
@@ -197,20 +197,25 @@
 </script>
 
 <style>
-.activity-item {
-  width: 100%;
-  padding: 10px;
-}
-
-@media screen and (min-width: 900px) {
-  .activity-item {
-    width: 50%;
+  .card-header,
+  .card-content {
+    color: initial;
   }
-}
 
-@media screen and (min-width: 1600px) {
   .activity-item {
-    width: 33.33333333%;
+    width: 100%;
+    padding: 10px;
   }
-}
+
+  @media screen and (min-width: 900px) {
+    .activity-item {
+      width: 50%;
+    }
+  }
+
+  @media screen and (min-width: 1600px) {
+    .activity-item {
+      width: 33.33333333%;
+    }
+  }
 </style>
