@@ -31,6 +31,7 @@
       return {
         group: null,
         name: '',
+        interval: null
       }
     },
     methods: {
@@ -42,7 +43,7 @@
       const group = await this.getGroupById(this.groupId)
       if (group) {
         this.group = group
-        setInterval(() => {
+        this.interval = setInterval(() => {
           this.$store.dispatch('activity/fetchActivity', this.groupId)
           this.$store.dispatch('polls/fetchPolls', this.groupId)
           this.$store.dispatch('notes/fetchNotes', this.groupId)
@@ -57,6 +58,9 @@
         console.info('Going dashboard - group not found')
         this.$router.push('/dashboard')
       }
+    },
+    beforeDestroy() {
+      if (this.interval) clearInterval(this.interval)
     },
     asyncData({params}) {
       return {groupId: params.groupId}
