@@ -3,7 +3,7 @@
     <section class="hero hero-image image-meeting is-large">
       <div class="hero-body">
         <div class="container has-text-centered">
-          <h2 class="title is-0">Cook. Save. Share.</h2>
+          <h2 class="title is-0">Groups. Events. Organised.</h2>
         </div>
       </div>
     </section>
@@ -23,9 +23,10 @@
         <div class="container">
           <div class="columns">
             <div class="column is-7 text">
-              <h3 class="title is-spaced is-1">Beautiful.</h3>
-              <p class="subtitle">Recipea makes your creations look amazing.</p>
-              <p class="subtitle">With a clean layout that works on any device, recipe instructions are easy to follow and details clearly presented.</p>
+              <h3 class="title is-spaced is-1">Calendar</h3>
+              <p class="subtitle">Meetuppi helps organise you and your friends' calendars.</p>
+              <p class="subtitle">With our calendar module we can find help find out when you and your friends are all
+              busy so that you can easily organise when to host your group event.</p>
             </div>
             <div class="column is-5 img">
 <!--              <img src="~assets/screenshots/view.png">-->
@@ -53,10 +54,10 @@
               <p class="heading">
                 <b-icon
                   size="is-large"
-                  icon="stove"></b-icon>
+                  icon="calendar"></b-icon>
               </p>
-              <p class="title">Cook</p>
-              <p class="subtitle">Prepare a delicious recipe</p>
+              <p class="title">Plan</p>
+              <p class="subtitle">Organise a fantastic event</p>
             </div>
             <div class="column">
               <p class="heading">
@@ -65,7 +66,7 @@
                   icon="cloud-upload"></b-icon>
               </p>
               <p class="title">Save</p>
-              <p class="subtitle">Store the details securely on Recipea</p>
+              <p class="subtitle">Store the details securely on Meetuppi</p>
             </div>
             <div class="column">
               <p class="heading">
@@ -74,7 +75,7 @@
                   icon="earth"></b-icon>
               </p>
               <p class="title">Share</p>
-              <p class="subtitle">Let everyone benefit from your creation</p>
+              <p class="subtitle">Let everyone enjoy your event</p>
             </div>
           </nav>
         </div>
@@ -100,9 +101,9 @@
             </div>
 
             <div class="column is-7 text">
-              <h3 class="title is-spaced is-1">Personal.</h3>
-              <p class="subtitle">Recipea makes organisation a thing of the past.</p>
-              <p class="subtitle">View your content easily with a customisable layout and filter options to find exactly what you're looking for.</p>
+              <h3 class="title is-spaced is-1">Polls</h3>
+              <p class="subtitle">Meetuppi makes deciding easy.</p>
+              <p class="subtitle">View, edit and contribute to group decisions through our easy-to-use polls.</p>
             </div>
           </div>
         </div>
@@ -130,7 +131,7 @@
                   icon="account"></b-icon>
               </p>
               <p class="title">Private</p>
-              <p class="subtitle">By default, your recipes are hidden and can only be viewed by you. We won't reveal the secret ingredients!</p>
+              <p class="subtitle">By default, your groups and meeting are hidden and can only be viewed by who you want </p>
             </div>
             <div class="column is-4">
               <p class="heading">
@@ -139,7 +140,7 @@
                   icon="account-multiple"></b-icon>
               </p>
               <p class="title">Public</p>
-              <p class="subtitle">To let everyone enjoy your recipe, publish it to the world. Anyone will be able to find and create your masterpiece!</p>
+              <p class="subtitle">To let everyone enjoy your event, share with your friends. Let everyone enjoy the great event!</p>
             </div>
           </div>
         </div>
@@ -161,9 +162,8 @@
         <div class="container">
           <div class="columns">
             <div class="column is-7 text">
-              <h3 class="title is-spaced is-1">Universal.</h3>
-              <p class="subtitle">Recipea works across all of your devices.</p>
-              <p class="subtitle">Your recipes are stored securely on our servers and accessible from anything with an internet connection..</p>
+              <h3 class="title is-spaced is-1">Notes</h3>
+              <p class="subtitle">Meetuppi allows you to share and view important notes and notices from everyone in the group</p>
             </div>
             <div class="column is-5 img">
 <!--              <img src="~assets/screenshots/devices.png">-->
@@ -191,7 +191,7 @@
             <nuxt-link
               to="/cookbook"
               class="button is-primary is-large">
-              Go to your cookbook
+              Go to your dashboard
             </nuxt-link>
           </template>
           <template v-else>
