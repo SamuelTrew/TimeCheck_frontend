@@ -4,12 +4,12 @@
       <h3 class="title" v-if="group">Group Activity Feed</h3>
 
       <no-ssr>
-        <div v-masonry transition-duration="0s" item-selector=".item" class="masonry-container">
-          <div v-masonry-tile class="item activity-item" :key="item.id" v-for="item in activity">
+        <div class="masonry-container" item-selector=".item" transition-duration="0s" v-masonry>
+          <div :key="item.id" class="item activity-item" v-for="item in activity" v-masonry-tile>
 
             <!-- POLL -->
             <div class="card" v-if="item.type === 'poll'">
-              <nuxt-link :to="`${group.id}/polls/${item.id}`">
+              <nuxt-link :to="`/group/${item.group}/polls/${item.id}`">
                 <div class="card-header">
                   <b-icon class="group-feature-icon" icon="poll" size="is-medium" type="is-info" :style="{paddingTop: '15px', paddingLeft: '15px'}"></b-icon>
                   <p class="card-header-title">
@@ -17,8 +17,8 @@
                   </p>
                 </div>
                 <div class="card-content">
-                  <div v-for="option in item.data.options" class="poll-option box">
-                    <div class="poll-bar" :style="calcStyle(item.data, option)"></div>
+                  <div class="poll-option box" v-for="option in item.data.options">
+                    <div :style="calcStyle(item.data, option)" class="poll-bar"></div>
                     <p class="poll-option-name">{{ option.text }}</p>
                   </div>
                 </div>
@@ -27,7 +27,7 @@
 
             <!-- NOTES -->
             <div class="card" v-else-if="item.type === 'note'">
-              <nuxt-link :to="`${group.id}/notes`">
+              <nuxt-link :to="`/group/${item.group}/notes`">
                 <div class="card-header">
                   <b-icon class="group-feature-icon" icon="file-document" size="is-medium" type="is-danger" :style="{paddingTop: '15px', paddingLeft: '15px'}"></b-icon>
                   <p class="card-header-title">
@@ -47,8 +47,8 @@
 
             <!-- CALENDAR -->
             <div class="card" v-else-if="item.type === 'calendar'">
-              <nuxt-link :to="`${group.id}/calendar`">
-                <div class="card-header" :style="{backgroundColor: 'rgba(231,246,58,0.4)'}">
+              <nuxt-link :to="`/group/${item.group}/calendar`">
+                <div class="card-header">
                   <b-icon class="group-feature-icon" icon="file-document" size="is-medium" type="is-warning" :style="{paddingTop: '15px', paddingLeft: '15px'}"></b-icon>
                   <p class="card-header-title">
 
@@ -62,143 +62,75 @@
                 </div>
               </nuxt-link>
             </div>
-
           </div>
         </div>
       </no-ssr>
-
     </template>
 
     <template v-else>
       <h3 class="title">Overall Activity Feed</h3>
-      <div class="columns is-multiline">
-        <div class="column is-6">
-          <div class="card">
-            <div class="card-content">
-              <div class="media">
-                <div class="media-left">
-                  <figure class="image is-48x48">
-                    <img alt="Placeholder image"
-                         class="is-rounded"
-                         src="https://spectator.imgix.net/content/uploads/2018/06/l.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550">
-                  </figure>
-                </div>
-                <div class="media-content">
-                  <p class="title is-4">Group 15's End of Year Night Out ;)</p>
-                  <p class="subtitle is-6">@Reminder</p>
-                </div>
-              </div>
-              <div class="content">
-                Meeting <b>Today</b> at <b>The Slug Club</b> in Fulham - Don't be late!
-                <br>
-                <b>10:30 PM - Wednesday 19th June 2019</b>
-              </div>
-              <div>
-                <div>
-                  Let your group know your status by checking in below!
-                </div>
-                <br/>
-                <div>
-                  <a class="button is-success is-rounded">Arrived :)</a>
-                </div>
-                <br/>
-                <div>
-                  <a class="button is-warning is-rounded">On my way!</a>
-                </div>
-                <br/>
-                <div>
-                  <a class="button is-danger is-rounded">Gonna be late :(</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <no-ssr>
+        <div class="masonry-container" item-selector=".item" transition-duration="0s" v-masonry>
+          <div :key="item.id" class="item activity-item" v-for="item in allActivity" v-masonry-tile>
 
-        <div class="column is-6">
-          <div class="card">
-            <div class="card-content">
-              <div class="media">
-                <div class="media-left">
-                  <figure class="image is-48x48">
-                    <img alt="Placeholder image"
-                         class="is-rounded"
-                         src="https://spectator.imgix.net/content/uploads/2018/06/l.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550">
-                  </figure>
+            <!-- POLL -->
+            <div class="card" v-if="item.type === 'poll'">
+              <nuxt-link :to="`/group/${item.group}/polls/${item.id}`">
+                <div class="card-header">
+                  <b-icon class="group-feature-icon" icon="poll" size="is-medium" type="is-info" :style="{paddingTop: '15px', paddingLeft: '15px'}"></b-icon>
+                  <p class="card-header-title">
+                    {{item.data.question}}
+                  </p>
                 </div>
-                <div class="media-content">
-                  <p class="title is-4">Group 15's End of Year Night Out ;)</p>
-                  <p class="subtitle is-6">@Calendar</p>
+                <div class="card-content">
+                  <div class="poll-option box" v-for="option in item.data.options">
+                    <div :style="calcStyle(item.data, option)" class="poll-bar"></div>
+                    <p class="poll-option-name">{{ option.text }}</p>
+                  </div>
                 </div>
-              </div>
-              <div class="content">
-                The <b>Calendar Results</b> are Out:
-                <br>
-                When are you free next week?
-                <br>
-                - <b>Wednesday</b>: 100%
-                <br>
-                - Friday: 80%
-                <br>
-                - Thursday: 60%
-                <br>
-              </div>
+              </nuxt-link>
             </div>
-          </div>
-        </div>
 
-        <div class="column is-6">
-          <div class="card">
-            <div class="card-content">
-              <p class="title">
-                And the location has been decided! - The Slug At Fulham :) </p>
+            <!-- NOTES -->
+            <div class="card" v-else-if="item.type === 'note'">
+              <nuxt-link :to="`/group/${item.group}/notes`">
+                <div class="card-header">
+                  <b-icon class="group-feature-icon" icon="file-document" size="is-medium" type="is-danger" :style="{paddingTop: '15px', paddingLeft: '15px'}"></b-icon>
+                  <p class="card-header-title">
+                    {{item.data.title}}
+                  </p>
+                  <p>
+                    {{'@' + item.creator.name}}
+                  </p>
+                </div>
+                <div class="card-content">
+                  <div class="content">
+                    {{item.data.text}}
+                  </div>
+                </div>
+              </nuxt-link>
             </div>
-            <footer class="card-footer">
-              <p class="card-footer-item">
-        <span>
-          View Location on <a href="https://goo.gl/maps/CCRPJWUrndcKuuth8" target="_blank">Google Maps</a>
-        </span>
-              </p>
-              <p class="card-footer-item">
-        <span>
-          View Location on <a href="https://www.facebook.com/TheSlugAtFulham/" target="_blank">Facebook</a>
-        </span>
-              </p>
-            </footer>
-          </div>
-        </div>
 
-        <div class="column is-6">
-          <div class="card">
-            <div class="card-content">
-              <div class="media">
-                <div class="media-left">
-                  <figure class="image is-48x48">
-                    <img alt="Placeholder image"
-                         class="is-rounded"
-                         src="https://spectator.imgix.net/content/uploads/2018/06/l.jpg?auto=compress,enhance,format&crop=faces,entropy,edges&fit=crop&w=820&h=550">
-                  </figure>
+            <!-- CALENDAR -->
+            <div class="card" v-else-if="item.type === 'calendar'">
+              <nuxt-link :to="`/group/${item.group}/calendar`">
+                <div class="card-header">
+                  <b-icon class="group-feature-icon" icon="file-document" size="is-medium" type="is-warning" :style="{paddingTop: '15px', paddingLeft: '15px'}"></b-icon>
+                  <p class="card-header-title">
+
+                  </p>
+
                 </div>
-                <div class="media-content">
-                  <p class="title is-4">Group 15's End of Year Night Out ;)</p>
-                  <p class="subtitle is-6">@Poll</p>
+                <div class="card-content">
+                  <div class="content">
+
+                  </div>
                 </div>
-              </div>
-              <div class="content">
-                The <b>Poll Results</b> are Out:
-                <br>
-                Which club should we go to?
-                <br>
-                - <b>Slug</b>: 9 votes
-                <br>
-                - Xoyo: 3 votes
-                <br>
-                - Roxy: 1 votes
-                <br>
-              </div>
+              </nuxt-link>
             </div>
           </div>
         </div>
-      </div>
+      </no-ssr>
     </template>
   </section>
 </template>
@@ -219,13 +151,28 @@
     },
     computed: {
       ...mapGetters({
-        activity: 'activity/list'
+        activity: 'activity/list',
+        allActivity: 'activity/all'
       })
     },
-    mounted () {
+    data() {
+      return {
+        interval: null
+      }
+    },
+    mounted() {
       if (typeof this.$redrawVueMasonry === 'function') {
         this.$redrawVueMasonry()
       }
+      if (!this.group) {
+        this.interval = setInterval(() => {
+          this.$store.dispatch('activity/fetchAllActivity', this.groupId)
+        }, 2000)
+        this.$store.dispatch('activity/fetchAllActivity')
+      }
+    },
+    beforeDestroy() {
+      if (this.interval) clearInterval(this.interval)
     },
     methods: {
       calcStyle(poll, option) {
@@ -250,20 +197,29 @@
 </script>
 
 <style>
-.activity-item {
-  width: 100%;
-  padding: 10px;
-}
-
-@media screen and (min-width: 900px) {
-  .activity-item {
-    width: 50%;
+  .updates .card:hover {
+    background-color: whitesmoke;
   }
-}
 
-@media screen and (min-width: 1600px) {
-  .activity-item {
-    width: 33.33333333%;
+  .card-header,
+  .card-content {
+    color: initial;
   }
-}
+
+  .activity-item {
+    width: 100%;
+    padding: 10px;
+  }
+
+  @media screen and (min-width: 900px) {
+    .activity-item {
+      width: 50%;
+    }
+  }
+
+  @media screen and (min-width: 1600px) {
+    .activity-item {
+      width: 33.33333333%;
+    }
+  }
 </style>

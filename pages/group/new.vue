@@ -50,6 +50,11 @@
         const group = await this.$axios.$post('/group', {name: this.name})
         await this.$store.dispatch('groups/fetchGroups')
         await this.$store.dispatch('tutorial/setTutorial', true)
+        if (this.description.length) {
+          this.$axios.$post(`/group/${group.id}/note`, {title: 'Group Description', text: this.description})
+        } else {
+          this.$axios.$post(`/group/${group.id}/note`, {title: 'Group Description', text: `Welcome to ${group.name}!`})
+        }
         this.loading = false
         this.$router.push(`/group/${group.id}/invite`)
         this.$snackbar.open({
