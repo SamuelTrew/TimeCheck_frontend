@@ -4,11 +4,13 @@
       <h3 class="title" v-if="group">Group Activity Feed</h3>
 
       <no-ssr>
-        <div v-masonry transition-duration="0.5s" item-selector=".item" class="masonry-container">
+        <div v-masonry transition-duration="0s" item-selector=".item" class="masonry-container">
           <div v-masonry-tile class="item activity-item" :key="item.id" v-for="item in activity">
+
+            <!-- POLL -->
             <div class="card" v-if="item.type === 'poll'">
               <nuxt-link :to="`${group.id}/polls/${item.id}`">
-                <div class="card-header" :style="{backgroundColor: 'DarkSalmon'}">
+                <div class="card-header" :style="{backgroundColor: '#E91E63'}">
                   <p class="card-header-title">
                     {{item.data.question}}
                   </p>
@@ -22,9 +24,10 @@
               </nuxt-link>
             </div>
 
+            <!-- NOTES -->
             <div class="card" v-else-if="item.type === 'note'">
               <nuxt-link :to="`${group.id}/notes`">
-                <div class="card-header" :style="{backgroundColor: 'MediumTurquoise'}">
+                <div class="card-header" :style="{backgroundColor: '#009688'}">
                   <p class="card-header-title">
                     {{item.data.title}}
                   </p>
@@ -39,27 +42,30 @@
                 </div>
               </nuxt-link>
             </div>
+
+            <!-- CALENDAR -->
+            <div class="card" v-else-if="item.type === 'calendar'">
+              <nuxt-link :to="`${group.id}/calendar`">
+                <div class="card-header" :style="{backgroundColor: '#3F51B5'}">
+                  <p class="card-header-title">
+                    {{item.data.title}}
+                  </p>
+                  <p>
+                    {{'@' + item.creator.name}}
+                  </p>
+                </div>
+                <div class="card-content">
+                  <div class="content">
+                    {{item.data.text}}
+                  </div>
+                </div>
+              </nuxt-link>
+            </div>
+
           </div>
         </div>
       </no-ssr>
 
-<!--      <div class="columns is-multiline">-->
-
-<!--        <div class="column is-4" v-for="item in activity" :key="item.id">-->
-<!--          &lt;!&ndash; TODO: Refactor dashboard. Like, a lot. &ndash;&gt;-->
-<!--          &lt;!&ndash; TODO: Separate these out into separate components &ndash;&gt;-->
-
-<!--          &lt;!&ndash; POLL &ndash;&gt;-->
-
-
-
-<!--          &lt;!&ndash; NOTES &ndash;&gt;-->
-
-
-<!--          &lt;!&ndash; CALENDAR &ndash;&gt;-->
-
-<!--        </div>-->
-<!--      </div>-->
     </template>
 
     <template v-else>
@@ -256,6 +262,7 @@
 @media screen and (min-width: 1600px) {
   .activity-item {
     width: 33.33333333%;
+    padding: 10px;
   }
 }
 </style>
