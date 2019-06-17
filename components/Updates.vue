@@ -3,49 +3,63 @@
     <template v-if="group">
       <h3 class="title" v-if="group">Group Activity Feed</h3>
 
-      <div class="columns is-multiline">
-        <div class="column is-4" v-for="item in activity" :key="item.id">
-          <!-- TODO: Refactor dashboard. Like, a lot. -->
-          <!-- TODO: Separate these out into separate components -->
-
-          <!-- POLL -->
-          <div class="card" v-if="item.type === 'poll'">
-            <nuxt-link :to="`${group.id}/polls/${item.id}`">
-              <div class="card-header" :style="{backgroundColor: 'DarkSalmon'}">
-                <p class="card-header-title">
-                  {{item.data.question}}
-                </p>
-              </div>
-              <div class="card-content">
-                <div v-for="option in item.data.options" class="poll-option box">
-                  <div class="poll-bar" :style="calcStyle(item.data, option)"></div>
-                  <p class="poll-option-name">{{ option.text }}</p>
+      <no-ssr>
+        <div v-masonry transition-duration="0.5s" item-selector=".item" class="masonry-container">
+          <div v-masonry-tile class="item activity-item" :key="item.id" v-for="item in activity">
+            <div class="card" v-if="item.type === 'poll'">
+              <nuxt-link :to="`${group.id}/polls/${item.id}`">
+                <div class="card-header" :style="{backgroundColor: 'DarkSalmon'}">
+                  <p class="card-header-title">
+                    {{item.data.question}}
+                  </p>
                 </div>
-              </div>
-            </nuxt-link>
-          </div>
-
-
-          <!-- NOTES -->
-          <div class="card" v-else-if="item.type === 'note'">
-            <nuxt-link :to="`${group.id}/notes`">
-              <div class="card-header" :style="{backgroundColor: 'MediumTurquoise'}">
-                <p class="card-header-title">
-                  {{item.data.title}}
-                </p>
-              </div>
-              <div class="card-content">
-                <div class="content">
-                  {{item.data.text}}
+                <div class="card-content">
+                  <div v-for="option in item.data.options" class="poll-option box">
+                    <div class="poll-bar" :style="calcStyle(item.data, option)"></div>
+                    <p class="poll-option-name">{{ option.text }}</p>
+                  </div>
                 </div>
-              </div>
-            </nuxt-link>
+              </nuxt-link>
+            </div>
+
+            <div class="card" v-else-if="item.type === 'note'">
+              <nuxt-link :to="`${group.id}/notes`">
+                <div class="card-header" :style="{backgroundColor: 'MediumTurquoise'}">
+                  <p class="card-header-title">
+                    {{item.data.title}}
+                  </p>
+                  <p>
+                    {{'@' + item.creator.name}}
+                  </p>
+                </div>
+                <div class="card-content">
+                  <div class="content">
+                    {{item.data.text}}
+                  </div>
+                </div>
+              </nuxt-link>
+            </div>
           </div>
-
-          <!-- CALENDAR -->
-
         </div>
-      </div>
+      </no-ssr>
+
+<!--      <div class="columns is-multiline">-->
+
+<!--        <div class="column is-4" v-for="item in activity" :key="item.id">-->
+<!--          &lt;!&ndash; TODO: Refactor dashboard. Like, a lot. &ndash;&gt;-->
+<!--          &lt;!&ndash; TODO: Separate these out into separate components &ndash;&gt;-->
+
+<!--          &lt;!&ndash; POLL &ndash;&gt;-->
+
+
+
+<!--          &lt;!&ndash; NOTES &ndash;&gt;-->
+
+
+<!--          &lt;!&ndash; CALENDAR &ndash;&gt;-->
+
+<!--        </div>-->
+<!--      </div>-->
     </template>
 
     <template v-else>
@@ -184,6 +198,7 @@
 
 <script>
   import {mapGetters} from 'vuex'
+  import NoSSR from 'vue-no-ssr'
 
   export default {
     name: 'Updates',
@@ -192,10 +207,18 @@
         type: Object
       }
     },
+    components: {
+      'no-ssr': NoSSR
+    },
     computed: {
       ...mapGetters({
         activity: 'activity/list'
       })
+    },
+    mounted () {
+      if (typeof this.$redrawVueMasonry === 'function') {
+        this.$redrawVueMasonry()
+      }
     },
     methods: {
       calcStyle(poll, option) {
@@ -220,5 +243,19 @@
 </script>
 
 <style>
+.activity-item {
+  width: 100%
+}
 
+@media screen and (min-width: 900px) {
+  .activity-item {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .activity-item {
+    width: 33.33333333%;
+  }
+}
 </style>
