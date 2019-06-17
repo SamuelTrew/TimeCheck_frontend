@@ -48,15 +48,13 @@
               <nuxt-link :to="`${item.group}/calendar`">
                 <div class="card-header" :style="{backgroundColor: '#3F51B5'}">
                   <p class="card-header-title">
-                    {{item.data.title}}
+
                   </p>
-                  <p>
-                    {{'@' + item.creator.name}}
-                  </p>
+
                 </div>
                 <div class="card-content">
                   <div class="content">
-                    {{item.data.text}}
+
                   </div>
                 </div>
               </nuxt-link>
