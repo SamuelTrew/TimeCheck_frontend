@@ -46,6 +46,15 @@ export const actions = {
       console.error(err)
     }
   },
+  async deletePoll({state, commit}, poll) {
+    try {
+      await this.$axios.$delete(`/group/${state.groupId}/poll/${poll.id}`)
+      commit('DELETE_POLL', {poll})
+    } catch(err) {
+      // TODO: Error logging
+      console.error(err)
+    }
+  },
   async vote({state, commit}, {poll, option}) {
     if (option.selected) {
       // Un-vote
@@ -80,6 +89,9 @@ export const mutations = {
   },
   ADD_POLL(state, {poll}) {
     Vue.set(state.polls, poll.id, poll)
+  },
+  DELETE_POLL(state, {poll}) {
+    Vue.delete(state.polls, poll.id)
   },
   // SET_OPTION(state, {option, value}) {
   //   Vue.set(option, 'selected', value)
