@@ -52,6 +52,9 @@
         await this.$store.dispatch('tutorial/setTutorial', true)
         this.loading = false
         this.$router.push(`/group/${group.id}/invite`)
+        this.$snackbar.open({
+          message: `Group \"${this.name}\" created.`
+        })
       },
       onFileChange(e) {
         let files = e.target.files || e.dataTransfer.files

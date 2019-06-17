@@ -33,7 +33,8 @@ export default {
   */
   plugins: [
     {src: '~plugins/v-calendar.js', ssr: false},
-    {src: '~plugins/window-size.js', ssr: false}
+    {src: '~plugins/window-size.js', ssr: false},
+    {src: '~/plugins/vue-masonry', ssr: false}
   ],
 
   /*

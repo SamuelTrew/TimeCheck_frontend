@@ -197,6 +197,9 @@
         this.newSaving = true
         try {
           await this.$store.dispatch('notes/createNote', this.newNote)
+          this.$snackbar.open({
+            message: `Note \"${this.newNote.title}\" added.`
+          })
         } catch (e) {
           console.error("Note creation error", e);
         } finally {
@@ -209,6 +212,9 @@
         this.editSaving = true
         try {
           await this.$store.dispatch('notes/updateNote', this.editNote)
+          this.$snackbar.open({
+            message: `Note \"${this.editNote.title}\" updated.`
+          })
         } catch (e) {
           console.error("Note edit error", e);
         } finally {
@@ -227,6 +233,9 @@
           onConfirm: async () => {
             try {
               await this.$store.dispatch('notes/deleteNote', note)
+              this.$snackbar.open({
+                message: `Note \"${note.title}\" deleted.`
+              })
             } catch (e) {
               console.error("Note deletion error", e);
             }

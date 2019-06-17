@@ -2,17 +2,12 @@
   <section class="features">
     <nuxt-link :to="`/group/${group.id}/calendar`" class="group-feature" v-on:click.native="toggleSidebar">
       <b-icon class="group-feature-icon" icon="calendar" size="is-small-medium" type="is-light"></b-icon>
-      Dates
+      Calendars
     </nuxt-link>
 
     <nuxt-link :to="`/group/${group.id}/polls`" class="group-feature" v-on:click.native="toggleSidebar">
       <b-icon class="group-feature-icon" icon="poll" size="is-small-medium" type="is-light"></b-icon>
       Polls
-    </nuxt-link>
-
-    <nuxt-link :to="`/group/${group.id}/alarm`" class="group-feature bottom-items" v-on:click.native="toggleSidebar">
-      <b-icon class="group-feature-icon" icon="alarm" size="is-small-medium" type="is-light"></b-icon>
-      Reminders
     </nuxt-link>
 
     <nuxt-link :to="`/group/${group.id}/notes`" class="group-feature" v-on:click.native="toggleSidebar">

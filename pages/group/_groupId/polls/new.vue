@@ -110,6 +110,9 @@
         this.saving = true
         try {
           await this.$store.dispatch('polls/createPoll', this.poll)
+          this.$snackbar.open({
+            message: `Poll \"${this.poll.question}\" created.`
+          })
         } catch (e) {
           console.error("Poll creation error", e);
         } finally {
