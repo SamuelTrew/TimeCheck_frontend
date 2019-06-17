@@ -10,7 +10,8 @@
             <!-- POLL -->
             <div class="card" v-if="item.type === 'poll'">
               <nuxt-link :to="`/group/${item.group}/polls/${item.id}`">
-                <div class="card-header" :style="{backgroundColor: '#E91E63'}">
+                <div class="card-header">
+                  <b-icon class="group-feature-icon" icon="poll" size="is-medium" type="is-info" :style="{paddingTop: '15px', paddingLeft: '15px'}"></b-icon>
                   <p class="card-header-title">
                     {{item.data.question}}
                   </p>
@@ -27,7 +28,8 @@
             <!-- NOTES -->
             <div class="card" v-else-if="item.type === 'note'">
               <nuxt-link :to="`/group/${item.group}/notes`">
-                <div class="card-header" :style="{backgroundColor: '#009688'}">
+                <div class="card-header">
+                  <b-icon class="group-feature-icon" icon="file-document" size="is-medium" type="is-danger" :style="{paddingTop: '15px', paddingLeft: '15px'}"></b-icon>
                   <p class="card-header-title">
                     {{item.data.title}}
                   </p>
@@ -46,7 +48,8 @@
             <!-- CALENDAR -->
             <div class="card" v-else-if="item.type === 'calendar'">
               <nuxt-link :to="`/group/${item.group}/calendar`">
-                <div class="card-header" :style="{backgroundColor: '#3F51B5'}">
+                <div class="card-header">
+                  <b-icon class="group-feature-icon" icon="file-document" size="is-medium" type="is-warning" :style="{paddingTop: '15px', paddingLeft: '15px'}"></b-icon>
                   <p class="card-header-title">
 
                   </p>
@@ -198,7 +201,8 @@
 
 <style>
 .activity-item {
-  width: 100%
+  width: 100%;
+  padding: 10px;
 }
 
 @media screen and (min-width: 900px) {
@@ -210,7 +214,6 @@
 @media screen and (min-width: 1600px) {
   .activity-item {
     width: 33.33333333%;
-    padding: 10px;
   }
 }
 </style>
