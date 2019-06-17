@@ -5,7 +5,7 @@
       Calendars
     </nuxt-link>
 
-    <nuxt-link :to="`/group/${group.id}/polls`" class="group-feature" v-on:click.native="toggleSidebar">
+    <nuxt-link :to="`/group/${group.id}/polls/new`" class="group-feature" v-on:click.native="toggleSidebar">
       <b-icon class="group-feature-icon" icon="poll" size="is-small-medium" type="is-info"></b-icon>
       Polls
     </nuxt-link>
