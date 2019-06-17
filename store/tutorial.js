@@ -14,7 +14,6 @@ export const actions = {
     commit('SET_GROUP', {groupId})
     try {
       const tutorial = await this.$axios.$get(`/group/${groupId}/tutorial`)
-
       commit('SET_TUTORIAL', {tutorial: tutorial})
     } catch (err) {
       console.error(err)
