@@ -32,9 +32,9 @@
         Click Change to confirm the changes
       </b-message>
       <div class="color-box" v-bind:style="bgc"></div>
-      <div>
-        <input type="text" v-on:input="bgc.backgroundColor = $event.target.value"/>
-      </div>
+      <b-field>
+        <b-input type="text" @input="bgc.backgroundColor = $event.target.value"/>
+      </b-field>
       <br/>
       <b-button @click="updateColour" type="is-primary">Change</b-button>
 
@@ -60,7 +60,7 @@
         <b>Warning!</b> This action cannot be undone - only proceed if you are sure that you want to permanently delete
         the group and all associated data
       </b-message>
-      <b-button @click="deleteGroup" type="is-danger" disabled>Delete</b-button>
+      <b-button @click="deleteGroup" type="is-danger">Delete</b-button>
 
       <br/>
       <br/>
