@@ -24,9 +24,9 @@
             v-model='availableDates'></v-date-picker>
           <br/>
           <br/>
-          <b-button type="is-primary" @click="setAvailableDates" :disabled="!availableDates">
-            Set Available Dates
-          </b-button>
+          <!--<b-button type="is-primary" @click="setAvailableDates" :disabled="!availableDates">-->
+            <!--Set Available Dates-->
+          <!--</b-button>-->
         </div>
       </div>
       </section>
@@ -170,7 +170,7 @@
         moment: moment,
         dateFormat: 'D/M/YYYY',
         selectedDate: '',
-        availableDates: { start: new Date(2019, 5, 17), end: new Date(2019, 5, 21) },
+        availableDates: { start: new Date(2019, 5, 18), end: new Date(2019, 5, 21) },
         pickedDates: [],
         groupDates: [
           new Date('6/20/2019'),
