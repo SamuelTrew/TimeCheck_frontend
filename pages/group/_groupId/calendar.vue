@@ -120,6 +120,10 @@
         }
       },
       async pickDate() {
+        this.$axios.$post(`/group/${this.group.id}/note`, {
+          title: 'Event Date',
+          text: `Event date set for ${this.formatDate(this.selectedData)}.`
+        })
         this.$snackbar.open({
           message: `Event date set to ${this.formatDate(this.selectedDate)}.`
         });
